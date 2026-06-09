@@ -62,7 +62,7 @@
 }
 
 .footer-stack {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--accent);
   letter-spacing: 0.05em;

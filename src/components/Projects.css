@@ -18,7 +18,7 @@
 }
 
 .project-card:hover {
-  border-color: var(--card-accent);
+  border-color: var(--accent);
   transform: translateY(-4px);
 }
 
@@ -32,7 +32,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--card-accent), transparent);
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -49,13 +49,13 @@
 .card-icon {
   width: 40px;
   height: 40px;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--card-accent);
+  color: var(--accent);
 }
 
 .card-links {
@@ -70,7 +70,7 @@
   align-items: center;
 }
 
-.card-links a:hover { color: var(--card-accent); }
+.card-links a:hover { color: var(--accent); }
 
 .card-latest {
   position: absolute;
@@ -84,18 +84,18 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #fff;
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--accent3), var(--accent3-alt));
   padding: 5px 14px;
   border-radius: 100px;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), 0 0 32px rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 16px var(--glow-accent3), 0 0 32px var(--glow-accent3-alt);
   animation: shimmer 3s ease-in-out infinite;
   z-index: 1;
 }
 
 @keyframes shimmer {
-  0%, 100% { box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), 0 0 32px rgba(239, 68, 68, 0.2); }
-  50% { box-shadow: 0 0 24px rgba(245, 158, 11, 0.7), 0 0 48px rgba(239, 68, 68, 0.35); }
+  0%, 100% { box-shadow: 0 0 16px var(--glow-accent3), 0 0 32px var(--glow-accent3-alt); }
+  50% { box-shadow: 0 0 28px var(--glow-accent3), 0 0 52px var(--glow-accent3-alt); }
 }
 
 .card-meta {
@@ -123,7 +123,7 @@
 }
 
 .card-year {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--muted);
 }
@@ -137,15 +137,15 @@
 }
 
 .card-status.live {
-  color: #06d6a0;
-  background: rgba(6, 214, 160, 0.08);
-  border: 1px solid rgba(6, 214, 160, 0.25);
+  color: var(--accent2);
+  background: var(--accent2-bg);
+  border: 1px solid var(--accent2-border);
 }
 
 .card-status.active {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--accent3);
+  background: var(--accent3-bg);
+  border: 1px solid var(--accent3-border);
 }
 
 .card-desc {
@@ -163,11 +163,11 @@
 }
 
 .tag {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--card-accent);
-  background: color-mix(in srgb, var(--card-accent) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--card-accent) 25%, transparent);
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
   padding: 3px 10px;
   border-radius: 100px;
   letter-spacing: 0.03em;

@@ -96,7 +96,7 @@
 .cert-meta {
   font-size: 12px;
   color: var(--muted);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .lang-list {
@@ -124,7 +124,7 @@
 .lang-level {
   font-size: 12px;
   color: var(--accent);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 @media (max-width: 768px) {

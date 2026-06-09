@@ -26,7 +26,7 @@
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse, var(--glow-accent) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -40,8 +40,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(6, 214, 160, 0.08);
-  border: 1px solid rgba(6, 214, 160, 0.25);
+  background: var(--accent2-bg);
+  border: 1px solid var(--accent2-border);
   color: var(--accent2);
   font-size: 13px;
   font-weight: 500;
@@ -110,13 +110,13 @@
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
 }
 
 .btn-primary:hover {
-  background: #7c3aed;
+  background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 30px var(--accent-bg);
 }
 
 .btn-ghost {
@@ -147,7 +147,7 @@
   font-size: 28px;
   font-weight: 700;
   color: var(--text);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   letter-spacing: -0.04em;
 }
 
@@ -175,7 +175,7 @@
 }
 
 .hero-scroll span {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.15em;
   color: var(--muted);
@@ -209,7 +209,7 @@
   object-position: top;
   border-radius: 20px;
   border: 1px solid var(--border);
-  box-shadow: 0 0 60px rgba(139, 92, 246, 0.15);
+  box-shadow: 0 0 60px var(--glow-accent);
 }
 
 @media (max-width: 900px) {

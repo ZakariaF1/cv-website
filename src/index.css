@@ -1,17 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
+/* ============================================================
+   DESIGN TOKENS — edit only this block to retheme the site
+   ============================================================ */
 :root {
-  --bg: #07070e;
-  --surface: #0e0e1a;
-  --border: #1a1a2e;
-  --accent: #8b5cf6;
-  --accent2: #06d6a0;
-  --accent3: #f59e0b;
-  --text: #dde1f0;
-  --muted: #5a6080;
-  --card: #0c0c18;
+  /* Backgrounds */
+  --bg:        #0c0c0c;
+  --surface:   #141414;
+  --card:      #111111;
+
+  /* Borders */
+  --border:    #222222;
+
+  /* Typography */
+  --text:      #e8e0d0;
+  --muted:     #5a5650;
+
+  /* Accent — primary (muted gold) */
+  --accent:    #c9a96e;
+  --accent-bg: rgba(201, 169, 110, 0.08);
+  --accent-border: rgba(201, 169, 110, 0.25);
+  --accent-hover: #b8945a;
+
+  /* Accent2 — secondary (sage green, for status/available) */
+  --accent2:   #7a9e8a;
+  --accent2-bg: rgba(122, 158, 138, 0.08);
+  --accent2-border: rgba(122, 158, 138, 0.25);
+
+  /* Accent3 — highlight (warm amber, for badges/shipped) */
+  --accent3:   #d4844a;
+  --accent3-alt: #c0533a;
+  --accent3-bg: rgba(212, 132, 74, 0.08);
+  --accent3-border: rgba(212, 132, 74, 0.25);
+
+  /* Glow / shadow helpers */
+  --glow-accent:  rgba(201, 169, 110, 0.15);
+  --glow-accent3: rgba(212, 132, 74,  0.45);
+  --glow-accent3-alt: rgba(192, 83, 58, 0.2);
+
+  /* Nav backdrop */
+  --nav-bg: rgba(12, 12, 12, 0.85);
+
+  /* Fonts */
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
 }
 
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -19,7 +56,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -30,4 +67,4 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--bg); }

@@ -32,7 +32,7 @@
 
 .detail-key {
   color: var(--muted);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.05em;
 }
@@ -116,7 +116,7 @@
 }
 
 .timeline-period {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--accent);
   letter-spacing: 0.05em;
