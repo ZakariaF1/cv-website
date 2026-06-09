@@ -66,9 +66,9 @@ export default function Projects() {
 
 function ProjectCard({ project: p }) {
   return (
-    <div className="project-card big">
+    <div className={`project-card big${p.latest ? ' has-banner' : ''}`}>
       <div className="card-glow" />
-      {p.latest && <div className="card-latest">🚀 Just Shipped</div>}
+      {p.latest && <div className="card-latest">Just Shipped</div>}
       <div className="card-top">
         <div className="card-icon card-icon-logo">
           {p.logo === 'robot'

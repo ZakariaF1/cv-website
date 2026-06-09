@@ -13,19 +13,19 @@
   --border:    #222222;
 
   /* Typography */
-  --text:      #e8e0d0;
-  --muted:     #5a5650;
+  --text:      #ede6d6;
+  --muted:     #7a746e;
 
   /* Accent — primary (muted gold) */
-  --accent:    #c9a96e;
-  --accent-bg: rgba(201, 169, 110, 0.08);
-  --accent-border: rgba(201, 169, 110, 0.25);
-  --accent-hover: #b8945a;
+  --accent:    #d4b47a;
+  --accent-bg: rgba(212, 180, 122, 0.08);
+  --accent-border: rgba(212, 180, 122, 0.25);
+  --accent-hover: #c4a068;
 
   /* Accent2 — secondary (sage green, for status/available) */
-  --accent2:   #7a9e8a;
-  --accent2-bg: rgba(122, 158, 138, 0.08);
-  --accent2-border: rgba(122, 158, 138, 0.25);
+  --accent2:   #8aae9a;
+  --accent2-bg: rgba(138, 174, 154, 0.08);
+  --accent2-border: rgba(138, 174, 154, 0.25);
 
   /* Accent3 — highlight (warm amber, for badges/shipped) */
   --accent3:   #d4844a;

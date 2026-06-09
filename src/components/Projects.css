@@ -26,6 +26,10 @@
   padding: 32px;
 }
 
+.project-card.has-banner {
+  padding-top: 52px;
+}
+
 .card-glow {
   position: absolute;
   top: 0;
@@ -115,28 +119,37 @@
 
 .card-latest {
   position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
+  justify-content: center;
+  gap: 7px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--bg);
-  background: linear-gradient(135deg, var(--accent3), var(--accent3-alt));
-  padding: 5px 14px;
-  border-radius: 100px;
-  box-shadow: 0 0 16px var(--glow-accent3), 0 0 32px var(--glow-accent3-alt);
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent3), var(--accent3-alt), var(--accent3));
+  background-size: 200% 100%;
+  padding: 6px 0;
   animation: shimmer 3s ease-in-out infinite;
   z-index: 1;
 }
 
+.card-latest::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
 @keyframes shimmer {
-  0%, 100% { box-shadow: 0 0 16px var(--glow-accent3), 0 0 32px var(--glow-accent3-alt); }
-  50% { box-shadow: 0 0 28px var(--glow-accent3), 0 0 52px var(--glow-accent3-alt); }
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
 }
 
 .card-meta {
