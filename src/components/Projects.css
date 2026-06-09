@@ -72,6 +72,32 @@
 
 .card-links a:hover { color: var(--card-accent); }
 
+.card-latest {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  padding: 5px 14px;
+  border-radius: 100px;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), 0 0 32px rgba(239, 68, 68, 0.2);
+  animation: shimmer 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0%, 100% { box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), 0 0 32px rgba(239, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 24px rgba(245, 158, 11, 0.7), 0 0 48px rgba(239, 68, 68, 0.35); }
+}
+
 .card-meta {
   display: flex;
   align-items: flex-start;

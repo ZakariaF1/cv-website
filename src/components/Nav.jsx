@@ -28,6 +28,11 @@ export default function Nav() {
       </a>
 
       <ul className={`nav-links${open ? ' open' : ''}`}>
+        <li className="nav-mobile-profile">
+          <img src="/personal-photo.jpeg" alt="Zakaria Ahmad" className="nav-mobile-photo" />
+          <span className="nav-mobile-name">Zakaria Ahmad</span>
+          <span className="nav-mobile-title">Full Stack Developer</span>
+        </li>
         {links.map(l => (
           <li key={l.href}>
             <a href={l.href} onClick={() => setOpen(false)}>{l.label}</a>

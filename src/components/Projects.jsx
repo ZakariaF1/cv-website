@@ -3,8 +3,8 @@ import './Projects.css'
 const projects = [
   {
     title: 'Firehouse Restaurant',
-    desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Live in production at firehousebucharest.com.',
-    tags: ['Angular', 'TypeScript', 'SSR', 'SCSS'],
+    desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
+    tags: ['Angular', 'TypeScript', 'SSR', 'SCSS', 'OpenAI API'],
     link: 'https://firehousebucharest.com',
     repo: '#',
     accent: '#8b5cf6',
@@ -13,6 +13,7 @@ const projects = [
   },
   {
     title: 'BestJobs Filter Extension',
+    latest: true,
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: ['JavaScript', 'Browser Extension', 'Chrome', 'HTML/CSS'],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
@@ -29,7 +30,7 @@ const projects = [
     repo: '#',
     accent: '#f59e0b',
     year: '2026',
-    status: 'active',
+    status: 'live',
   },
 ]
 
@@ -52,6 +53,7 @@ function ProjectCard({ project: p }) {
   return (
     <div className="project-card big" style={{ '--card-accent': p.accent }}>
       <div className="card-glow" />
+      {p.latest && <div className="card-latest">🚀 Just Shipped</div>}
       <div className="card-top">
         <div className="card-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -84,7 +86,7 @@ function ProjectCard({ project: p }) {
         <div className="card-badges">
           <span className="card-year">{p.year}</span>
           <span className={`card-status ${p.status}`}>
-            {p.status === 'active' ? '⬤ Maintained' : '⬤ Live'}
+            {p.status === 'active' ? '⬤ Continuously Improving' : '⬤ Live'}
           </span>
         </div>
       </div>
