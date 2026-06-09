@@ -77,8 +77,7 @@ function ProjectCard({ project: p }) {
           }
         </div>
         <div className="card-badges">
-          <span className="card-year">{p.year}</span>
-          <span className={`card-status ${p.status}`}>⬤ Live</span>
+          <span className={`card-status ${p.status}`}>⬤ Live · {p.year}</span>
         </div>
       </div>
 
