@@ -2,22 +2,28 @@ import './About.css'
 
 const experience = [
   {
-    role: 'Software Engineer',
-    company: 'Your Company',
-    period: '2023 — Present',
-    desc: 'Building scalable backend services and modern web interfaces. Leading feature development and collaborating across teams.',
+    role: 'Backend-Focused Full Stack Developer (Contractor)',
+    company: 'Morningstar Sustainalytics',
+    period: 'Oct 2025 — May 2026',
+    desc: 'Contributed to Canvas, a centralized ESG orchestration platform. Developed .NET/C# backend flows, async event-driven processing (SQS, batch jobs, ETL pipelines), and contributed to a Pentaho → C# migration that reduced bugs by ~50%.',
   },
   {
-    role: 'Junior Developer',
-    company: 'Previous Company',
-    period: '2022 — 2023',
-    desc: 'Developed and maintained full-stack web applications. Improved CI/CD pipelines and contributed to open-source tooling.',
+    role: 'Senior Frontend (Angular) Developer',
+    company: 'Deutsche Bank',
+    period: 'Aug 2022 — May 2025',
+    desc: 'Led end-to-end migration of two core apps from legacy HTML/JS to TypeScript Angular v13, improving responsiveness by 45%. Mentored 4 junior developers and reduced codebase size by ~50%.',
   },
   {
-    role: 'Intern — Software Engineering',
-    company: 'Startup',
-    period: '2021 — 2022',
-    desc: 'Built internal tools, automated reporting workflows, and shipped customer-facing features under tight deadlines.',
+    role: 'Full Stack Software Developer',
+    company: 'Mindgeek',
+    period: 'Jun 2020 — Jun 2022',
+    desc: 'Worked across the full development lifecycle on Fraud and Reporting applications. Integrated Azure Logic Apps and Functions, automating workflows that reduced chargebacks and fraud cases by ~15%.',
+  },
+  {
+    role: 'Junior Full Stack .NET Developer',
+    company: 'Simpology Australia',
+    period: 'May 2018 — 2020',
+    desc: 'Built APIs and web apps using MySQL and MongoDB, increasing application speed by 30%. Applied best practices across plugins, widgets, and HTML page development.',
   },
 ]
 
@@ -28,23 +34,31 @@ export default function About() {
         <div className="about-left">
           <p className="section-label">About Me</p>
           <h2 className="section-title">
-            Crafting software that <span>actually matters</span>
+            Building scalable systems <span>across the full stack</span>
           </h2>
           <p className="about-bio">
-            I'm a software engineer who cares deeply about the quality of code and the experience of the people using it. I move fast without breaking things — mostly — and I love working on problems that are genuinely hard.
+            Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows including GitHub Copilot.
           </p>
           <p className="about-bio">
-            When I'm not writing code, you'll find me diving into new tech, contributing to open source, or trying to explain to non-engineers why "just add a button" is never that simple.
+            Currently expanding into applied AI — LLM fine-tuning methods, RAG, and multi-agent systems. I care about maintainability, performance, and clean cross-team collaboration.
           </p>
 
           <div className="about-details">
             <div className="detail">
               <span className="detail-key">Location</span>
-              <span className="detail-val">Your City, Country</span>
+              <span className="detail-val">Bucharest, Romania</span>
             </div>
             <div className="detail">
               <span className="detail-key">Email</span>
-              <span className="detail-val">zack@example.com</span>
+              <span className="detail-val">zackm.ahmad@outlook.com</span>
+            </div>
+            <div className="detail">
+              <span className="detail-key">LinkedIn</span>
+              <span className="detail-val">linkedin.com/in/syzack</span>
+            </div>
+            <div className="detail">
+              <span className="detail-key">Phone</span>
+              <span className="detail-val">0732 911 110</span>
             </div>
             <div className="detail">
               <span className="detail-key">Availability</span>
@@ -52,7 +66,7 @@ export default function About() {
             </div>
           </div>
 
-          <a href="/resume.pdf" className="btn btn-primary resume-btn" download>
+          <a href="/ZakariaAhmadResume.pdf" className="btn btn-primary resume-btn" download>
             Download Resume ↓
           </a>
         </div>

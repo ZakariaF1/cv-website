@@ -5,42 +5,56 @@ const categories = [
     name: 'Frontend',
     icon: '🎨',
     skills: [
-      { name: 'React', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Next.js', level: 80 },
-      { name: 'CSS / Tailwind', level: 88 },
+      { name: 'Angular (v21+) / RxJS', level: 92 },
+      { name: 'TypeScript / JavaScript', level: 90 },
+      { name: 'HTML5 / CSS3 / SCSS', level: 88 },
+      { name: 'Responsive & State Mgmt', level: 85 },
     ],
   },
   {
     name: 'Backend',
     icon: '⚙️',
     skills: [
-      { name: 'Node.js', level: 88 },
-      { name: 'Python', level: 82 },
-      { name: 'Go', level: 70 },
-      { name: 'REST / GraphQL', level: 85 },
+      { name: 'C# / .NET Core & Framework', level: 88 },
+      { name: 'ASP.NET Core & REST APIs', level: 86 },
+      { name: 'Entity Framework / LINQ', level: 82 },
+      { name: 'SQL / NoSQL Databases', level: 80 },
     ],
   },
   {
-    name: 'Data & Cloud',
+    name: 'Cloud & DevOps',
     icon: '☁️',
     skills: [
-      { name: 'PostgreSQL', level: 80 },
-      { name: 'Redis', level: 75 },
-      { name: 'Docker / K8s', level: 72 },
-      { name: 'AWS', level: 70 },
+      { name: 'Azure Cloud (AZ-900 Certified)', level: 78 },
+      { name: 'AWS (EKS, SQS)', level: 70 },
+      { name: 'Docker / Kubernetes', level: 68 },
+      { name: 'CI/CD Pipelines', level: 75 },
     ],
   },
   {
-    name: 'Tooling',
+    name: 'Tooling & Other',
     icon: '🔧',
     skills: [
-      { name: 'Git / GitHub', level: 92 },
-      { name: 'CI/CD', level: 78 },
-      { name: 'Linux / Shell', level: 80 },
-      { name: 'Testing', level: 75 },
+      { name: 'Git / GitHub / GitLab', level: 90 },
+      { name: 'JWT & API Security', level: 80 },
+      { name: 'GitHub Copilot / AI Workflows', level: 78 },
+      { name: 'ETL Pipelines', level: 75 },
     ],
   },
+]
+
+const certifications = [
+  { title: 'AI Agent Development', org: 'Skillab', year: '2026' },
+  { title: 'UX/UI Design', org: 'IT School', year: '2025' },
+  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022' },
+  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018' },
+]
+
+const languages = [
+  { name: 'English', level: 'Proficient' },
+  { name: 'Romanian', level: 'Native' },
+  { name: 'Arabic', level: 'Native' },
+  { name: 'German', level: 'Beginner' },
 ]
 
 export default function Skills() {
@@ -74,6 +88,32 @@ export default function Skills() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="skills-extras">
+        <div className="skills-extra-block">
+          <p className="section-label" style={{ marginBottom: '20px' }}>Certifications</p>
+          <div className="cert-list">
+            {certifications.map((c, i) => (
+              <div className="cert-item" key={i}>
+                <span className="cert-title">{c.title}</span>
+                <span className="cert-meta">{c.org} · {c.year}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="skills-extra-block">
+          <p className="section-label" style={{ marginBottom: '20px' }}>Languages</p>
+          <div className="lang-list">
+            {languages.map((l, i) => (
+              <div className="lang-item" key={i}>
+                <span className="lang-name">{l.name}</span>
+                <span className="lang-level">{l.level}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

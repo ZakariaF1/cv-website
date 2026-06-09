@@ -82,14 +82,14 @@ export default function Hero() {
         </div>
 
         <h1 className="hero-title">
-          Hi, I'm <span className="gradient-text">Zack</span>
+          Hi, I'm <span className="gradient-text">Zakaria</span>
           <br />
-          Software Engineer
+          Full Stack Developer
         </h1>
 
         <p className="hero-sub">
-          I build fast, scalable, and thoughtfully crafted software —
-          from backend systems to polished user interfaces.
+          .NET · Angular · Cloud Systems — building scalable web applications
+          across frontend, backend, and data layers for 7+ years.
         </p>
 
         <div className="hero-actions">
@@ -99,18 +99,18 @@ export default function Hero() {
 
         <div className="hero-stats">
           <div className="stat">
-            <span className="stat-num">3+</span>
+            <span className="stat-num">7+</span>
             <span className="stat-label">Years Experience</span>
           </div>
           <div className="stat-divider" />
           <div className="stat">
-            <span className="stat-num">20+</span>
-            <span className="stat-label">Projects Shipped</span>
+            <span className="stat-num">4</span>
+            <span className="stat-label">Companies</span>
           </div>
           <div className="stat-divider" />
           <div className="stat">
-            <span className="stat-num">∞</span>
-            <span className="stat-label">Coffees Consumed</span>
+            <span className="stat-num">AZ-900</span>
+            <span className="stat-label">Azure Certified</span>
           </div>
         </div>
       </div>

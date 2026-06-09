@@ -22,7 +22,7 @@ export default function Nav() {
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
       <a href="#hero" className="nav-logo">
         <span className="logo-bracket">&lt;</span>
-        Zack
+        Zakaria
         <span className="logo-bracket"> /&gt;</span>
       </a>
 
