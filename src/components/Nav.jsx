@@ -8,6 +8,7 @@ const links = [
   { href: '#contact', label: 'Contact' },
 ]
 
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -33,7 +34,7 @@ export default function Nav() {
           </li>
         ))}
         <li>
-          <a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>Hire Me</a>
+          <a href="/ZakariaAhmadResume.pdf" className="nav-cta" download onClick={() => setOpen(false)}>Resume ↓</a>
         </li>
       </ul>
 

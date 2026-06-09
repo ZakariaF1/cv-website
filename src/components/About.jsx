@@ -66,9 +66,6 @@ export default function About() {
             </div>
           </div>
 
-          <a href="/ZakariaAhmadResume.pdf" className="btn btn-primary resume-btn" download>
-            Download Resume ↓
-          </a>
         </div>
 
         <div className="about-right">
