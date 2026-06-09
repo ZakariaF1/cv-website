@@ -58,6 +58,18 @@
   transform: translateY(-2px);
 }
 
+.social-link .icon-email {
+  color: #EA4335;
+}
+
+.social-link .icon-linkedin {
+  color: #0A66C2;
+}
+
+.social-link .icon-phone {
+  color: #34A853;
+}
+
 .social-link:hover .social-arrow {
   opacity: 1;
   transform: translateX(0);
