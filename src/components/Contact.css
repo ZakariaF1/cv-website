@@ -13,7 +13,7 @@
 }
 
 .contact-intro {
-  font-size: 16px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.8;
   margin-bottom: 48px;
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 15px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--text);
   background: var(--card);
@@ -38,7 +38,7 @@
   border-radius: 12px;
   padding: 18px 24px;
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
   cursor: pointer;
 }
@@ -99,14 +99,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--muted);
   padding-bottom: 40px;
 }
 
 .footer-stack {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--accent);
   letter-spacing: 0.05em;
 }

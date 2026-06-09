@@ -44,6 +44,16 @@
   /* Fonts */
   --font-body: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
+
+  /* Type scale */
+  --text-xs:   12px;   /* labels, tags, badges, meta */
+  --text-sm:   14px;   /* secondary text, captions */
+  --text-base: 16px;   /* body copy, descriptions */
+  --text-md:   18px;   /* sub-headings, nav links, buttons */
+  --text-lg:   21px;   /* card titles, section sub-items */
+  --text-xl:   28px;   /* stat numbers */
+  --text-2xl:  clamp(2rem, 5vw, 3rem);   /* section titles */
+  --text-3xl:  clamp(3rem, 7vw, 5rem);   /* hero title */
 }
 
 /* ============================================================
