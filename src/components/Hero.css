@@ -219,6 +219,14 @@
 @media (max-width: 900px) {
   .hero-section { justify-content: center; }
   .hero-content { max-width: 100%; }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
