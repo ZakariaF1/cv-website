@@ -2,25 +2,25 @@ import './Projects.css'
 
 const projects = [
   {
-    title: 'Firehouse Restaurant',
-    desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
-    tags: ['Angular', 'TypeScript', 'SSR', 'SCSS', 'OpenAI API'],
-    link: 'https://firehousebucharest.com',
-    repo: '#',
-    accent: '#8b5cf6',
-    year: '2025',
-    status: 'live',
-  },
-  {
     title: 'BestJobs Filter Extension',
     latest: true,
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: ['JavaScript', 'Browser Extension', 'Chrome', 'HTML/CSS'],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
     repo: 'https://github.com/ZakariaF1/bestjobs-filter',
-    accent: '#06d6a0',
     year: '2026',
     status: 'live',
+    logo: '/bestJobs-Icon-48.png',
+  },
+  {
+    title: 'Firehouse Restaurant',
+    desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
+    tags: ['Angular', 'TypeScript', 'SSR', 'SCSS', 'OpenAI API'],
+    link: 'https://firehousebucharest.com',
+    repo: '#',
+    year: '2025',
+    status: 'live',
+    logo: '/fire-house-logo-square.png',
   },
   {
     title: 'YNAB Automation Agent',
@@ -28,11 +28,26 @@ const projects = [
     tags: ['TypeScript', 'Playwright', 'OpenAI', 'YNAB API', 'GitHub Actions', 'Vercel'],
     link: '#',
     repo: '#',
-    accent: '#f59e0b',
     year: '2026',
     status: 'live',
+    logo: 'robot',
   },
 ]
+
+function RobotIcon() {
+  return (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" />
+      <path d="M12 2a2 2 0 0 1 2 2v1H10V4a2 2 0 0 1 2-2z" />
+      <line x1="12" y1="5" x2="12" y2="11" />
+      <circle cx="8.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="15.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
+      <path d="M9 20h6" />
+      <line x1="3" y1="15" x2="1" y2="15" />
+      <line x1="21" y1="15" x2="23" y2="15" />
+    </svg>
+  )
+}
 
 export default function Projects() {
   return (
@@ -42,7 +57,7 @@ export default function Projects() {
 
       <div className="projects-featured">
         {projects.map((p, i) => (
-          <ProjectCard key={i} project={p} big />
+          <ProjectCard key={i} project={p} />
         ))}
       </div>
     </section>
@@ -51,15 +66,15 @@ export default function Projects() {
 
 function ProjectCard({ project: p }) {
   return (
-    <div className="project-card big" style={{ '--card-accent': p.accent }}>
+    <div className="project-card big">
       <div className="card-glow" />
       {p.latest && <div className="card-latest">🚀 Just Shipped</div>}
       <div className="card-top">
-        <div className="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-          </svg>
+        <div className="card-icon card-icon-logo">
+          {p.logo === 'robot'
+            ? <RobotIcon />
+            : <img src={p.logo} alt={p.title} className="card-logo-img" />
+          }
         </div>
         <div className="card-links">
           {p.repo !== '#' && (
@@ -85,9 +100,7 @@ function ProjectCard({ project: p }) {
         <h3 className="card-title">{p.title}</h3>
         <div className="card-badges">
           <span className="card-year">{p.year}</span>
-          <span className={`card-status ${p.status}`}>
-            {p.status === 'active' ? '⬤ Continuously Improving' : '⬤ Live'}
-          </span>
+          <span className={`card-status ${p.status}`}>⬤ Live</span>
         </div>
       </div>
       <p className="card-desc">{p.desc}</p>
