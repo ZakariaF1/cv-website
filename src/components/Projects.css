@@ -72,6 +72,7 @@
 
 .card-links {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: auto;
   padding-top: 16px;
@@ -217,14 +218,10 @@
   .projects-featured { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 1024px) {
+  .projects-featured { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 640px) {
   .projects-featured { grid-template-columns: 1fr; }
-
-  .card-links {
-    flex-direction: column;
-  }
-
-  .card-link-btn {
-    justify-content: center;
-  }
 }

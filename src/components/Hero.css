@@ -216,6 +216,11 @@
   .hero-photo-wrap { display: none; }
 }
 
+@media (max-width: 900px) {
+  .hero-section { justify-content: center; }
+  .hero-content { max-width: 100%; }
+}
+
 @media (max-width: 768px) {
   .hero-section { padding: 100px 0 80px; }
   .hero-sub { font-size: 16px; }
