@@ -235,4 +235,9 @@
   .hero-stats { gap: 20px; }
   .stat-num { font-size: 22px; }
   .hero-scroll { display: none; }
+
+  .hero-section::before {
+    width: 280px;
+    height: 280px;
+  }
 }
