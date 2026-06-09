@@ -4,42 +4,22 @@ const categories = [
   {
     name: 'Frontend',
     icon: '🎨',
-    skills: [
-      { name: 'Angular (v21+) / RxJS', level: 92 },
-      { name: 'TypeScript / JavaScript', level: 90 },
-      { name: 'HTML5 / CSS3 / SCSS', level: 88 },
-      { name: 'Responsive & State Mgmt', level: 85 },
-    ],
+    skills: ['Angular (v21+)', 'RxJS', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3 / SCSS', 'Responsive Design', 'State Management'],
   },
   {
     name: 'Backend',
     icon: '⚙️',
-    skills: [
-      { name: 'C# / .NET Core & Framework', level: 88 },
-      { name: 'ASP.NET Core & REST APIs', level: 86 },
-      { name: 'Entity Framework / LINQ', level: 82 },
-      { name: 'SQL / NoSQL Databases', level: 80 },
-    ],
+    skills: ['C# / .NET Core', '.NET Framework', 'ASP.NET Core', 'REST APIs', 'Entity Framework', 'LINQ', 'SQL', 'NoSQL'],
   },
   {
     name: 'Cloud & DevOps',
     icon: '☁️',
-    skills: [
-      { name: 'Azure Cloud (AZ-900 Certified)', level: 78 },
-      { name: 'AWS (EKS, SQS)', level: 70 },
-      { name: 'Docker / Kubernetes', level: 68 },
-      { name: 'CI/CD Pipelines', level: 75 },
-    ],
+    skills: ['Azure (AZ-900)', 'AWS EKS', 'AWS SQS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'GitHub Actions', 'Vercel'],
   },
   {
     name: 'Tooling & Other',
     icon: '🔧',
-    skills: [
-      { name: 'Git / GitHub / GitLab', level: 90 },
-      { name: 'JWT & API Security', level: 80 },
-      { name: 'GitHub Copilot / AI Workflows', level: 78 },
-      { name: 'ETL Pipelines', level: 75 },
-    ],
+    skills: ['Git / GitHub / GitLab', 'JWT & API Security', 'GitHub Copilot', 'Playwright', 'OpenAI API', 'ETL Pipelines', 'PostgreSQL', 'Redis'],
   },
 ]
 
@@ -70,20 +50,9 @@ export default function Skills() {
               <span className="skills-icon">{cat.icon}</span>
               <span className="skills-cat">{cat.name}</span>
             </div>
-            <div className="skills-list">
+            <div className="skills-chips">
               {cat.skills.map(s => (
-                <div key={s.name} className="skill-row">
-                  <div className="skill-meta">
-                    <span className="skill-name">{s.name}</span>
-                    <span className="skill-pct">{s.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div
-                      className="skill-fill"
-                      style={{ '--fill': `${s.level}%` }}
-                    />
-                  </div>
-                </div>
+                <span key={s} className="skill-chip">{s}</span>
               ))}
             </div>
           </div>

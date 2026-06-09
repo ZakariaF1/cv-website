@@ -75,6 +75,10 @@ export default function Hero() {
     <section id="hero" className="hero-section">
       <canvas ref={canvasRef} className="hero-canvas" />
 
+      <div className="hero-photo-wrap">
+        <img src="/personal-photo.jpeg" alt="Zakaria Ahmad" className="hero-photo" />
+      </div>
+
       <div className="hero-content">
         <div className="hero-badge">
           <span className="badge-dot" />
