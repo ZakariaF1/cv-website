@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { createPortal } from 'react-dom'
+import { useState } from 'react'
+import Lightbox from './Lightbox'
+import { buildMediaItems } from './projectUtils'
 import './Projects.css'
 
 const projects = [
@@ -47,138 +48,35 @@ const projects = [
   },
 ]
 
-function RobotIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" />
-      <path d="M12 2a2 2 0 0 1 2 2v1H10V4a2 2 0 0 1 2-2z" />
-      <line x1="12" y1="5" x2="12" y2="11" />
-      <circle cx="8.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
-      <circle cx="15.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
-      <path d="M9 20h6" />
-      <line x1="3" y1="15" x2="1" y2="15" />
-      <line x1="21" y1="15" x2="23" y2="15" />
-    </svg>
-  )
-}
-
-function Lightbox({ project, startIndex, onClose }) {
-  const items = [
-    ...(project.video ? [{ type: 'video', src: project.video }] : []),
-    ...(project.screenshots || []).map(src => ({ type: 'img', src })),
-  ]
-  const [index, setIndex] = useState(startIndex)
-  const videoRef = useRef(null)
-
-  const prev = useCallback(() => setIndex(i => (i - 1 + items.length) % items.length), [items.length])
-  const next = useCallback(() => setIndex(i => (i + 1) % items.length), [items.length])
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowLeft') prev()
-      if (e.key === 'ArrowRight') next()
-    }
-    document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [onClose, prev, next])
-
-  useEffect(() => {
-    if (items[index].type === 'video') {
-      videoRef.current?.play()
-    }
-  }, [index])
-
-  const current = items[index]
-  const touchStartX = useRef(null)
-
-  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
-  const onTouchEnd = (e) => {
-    if (touchStartX.current === null) return
-    const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 50) diff > 0 ? next() : prev()
-    touchStartX.current = null
+function ProjectLogo({ logo, title }) {
+  if (logo === 'robot') {
+    return (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" />
+        <path d="M12 2a2 2 0 0 1 2 2v1H10V4a2 2 0 0 1 2-2z" />
+        <line x1="12" y1="5" x2="12" y2="11" />
+        <circle cx="8.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
+        <circle cx="15.5" cy="16" r="1.5" fill="currentColor" stroke="none" />
+        <path d="M9 20h6" />
+        <line x1="3" y1="15" x2="1" y2="15" />
+        <line x1="21" y1="15" x2="23" y2="15" />
+      </svg>
+    )
   }
-
-  return createPortal(
-    <div className="lightbox" onClick={onClose}>
-      <div className="lightbox-inner" onClick={e => e.stopPropagation()}>
-
-        <div className="lightbox-header">
-          <span className="lightbox-title">{project.title}</span>
-          <button className="lightbox-close" onClick={onClose} aria-label="Close">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-
-        <div
-          className="lightbox-media"
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-        >
-          {current.type === 'video' ? (
-            <video ref={videoRef} src={current.src} loop playsInline autoPlay controls className="lightbox-video" />
-          ) : (
-            <img src={current.src} alt="" className="lightbox-img" />
-          )}
-
-          {items.length > 1 && (
-            <>
-              <button className="lightbox-nav lightbox-prev" onClick={prev} aria-label="Previous">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button className="lightbox-nav lightbox-next" onClick={next} aria-label="Next">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </>
-          )}
-        </div>
-
-        {items.length > 1 && (
-          <div className="lightbox-dots">
-            {items.map((item, i) => (
-              <button
-                key={i}
-                className={`lightbox-dot${i === index ? ' active' : ''}${item.type === 'video' ? ' dot-video' : ''}`}
-                onClick={() => setIndex(i)}
-                aria-label={item.type === 'video' ? 'Demo video' : `Screenshot ${i}`}
-              >
-                {item.type === 'video' && (
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3" />
-                  </svg>
-                )}
-              </button>
-            ))}
-          </div>
-        )}
-
-      </div>
-    </div>,
-    document.body
-  )
+  return <img src={logo} alt={title} className="card-logo-img" />
 }
 
 function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
   const { video, screenshots } = project
   if (!video && !screenshots?.length) return null
 
-  const totalCount = (screenshots?.length || 0) + (video ? 1 : 0)
+  const items = buildMediaItems(project)
   const previewSrc = screenshots?.[0]
+  const screenshotStartIndex = video ? 1 : 0
 
   return (
     <>
-      <div className="card-hero" onClick={() => setLightboxIndex(previewSrc ? (video ? 1 : 0) : 0)}>
+      <div className="card-hero" onClick={() => setLightboxIndex(previewSrc ? screenshotStartIndex : 0)}>
         {previewSrc && (
           <img src={previewSrc} alt="Preview" className="card-hero-img" loading="lazy" />
         )}
@@ -195,12 +93,12 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
             Demo
           </button>
         )}
-        {totalCount > 1 && (
+        {items.length > 1 && (
           <span className="card-hero-count">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
             </svg>
-            {totalCount}
+            {items.length}
           </span>
         )}
       </div>
@@ -216,21 +114,6 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
   )
 }
 
-export default function Projects() {
-  return (
-    <section id="projects">
-      <p className="section-label">Portfolio</p>
-      <h2 className="section-title">Things I've <span>built</span></h2>
-
-      <div className="projects-featured">
-        {projects.map((p, i) => (
-          <ProjectCard key={i} project={p} />
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function ProjectCard({ project: p }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
@@ -239,12 +122,10 @@ function ProjectCard({ project: p }) {
       <div className="card-glow" />
       {p.latest && <div className="card-latest">Just Shipped</div>}
       <CardMedia project={p} lightboxIndex={lightboxIndex} setLightboxIndex={setLightboxIndex} />
+
       <div className="card-top">
         <div className="card-icon card-icon-logo">
-          {p.logo === 'robot'
-            ? <RobotIcon />
-            : <img src={p.logo} alt={p.title} className="card-logo-img" />
-          }
+          <ProjectLogo logo={p.logo} title={p.title} />
         </div>
         <div className="card-badges">
           <span className={`card-status ${p.status}`}>⬤ Live · {p.year}</span>
@@ -255,12 +136,10 @@ function ProjectCard({ project: p }) {
       <p className="card-desc">{p.desc}</p>
 
       <div className="card-tags">
-        {p.tags.map(t => (
-          <span key={t} className="tag">{t}</span>
-        ))}
+        {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
       </div>
 
-      {(p.repo !== '#' || p.link !== '#' || p.video) && (
+      {(p.repo !== '#' || p.link !== '#') && (
         <div className="card-links">
           {p.link !== '#' && (
             <a href={p.link} target="_blank" rel="noopener" className="card-link-btn card-link-primary">
@@ -283,5 +162,17 @@ function ProjectCard({ project: p }) {
         </div>
       )}
     </div>
+  )
+}
+
+export default function Projects() {
+  return (
+    <section id="projects">
+      <p className="section-label">Portfolio</p>
+      <h2 className="section-title">Things I've <span>built</span></h2>
+      <div className="projects-featured">
+        {projects.map((p, i) => <ProjectCard key={i} project={p} />)}
+      </div>
+    </section>
   )
 }
