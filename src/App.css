@@ -15,17 +15,6 @@ section {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--accent), transparent);
-  max-width: 200px;
 }
 
 .section-title {
@@ -38,10 +27,7 @@ section {
 }
 
 .section-title span {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
 @media (max-width: 768px) {

@@ -23,7 +23,13 @@
   border-bottom: 1px solid var(--border);
 }
 
-.skills-icon { font-size: var(--text-md); }
+.skills-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+
+.skills-extra-label { margin-bottom: 20px; }
 
 .skills-cat {
   font-size: var(--text-md);

@@ -6,10 +6,10 @@ export default function Contact() {
       <div className="contact-inner">
         <p className="section-label">Contact</p>
         <h2 className="section-title">
-          Let's build something <span>together</span>
+          Available for <span>new work</span>
         </h2>
         <p className="contact-intro">
-          Have a project in mind, a role to fill, or just want to connect? Reach out — I reply to everything.
+          Open to full-time roles, contracts, and technical consulting. Drop me a line — I reply to everything.
         </p>
 
         <div className="contact-socials">
@@ -45,7 +45,16 @@ export default function Contact() {
       </div>
 
       <footer className="footer">
-        <span>Designed & built by Zakaria Ahmad — {new Date().getFullYear()}</span>
+        <span>
+          Made with{' '}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#e63946" stroke="#e63946" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', margin: '0 2px' }}>
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          {' '}by{' '}
+          <a href="https://linkedin.com/in/syzack" target="_blank" rel="noopener" className="footer-author">
+            Ahmad Zakaria
+          </a>
+        </span>
         <span className="footer-stack">React + Vite</span>
       </footer>
     </section>

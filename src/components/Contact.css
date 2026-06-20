@@ -110,6 +110,14 @@
   padding-bottom: 40px;
 }
 
+.footer-author {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.footer-author:hover { color: var(--accent-hover); }
+
 .footer-stack {
   font-family: var(--font-mono);
   font-size: var(--text-xs);

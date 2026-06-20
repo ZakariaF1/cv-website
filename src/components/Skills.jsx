@@ -3,22 +3,38 @@ import './Skills.css'
 const categories = [
   {
     name: 'Frontend',
-    icon: '🎨',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
     skills: ['Angular (v21+)', 'RxJS', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3 / SCSS', 'Responsive Design', 'State Management'],
   },
   {
     name: 'Backend',
-    icon: '⚙️',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+    ),
     skills: ['C# / .NET Core', '.NET Framework', 'ASP.NET Core', 'REST APIs', 'Entity Framework', 'LINQ', 'SQL', 'NoSQL'],
   },
   {
     name: 'Cloud & DevOps',
-    icon: '☁️',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+      </svg>
+    ),
     skills: ['Azure (AZ-900)', 'AWS EKS', 'AWS SQS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'GitHub Actions', 'Vercel'],
   },
   {
     name: 'Tooling & Other',
-    icon: '🔧',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
     skills: ['Git / GitHub / GitLab', 'JWT & API Security', 'GitHub Copilot', 'Playwright', 'OpenAI API', 'ETL Pipelines', 'PostgreSQL', 'Redis'],
   },
 ]
@@ -61,7 +77,7 @@ export default function Skills() {
 
       <div className="skills-extras">
         <div className="skills-extra-block">
-          <p className="section-label" style={{ marginBottom: '20px' }}>Certifications</p>
+          <p className="section-label skills-extra-label">Certifications</p>
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
@@ -73,7 +89,7 @@ export default function Skills() {
         </div>
 
         <div className="skills-extra-block">
-          <p className="section-label" style={{ marginBottom: '20px' }}>Languages</p>
+          <p className="section-label skills-extra-label">Languages</p>
           <div className="lang-list">
             {languages.map((l, i) => (
               <div className="lang-item" key={i}>
