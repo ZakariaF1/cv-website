@@ -76,7 +76,7 @@ export default function Hero() {
       <canvas ref={canvasRef} className="hero-canvas" />
 
       <div className="hero-photo-wrap">
-        <img src="/personal-photo.jpeg" alt="Zakaria Ahmad" className="hero-photo" />
+        <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="hero-photo" />
       </div>
 
       <div className="hero-content">

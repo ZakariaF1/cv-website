@@ -1,3 +1,5 @@
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import './Projects.css'
 
 const projects = [
@@ -11,6 +13,12 @@ const projects = [
     year: '2026',
     status: 'live',
     logo: '/bestJobs-Icon-48.png',
+    video: '/best-jobs-presentation.webm',
+    screenshots: [
+      '/best-jobs-screenshot1.avif',
+      '/best-jobs-screenshot2.avif',
+      '/best-jobs-screenshot3.avif',
+    ],
   },
   {
     title: 'YNAB Automation Agent',
@@ -31,6 +39,11 @@ const projects = [
     year: '2025',
     status: 'live',
     logo: '/fire-house-logo-square.png',
+    video: '/firehouse-presentation.webm',
+    screenshots: [
+      '/firehouse-screenshot1.avif',
+      '/firehouse-screenshot2.avif',
+    ],
   },
 ]
 
@@ -46,6 +59,160 @@ function RobotIcon() {
       <line x1="3" y1="15" x2="1" y2="15" />
       <line x1="21" y1="15" x2="23" y2="15" />
     </svg>
+  )
+}
+
+function Lightbox({ project, startIndex, onClose }) {
+  const items = [
+    ...(project.video ? [{ type: 'video', src: project.video }] : []),
+    ...(project.screenshots || []).map(src => ({ type: 'img', src })),
+  ]
+  const [index, setIndex] = useState(startIndex)
+  const videoRef = useRef(null)
+
+  const prev = useCallback(() => setIndex(i => (i - 1 + items.length) % items.length), [items.length])
+  const next = useCallback(() => setIndex(i => (i + 1) % items.length), [items.length])
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, prev, next])
+
+  useEffect(() => {
+    if (items[index].type === 'video') {
+      videoRef.current?.play()
+    }
+  }, [index])
+
+  const current = items[index]
+  const touchStartX = useRef(null)
+
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev()
+    touchStartX.current = null
+  }
+
+  return createPortal(
+    <div className="lightbox" onClick={onClose}>
+      <div className="lightbox-inner" onClick={e => e.stopPropagation()}>
+
+        <div className="lightbox-header">
+          <span className="lightbox-title">{project.title}</span>
+          <button className="lightbox-close" onClick={onClose} aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div
+          className="lightbox-media"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          {current.type === 'video' ? (
+            <video ref={videoRef} src={current.src} loop playsInline autoPlay controls className="lightbox-video" />
+          ) : (
+            <img src={current.src} alt="" className="lightbox-img" />
+          )}
+
+          {items.length > 1 && (
+            <>
+              <button className="lightbox-nav lightbox-prev" onClick={prev} aria-label="Previous">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button className="lightbox-nav lightbox-next" onClick={next} aria-label="Next">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </>
+          )}
+        </div>
+
+        {items.length > 1 && (
+          <div className="lightbox-dots">
+            {items.map((item, i) => (
+              <button
+                key={i}
+                className={`lightbox-dot${i === index ? ' active' : ''}${item.type === 'video' ? ' dot-video' : ''}`}
+                onClick={() => setIndex(i)}
+                aria-label={item.type === 'video' ? 'Demo video' : `Screenshot ${i}`}
+              >
+                {item.type === 'video' && (
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+
+      </div>
+    </div>,
+    document.body
+  )
+}
+
+function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
+  const { video, screenshots } = project
+  if (!video && !screenshots?.length) return null
+
+  const totalCount = (screenshots?.length || 0) + (video ? 1 : 0)
+  const previewSrc = screenshots?.[0]
+
+  return (
+    <>
+      <div className="card-hero" onClick={() => setLightboxIndex(previewSrc ? (video ? 1 : 0) : 0)}>
+        {previewSrc && (
+          <img src={previewSrc} alt="Preview" className="card-hero-img" loading="lazy" />
+        )}
+        <div className="card-hero-overlay" />
+        {video && (
+          <button
+            className="card-hero-play"
+            onClick={e => { e.stopPropagation(); setLightboxIndex(0) }}
+            aria-label="Play demo"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            Demo
+          </button>
+        )}
+        {totalCount > 1 && (
+          <span className="card-hero-count">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+            </svg>
+            {totalCount}
+          </span>
+        )}
+      </div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          project={project}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+    </>
   )
 }
 
@@ -65,10 +232,13 @@ export default function Projects() {
 }
 
 function ProjectCard({ project: p }) {
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+
   return (
     <div className={`project-card big${p.latest ? ' has-banner' : ''}`}>
       <div className="card-glow" />
       {p.latest && <div className="card-latest">Just Shipped</div>}
+      <CardMedia project={p} lightboxIndex={lightboxIndex} setLightboxIndex={setLightboxIndex} />
       <div className="card-top">
         <div className="card-icon card-icon-logo">
           {p.logo === 'robot'
@@ -90,7 +260,7 @@ function ProjectCard({ project: p }) {
         ))}
       </div>
 
-      {(p.repo !== '#' || p.link !== '#') && (
+      {(p.repo !== '#' || p.link !== '#' || p.video) && (
         <div className="card-links">
           {p.link !== '#' && (
             <a href={p.link} target="_blank" rel="noopener" className="card-link-btn card-link-primary">

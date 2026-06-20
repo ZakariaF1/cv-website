@@ -29,7 +29,7 @@ export default function Nav() {
 
       <ul className={`nav-links${open ? ' open' : ''}`}>
         <li className="nav-mobile-profile">
-          <img src="/personal-photo.jpeg" alt="Zakaria Ahmad" className="nav-mobile-photo" />
+          <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="nav-mobile-photo" />
           <span className="nav-mobile-name">Zakaria Ahmad</span>
           <span className="nav-mobile-title">Full Stack Developer</span>
         </li>
