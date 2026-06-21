@@ -76,7 +76,7 @@ export default function Hero() {
           <div className="hero-strip-div" />
           <div className="hero-stat">
             <span className="hero-stat-num">3</span>
-            <span className="hero-stat-label">Projects</span>
+            <span className="hero-stat-label">Personal Projects</span>
           </div>
         </div>
       </div>
