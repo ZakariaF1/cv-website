@@ -1,4 +1,4 @@
-import './Hero.css'
+import "./Hero.css";
 
 export default function Hero() {
   return (
@@ -22,7 +22,11 @@ export default function Hero() {
           </div>
 
           <div className="hero-photo-wrap">
-            <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="hero-photo" />
+            <img
+              src="/personal-photo.avif"
+              alt="Zakaria Ahmad"
+              className="hero-photo"
+            />
           </div>
         </div>
 
@@ -32,8 +36,12 @@ export default function Hero() {
         </p>
 
         <div className="hero-actions">
-          <a href="#projects" className="btn btn-primary">View My Work</a>
-          <a href="#contact" className="btn btn-ghost">Get In Touch</a>
+          <a href="#projects" className="btn btn-primary">
+            View My Work
+          </a>
+          <a href="#contact" className="btn btn-ghost">
+            Get In Touch
+          </a>
         </div>
 
         <div className="hero-divider" />
@@ -41,10 +49,15 @@ export default function Hero() {
         <div className="hero-about">
           <p className="hero-section-label">About Me</p>
           <p className="hero-bio">
-            Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows.
+            Full Stack Software Developer with 7+ years of experience building
+            scalable web applications across frontend, backend, and data layers.
+            Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with
+            exposure to Azure, AWS, and AI-assisted developer workflows.
           </p>
           <p className="hero-bio">
-            Currently expanding into applied AI — LLM fine-tuning, RAG, and multi-agent systems. I care about maintainability, performance, and clean cross-team collaboration.
+            Currently expanding into applied AI — LLM fine-tuning, RAG, and
+            multi-agent systems. I care about maintainability, performance, and
+            clean cross-team collaboration.
           </p>
 
           <div className="hero-details">
@@ -62,7 +75,9 @@ export default function Hero() {
             </div>
             <div className="hero-detail">
               <span className="hero-detail-key">Availability</span>
-              <span className="hero-detail-val hero-detail-available">Open to opportunities</span>
+              <span className="hero-detail-val hero-detail-available">
+                Open to opportunities
+              </span>
             </div>
           </div>
         </div>
@@ -85,5 +100,5 @@ export default function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
