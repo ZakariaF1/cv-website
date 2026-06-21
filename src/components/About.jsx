@@ -45,62 +45,22 @@ function CompanyLogo({ logo, company }) {
 export default function About() {
   return (
     <section id="about">
-      <div className="about-grid">
-        <div className="about-left">
-          <p className="section-label">About Me</p>
-          <h2 className="section-title">
-            Building scalable systems <span>across the full stack</span>
-          </h2>
-          <p className="about-bio">
-            Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows including GitHub Copilot.
-          </p>
-          <p className="about-bio">
-            Currently expanding into applied AI — LLM fine-tuning methods, RAG, and multi-agent systems. I care about maintainability, performance, and clean cross-team collaboration.
-          </p>
-
-          <div className="about-details">
-            <div className="detail">
-              <span className="detail-key">Location</span>
-              <span className="detail-val">Bucharest, Romania</span>
-            </div>
-            <div className="detail">
-              <span className="detail-key">Email</span>
-              <span className="detail-val">zackm.ahmad@outlook.com</span>
-            </div>
-            <div className="detail">
-              <span className="detail-key">LinkedIn</span>
-              <span className="detail-val">linkedin.com/in/syzack</span>
-            </div>
-            <div className="detail">
-              <span className="detail-key">Phone</span>
-              <span className="detail-val">0732 911 110</span>
-            </div>
-            <div className="detail">
-              <span className="detail-key">Availability</span>
-              <span className="detail-val available">Open to opportunities</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="about-right">
-          <p className="section-label">Experience</p>
-          <div className="timeline">
-            {experience.map((e, i) => (
-              <div className="timeline-item" key={i}>
-                <CompanyLogo logo={e.logo} company={e.company} />
-                <div className="timeline-body">
-                  <div className="timeline-header">
-                    <span className="timeline-role">{e.role}</span>
-                    <span className="timeline-period">{e.period}</span>
-                  </div>
-                  <span className="timeline-company">{e.company}</span>
-                  <p className="timeline-desc">{e.desc}</p>
-                </div>
+      <p className="section-label">Experience</p>
+      <h2 className="section-title">Where I've <span>worked</span></h2>
+      <div className="timeline">
+        {experience.map((e, i) => (
+          <div className="timeline-item" key={i}>
+            <CompanyLogo logo={e.logo} company={e.company} />
+            <div className="timeline-body">
+              <div className="timeline-header">
+                <span className="timeline-role">{e.role}</span>
+                <span className="timeline-period">{e.period}</span>
               </div>
-            ))}
+              <span className="timeline-company">{e.company}</span>
+              <p className="timeline-desc">{e.desc}</p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   )
