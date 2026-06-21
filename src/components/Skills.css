@@ -137,6 +137,20 @@
 
 .lang-item:last-child { border-bottom: none; }
 
+.lang-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-flag {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
 .lang-name {
   font-size: var(--text-base);
   font-weight: 600;
