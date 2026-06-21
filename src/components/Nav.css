@@ -98,6 +98,8 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     padding: 16px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav.scrolled { padding: 12px 20px; }
