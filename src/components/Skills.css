@@ -74,10 +74,26 @@
 
 .cert-item {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
+}
+
+.cert-logo {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 6px;
+}
+
+.cert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .cert-item:last-child,
@@ -113,6 +129,20 @@
 }
 
 .lang-item:last-child { border-bottom: none; }
+
+.lang-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-flag {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
 
 .lang-name {
   font-size: var(--text-base);

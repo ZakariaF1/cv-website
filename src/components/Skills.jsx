@@ -40,17 +40,17 @@ const categories = [
 ]
 
 const certifications = [
-  { title: 'AI Agent Development', org: 'Skillab', year: '2026' },
-  { title: 'UX/UI Design', org: 'IT School', year: '2025' },
-  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022' },
-  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018' },
+  { title: 'AI Agent Development', org: 'Skillab', year: '2026', logo: '/skillab-logo.avif' },
+  { title: 'UX/UI Design', org: 'IT School', year: '2025', logo: '/it-school-logo.avif' },
+  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022', logo: '/azure-fundamentals-logo.avif' },
+  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018', logo: '/link-academy-logo.avif' },
 ]
 
 const languages = [
-  { name: 'English', level: 'Proficient' },
-  { name: 'Romanian', level: 'Native' },
-  { name: 'Arabic', level: 'Native' },
-  { name: 'German', level: 'Beginner' },
+  { name: 'English', level: 'Proficient', flag: 'https://flagcdn.com/gb.svg' },
+  { name: 'Romanian', level: 'Native', flag: 'https://flagcdn.com/ro.svg' },
+  { name: 'Arabic', level: 'Native', flag: 'https://flagcdn.com/sa.svg' },
+  { name: 'German', level: 'Beginner', flag: 'https://flagcdn.com/de.svg' },
 ]
 
 export default function Skills() {
@@ -77,8 +77,11 @@ export default function Skills() {
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
-                <span className="cert-title">{c.title}</span>
-                <span className="cert-meta">{c.org} · {c.year}</span>
+                {c.logo && <img src={c.logo} alt={c.org} className="cert-logo" />}
+                <div className="cert-text">
+                  <span className="cert-title">{c.title}</span>
+                  <span className="cert-meta">{c.org} · {c.year}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -89,7 +92,10 @@ export default function Skills() {
           <div className="lang-list">
             {languages.map((l, i) => (
               <div className="lang-item" key={i}>
-                <span className="lang-name">{l.name}</span>
+                <div className="lang-left">
+                  {l.flag && <img src={l.flag} alt={l.name} className="lang-flag" />}
+                  <span className="lang-name">{l.name}</span>
+                </div>
                 <span className="lang-level">{l.level}</span>
               </div>
             ))}
