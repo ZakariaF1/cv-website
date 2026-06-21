@@ -223,6 +223,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2px;
 }
 
@@ -238,6 +239,7 @@
   font-size: var(--text-xs);
   color: var(--muted);
   letter-spacing: 0.04em;
+  text-align: center;
 }
 
 .hero-strip-div {
@@ -271,12 +273,14 @@
   }
 
   .hero-panel-inner {
-    padding: 100px var(--panel-pad) 60px;
+    padding: 100px var(--panel-pad) 32px;
     height: auto;
   }
 
   .hero-about { flex: none; }
   .hero-photo { width: 72px; height: 72px; }
+  .hero-stats { margin-top: 12px; padding-top: 12px; }
+  .hero-divider { margin: 16px 0 12px; }
 
   .hero-actions {
     flex-direction: row;
