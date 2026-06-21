@@ -7,20 +7,24 @@ export default function Hero() {
       <div className="hero-glow" aria-hidden="true" />
 
       <div className="hero-panel-inner">
-        <div className="hero-photo-wrap">
-          <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="hero-photo" />
-        </div>
+        <div className="hero-identity">
+          <div className="hero-identity-left">
+            <div className="hero-badge">
+              <span className="badge-dot" />
+              Available for work
+            </div>
 
-        <div className="hero-badge">
-          <span className="badge-dot" />
-          Available for work
-        </div>
+            <h1 className="hero-title">
+              Hi, I'm <span className="hero-name">Zakaria</span>
+              <br />
+              Full Stack Developer
+            </h1>
+          </div>
 
-        <h1 className="hero-title">
-          Hi, I'm <span className="hero-name">Zakaria</span>
-          <br />
-          Full Stack Developer
-        </h1>
+          <div className="hero-photo-wrap">
+            <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="hero-photo" />
+          </div>
+        </div>
 
         <p className="hero-sub">
           .NET · Angular · Cloud Systems — building scalable web applications
