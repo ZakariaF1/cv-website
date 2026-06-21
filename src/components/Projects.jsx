@@ -68,7 +68,22 @@ function ProjectLogo({ logo, title }) {
 
 function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
   const { video, screenshots } = project
-  if (!video && !screenshots?.length) return null
+
+  if (!video && !screenshots?.length) {
+    if (project.repo === 'private') {
+      return (
+        <div className="card-hero card-hero-private">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <span>Private Project</span>
+          <p>Source &amp; preview available on request</p>
+        </div>
+      )
+    }
+    return null
+  }
 
   const items = buildMediaItems(project)
   const previewSrc = screenshots?.[0]
@@ -81,6 +96,7 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
           <img src={previewSrc} alt="Preview" className="card-hero-img" loading="lazy" />
         )}
         <div className="card-hero-overlay" />
+        {project.latest && <span className="card-just-shipped">Just Shipped</span>}
         {video && (
           <button
             className="card-hero-play"
@@ -118,9 +134,8 @@ function ProjectCard({ project: p }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
   return (
-    <div className={`project-card big${p.latest ? ' has-banner' : ''}`}>
+    <div className="project-card big">
       <div className="card-glow" />
-      {p.latest && <div className="card-latest">Just Shipped</div>}
       <CardMedia project={p} lightboxIndex={lightboxIndex} setLightboxIndex={setLightboxIndex} />
 
       <div className="card-top">
