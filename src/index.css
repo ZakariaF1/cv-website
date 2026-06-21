@@ -41,19 +41,86 @@
   /* Nav backdrop */
   --nav-bg: rgba(12, 12, 12, 0.85);
 
+  /*
+   * BREAKPOINTS — single source of truth (CSS vars can't be used in @media,
+   * so these are documentation only. Always use exact values below.)
+   *
+   *   mobile:    max-width: 767px
+   *   tablet:    max-width: 1199px
+   *   ultrawide: min-width: 1600px
+   */
+
   /* Fonts */
   --font-body: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
 
-  /* Type scale */
+  /* Type scale — desktop base */
   --text-xs:   12px;   /* labels, tags, badges, meta */
   --text-sm:   14px;   /* secondary text, captions */
   --text-base: 16px;   /* body copy, descriptions */
-  --text-md:   18px;   /* sub-headings, nav links, buttons */
-  --text-lg:   21px;   /* card titles, section sub-items */
-  --text-xl:   28px;   /* stat numbers */
-  --text-2xl:  clamp(2rem, 5vw, 3rem);   /* section titles */
-  --text-3xl:  clamp(3rem, 7vw, 5rem);   /* hero title */
+  --text-md:   18px;   /* sub-headings, nav links, card titles */
+  --text-lg:   21px;   /* section sub-items, stat numbers */
+  --text-xl:   28px;   /* large display numbers */
+
+  /* Display titles — fixed per breakpoint */
+  --section-title: 2rem;    /* right panel section headings */
+  --hero-title:    1.9rem;  /* left panel hero heading */
+
+  /* Spacing scale */
+  --section-pad:   100px;   /* section top/bottom padding */
+  --main-pad:      6%;      /* main horizontal padding */
+  --panel-pad:     48px;    /* left panel inner padding */
+}
+
+/* ── Ultrawide scale ── */
+@media (min-width: 1600px) {
+  :root {
+    --text-xs:       13px;
+    --text-sm:       15px;
+    --text-base:     17px;
+    --text-md:       19px;
+    --text-lg:       22px;
+    --text-xl:       32px;
+    --section-title: 2.6rem;
+    --hero-title:    2.4rem;
+    --section-pad:   120px;
+    --main-pad:      7%;
+    --panel-pad:     64px;
+  }
+}
+
+/* ── Tablet scale ── */
+@media (max-width: 1199px) {
+  :root {
+    --text-xs:       11px;
+    --text-sm:       13px;
+    --text-base:     15px;
+    --text-md:       16px;
+    --text-lg:       19px;
+    --text-xl:       24px;
+    --section-title: 1.7rem;
+    --hero-title:    1.5rem;
+    --section-pad:   80px;
+    --main-pad:      5%;
+    --panel-pad:     36px;
+  }
+}
+
+/* ── Mobile scale ── */
+@media (max-width: 767px) {
+  :root {
+    --text-xs:       12px;
+    --text-sm:       14px;
+    --text-base:     16px;
+    --text-md:       18px;
+    --text-lg:       21px;
+    --text-xl:       28px;
+    --section-title: 1.8rem;
+    --hero-title:    2rem;
+    --section-pad:   72px;
+    --main-pad:      20px;
+    --panel-pad:     20px;
+  }
 }
 
 /* ============================================================

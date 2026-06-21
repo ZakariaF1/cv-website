@@ -1,11 +1,50 @@
+/* ── Shell layout ── */
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* nav sits at the top — its height is defined in Nav.css */
+.nav {
+  flex-shrink: 0;
+}
+
+/* panels row fills the remaining height */
+.panels {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.panel-left {
+  width: 38%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+
+/* left panel scrolls internally via hero-panel */
+
+.panel-right {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  container-type: inline-size;
+}
+
 main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
+  width: 100%;
+  padding: 0 var(--main-pad);
 }
 
 section {
-  padding: 100px 0;
+  padding: var(--section-pad) 0;
 }
 
 .section-label {
@@ -18,7 +57,7 @@ section {
 }
 
 .section-title {
-  font-size: var(--text-2xl);
+  font-size: var(--section-title);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -26,14 +65,48 @@ section {
   margin-bottom: 48px;
 }
 
-.section-title span {
-  color: var(--accent);
+.section-title span { color: var(--accent); }
+
+/* ── Ultrawide ── */
+@media (min-width: 1600px) {
+  .panel-left { width: 35%; }
 }
 
-@media (max-width: 768px) {
-  section { padding: 64px 0; }
+/* ── Tablet ── */
+@media (max-width: 1199px) {
+  .panel-left { width: 42%; }
 }
 
+/* ── Mobile: revert to normal stacked scroll ── */
+@media (max-width: 767px) {
+  .layout {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .panels {
+    display: block;
+    overflow: visible;
+  }
+
+  .panel-left {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-right {
+    height: auto;
+    overflow: visible;
+    container-type: normal;
+  }
+
+  .section-title { margin-bottom: 36px; }
+}
+
+/* ── Scroll-to-top (anchored to right panel) ── */
 .scroll-top {
   position: fixed;
   bottom: 32px;
@@ -62,16 +135,6 @@ section {
   pointer-events: auto;
 }
 
-.scroll-top:hover {
-  background: var(--accent-bg);
-}
-
-.scroll-top-ring {
-  position: absolute;
-  inset: 0;
-}
-
-.scroll-top-arrow {
-  position: relative;
-  z-index: 1;
-}
+.scroll-top:hover { background: var(--accent-bg); }
+.scroll-top-ring { position: absolute; inset: 0; }
+.scroll-top-arrow { position: relative; z-index: 1; }
