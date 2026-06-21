@@ -47,10 +47,10 @@ const certifications = [
 ]
 
 const languages = [
-  { name: 'English', level: 'Proficient' },
-  { name: 'Romanian', level: 'Native' },
-  { name: 'Arabic', level: 'Native' },
-  { name: 'German', level: 'Beginner' },
+  { name: 'English', level: 'Proficient', flag: 'https://flagcdn.com/gb.svg' },
+  { name: 'Romanian', level: 'Native', flag: 'https://flagcdn.com/ro.svg' },
+  { name: 'Arabic', level: 'Native', flag: 'https://flagcdn.com/sa.svg' },
+  { name: 'German', level: 'Beginner', flag: 'https://flagcdn.com/de.svg' },
 ]
 
 export default function Skills() {
@@ -96,7 +96,10 @@ export default function Skills() {
           <div className="lang-list">
             {languages.map((l, i) => (
               <div className="lang-item" key={i}>
-                <span className="lang-name">{l.name}</span>
+                <div className="lang-left">
+                  {l.flag && <img src={l.flag} alt={l.name} className="lang-flag" />}
+                  <span className="lang-name">{l.name}</span>
+                </div>
                 <span className="lang-level">{l.level}</span>
               </div>
             ))}
