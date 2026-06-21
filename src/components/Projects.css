@@ -3,12 +3,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .projects-bento .project-card {
   flex: 1 1 340px;
-  max-width: 560px;
+  max-width: calc(50% - 12px);
 }
 
 /* ── Mobile ── */

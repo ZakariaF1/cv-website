@@ -101,7 +101,7 @@
   }
 
   .nav.scrolled { padding: 12px 20px; }
-  .nav-burger { display: flex; }
+  .nav-burger { display: flex; position: relative; z-index: 300; }
 
   .nav-links {
     position: fixed;
