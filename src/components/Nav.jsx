@@ -8,20 +8,23 @@ const links = [
   { href: '#contact', label: 'Contact' },
 ]
 
-
-export default function Nav() {
+export default function Nav({ scrollRef }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const el = scrollRef?.current ?? window
+    const onScroll = () => {
+      const top = scrollRef?.current ? scrollRef.current.scrollTop : window.scrollY
+      setScrolled(top > 50)
+    }
+    el.addEventListener('scroll', onScroll)
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [scrollRef])
 
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
-      <a href="#hero" className="nav-logo">
+      <a href="#about" className="nav-logo">
         <span className="logo-bracket">&lt;</span>
         Zakaria
         <span className="logo-bracket"> /&gt;</span>

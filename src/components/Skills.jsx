@@ -59,7 +59,7 @@ export default function Skills() {
       <p className="section-label">Stack</p>
       <h2 className="section-title">What I work <span>with</span></h2>
 
-      <div className="skills-grid">
+      <div className="skills-bento">
         {categories.map(cat => (
           <div key={cat.name} className="skills-card">
             <div className="skills-card-header">
@@ -67,16 +67,12 @@ export default function Skills() {
               <span className="skills-cat">{cat.name}</span>
             </div>
             <div className="skills-chips">
-              {cat.skills.map(s => (
-                <span key={s} className="skill-chip">{s}</span>
-              ))}
+              {cat.skills.map(s => <span key={s} className="skill-chip">{s}</span>)}
             </div>
           </div>
         ))}
-      </div>
 
-      <div className="skills-extras">
-        <div className="skills-extra-block">
+        <div className="skills-card skills-card-certs">
           <p className="section-label skills-extra-label">Certifications</p>
           <div className="cert-list">
             {certifications.map((c, i) => (
@@ -88,7 +84,7 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className="skills-extra-block">
+        <div className="skills-card skills-card-langs">
           <p className="section-label skills-extra-label">Languages</p>
           <div className="lang-list">
             {languages.map((l, i) => (

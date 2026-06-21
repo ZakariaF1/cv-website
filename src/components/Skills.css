@@ -1,8 +1,14 @@
-.skills-grid {
+/* 2-col bento by default (right panel is ~60% screen width) */
+.skills-bento {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
   gap: 24px;
 }
+
+/* certs spans full width, languages spans 1 col */
+.skills-card-certs { grid-column: span 2; }
+.skills-card-langs { grid-column: span 1; }
 
 .skills-card {
   background: var(--card);
@@ -10,6 +16,8 @@
   border-radius: 16px;
   padding: 28px;
   transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .skills-card:hover { border-color: var(--accent); }
@@ -55,29 +63,13 @@
   transition: border-color 0.2s, color 0.2s;
 }
 
-.skill-chip:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
+.skill-chip:hover { border-color: var(--accent); color: var(--accent); }
 
-.skills-extras {
+/* certs layout — horizontal row inside the wide card */
+.skills-card-certs .cert-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 24px;
-}
-
-.skills-extra-block {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-}
-
-.cert-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 32px;
 }
 
 .cert-item {
@@ -88,7 +80,8 @@
   border-bottom: 1px solid var(--border);
 }
 
-.cert-item:last-child {
+.cert-item:last-child,
+.cert-item:nth-last-child(2):nth-child(odd) {
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -108,14 +101,14 @@
 .lang-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
 .lang-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -133,7 +126,19 @@
   font-family: var(--font-mono);
 }
 
-@media (max-width: 768px) {
-  .skills-grid { grid-template-columns: 1fr; }
-  .skills-extras { grid-template-columns: 1fr; }
+/* ── Ultrawide: expand to 4 cols ── */
+@media (min-width: 1600px) {
+  .skills-bento { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .skills-card { padding: 36px; }
+  .skills-card-certs { grid-column: span 3; }
+  .skills-card-langs { grid-column: span 1; }
+  .skill-chip { padding: 7px 16px; }
+}
+
+/* ── Mobile: single column ── */
+@media (max-width: 767px) {
+  .skills-bento { grid-template-columns: 1fr; }
+  .skills-card-certs { grid-column: span 1; }
+  .skills-card-langs { grid-column: span 1; }
+  .skills-card-certs .cert-list { grid-template-columns: 1fr; }
 }
