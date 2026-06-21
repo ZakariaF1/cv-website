@@ -43,12 +43,27 @@
   gap: 0;
 }
 
-/* ── Identity block ── */
-.hero-photo-wrap { margin-bottom: 24px; }
+/* ── Identity block: badge+title left, photo right ── */
+.hero-identity {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.hero-identity-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-photo-wrap { flex-shrink: 0; }
 
 .hero-photo {
-  width: 80px;
-  height: 80px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
@@ -67,7 +82,7 @@
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 100px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: 0.03em;
   width: fit-content;
 }
@@ -252,7 +267,7 @@
 
 /* ── Ultrawide ── */
 @media (min-width: 1600px) {
-  .hero-photo { width: 96px; height: 96px; }
+  .hero-photo { width: 124px; height: 124px; }
   .hero-divider { margin: 36px 0 28px; }
   .hero-stats { margin-top: 28px; padding-top: 28px; }
 }
@@ -278,6 +293,7 @@
   }
 
   .hero-about { flex: none; }
+  .hero-identity { align-items: center; }
   .hero-photo { width: 72px; height: 72px; }
   .hero-stats { margin-top: 12px; padding-top: 12px; }
   .hero-divider { margin: 16px 0 12px; }
