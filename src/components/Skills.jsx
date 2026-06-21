@@ -40,10 +40,10 @@ const categories = [
 ]
 
 const certifications = [
-  { title: 'AI Agent Development', org: 'Skillab', year: '2026' },
-  { title: 'UX/UI Design', org: 'IT School', year: '2025' },
-  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022' },
-  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018' },
+  { title: 'AI Agent Development', org: 'Skillab', year: '2026', logo: '/skillab-logo.avif' },
+  { title: 'UX/UI Design', org: 'IT School', year: '2025', logo: '/it-school-logo.avif' },
+  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022', logo: '/azure-fundamentals-logo.avif' },
+  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018', logo: '/link-academy-logo.avif' },
 ]
 
 const languages = [
@@ -81,8 +81,11 @@ export default function Skills() {
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
-                <span className="cert-title">{c.title}</span>
-                <span className="cert-meta">{c.org} · {c.year}</span>
+                {c.logo && <img src={c.logo} alt={c.org} className="cert-logo" />}
+                <div className="cert-text">
+                  <span className="cert-title">{c.title}</span>
+                  <span className="cert-meta">{c.org} · {c.year}</span>
+                </div>
               </div>
             ))}
           </div>
