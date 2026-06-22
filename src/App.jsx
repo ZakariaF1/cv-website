@@ -13,15 +13,24 @@ function ScrollToTop({ scrollRef }) {
 
   useEffect(() => {
     const el = scrollRef.current
-    if (!el) return
+    const isMobile = () => el && el.scrollHeight <= el.clientHeight
+
+    const getScrolled = () => isMobile() ? window.scrollY : el?.scrollTop ?? 0
+    const getTotal = () => isMobile()
+      ? document.documentElement.scrollHeight - window.innerHeight
+      : (el ? el.scrollHeight - el.clientHeight : 0)
+
     const onScroll = () => {
-      const scrolled = el.scrollTop
-      const total = el.scrollHeight - el.clientHeight
+      const scrolled = getScrolled()
+      const total = getTotal()
       setProgress(total > 0 ? scrolled / total : 0)
       setVisible(scrolled > 400)
     }
-    el.addEventListener('scroll', onScroll)
-    return () => el.removeEventListener('scroll', onScroll)
+
+    const target = isMobile() ? window : el
+    if (!target) return
+    target.addEventListener('scroll', onScroll)
+    return () => target.removeEventListener('scroll', onScroll)
   }, [scrollRef])
 
   const size = 44
@@ -32,7 +41,14 @@ function ScrollToTop({ scrollRef }) {
   return (
     <button
       className={`scroll-top${visible ? ' visible' : ''}`}
-      onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={() => {
+        const el = scrollRef.current
+        if (el && el.scrollHeight > el.clientHeight) {
+          el.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+      }}
       aria-label="Back to top"
     >
       <svg className="scroll-top-ring" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
