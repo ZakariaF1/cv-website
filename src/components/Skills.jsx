@@ -3,47 +3,98 @@ import './Skills.css'
 const categories = [
   {
     name: 'Frontend',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-    skills: ['Angular (v21+)', 'RxJS', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3 / SCSS', 'Responsive Design', 'State Management'],
+    accent: 'var(--accent)',
+    skills: [
+      { name: 'Angular', icon: 'angular', primary: true },
+      { name: 'TypeScript', icon: 'typescript', primary: true },
+      { name: 'RxJS', icon: 'rxjs', primary: true },
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'HTML5', icon: 'html5' },
+      { name: 'SCSS', icon: 'sass' },
+      { name: 'React', icon: 'react' },
+      { name: 'Figma', icon: 'figma' },
+      { name: 'Miro', icon: 'miro', simple: true },
+    ],
   },
   {
     name: 'Backend',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-      </svg>
-    ),
-    skills: ['C# / .NET Core', '.NET Framework', 'ASP.NET Core', 'REST APIs', 'Entity Framework', 'LINQ', 'SQL', 'NoSQL'],
+    accent: 'var(--accent2)',
+    skills: [
+      { name: 'C# / .NET', icon: 'csharp', primary: true },
+      { name: 'ASP.NET Core', icon: 'dotnetcore', primary: true },
+      { name: 'Entity Framework', icon: 'dotnetcore' },
+      { name: 'LINQ', icon: 'dotnetcore' },
+      { name: 'REST APIs', icon: null },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'MySQL', icon: 'mysql' },
+      { name: 'MongoDB', icon: 'mongodb' },
+      { name: 'Elasticsearch', icon: 'elasticsearch' },
+      { name: 'Oracle DB', icon: 'oracle' },
+      { name: 'Redis', icon: 'redis' },
+      { name: 'MVC', icon: 'dotnetcore' },
+    ],
   },
   {
     name: 'Cloud & DevOps',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-      </svg>
-    ),
-    skills: ['Azure (AZ-900)', 'AWS EKS', 'AWS SQS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'GitHub Actions', 'Vercel'],
+    accent: 'var(--accent3)',
+    skills: [
+      { name: 'Azure', icon: 'azure', primary: true },
+      { name: 'Azure Functions', icon: 'azure' },
+      { name: 'Azure Logic Apps', icon: 'azure' },
+      { name: 'AWS EKS', icon: 'amazonwebservices', primary: true },
+      { name: 'AWS SQS', icon: 'amazonwebservices' },
+      { name: 'Docker', icon: 'docker', primary: true },
+      { name: 'Kubernetes', icon: 'kubernetes' },
+      { name: 'GitHub Actions', icon: 'github' },
+      { name: 'Vercel', icon: 'vercel' },
+    ],
   },
   {
-    name: 'Tooling & Other',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-      </svg>
-    ),
-    skills: ['Git / GitHub / GitLab', 'JWT & API Security', 'GitHub Copilot', 'Playwright', 'OpenAI API', 'ETL Pipelines', 'PostgreSQL', 'Redis'],
+    name: 'Tooling & AI',
+    accent: '#7b8fd4',
+    skills: [
+      { name: 'OpenAI API', icon: 'openai', primary: true, simple: true },
+      { name: 'Claude Code', icon: 'claude', primary: true, inline: true },
+      { name: 'Playwright', icon: 'playwright' },
+      { name: 'Git / GitHub', icon: 'git' },
+      { name: 'GitLab', icon: 'gitlab' },
+      { name: 'GitHub Copilot', icon: 'github' },
+      { name: 'JWT & Auth', icon: null },
+      { name: 'ETL Pipelines', icon: null },
+    ],
   },
 ]
 
 const certifications = [
-  { title: 'AI Agent Development', org: 'Skillab', year: '2026', logo: '/skillab-logo.avif' },
-  { title: 'UX/UI Design', org: 'IT School', year: '2025', logo: '/it-school-logo.avif' },
-  { title: 'Microsoft Azure Fundamentals AZ-900', org: 'Pearson VUE', year: '2022', logo: '/azure-fundamentals-logo.avif' },
-  { title: 'Oracle Java SE Programmer Certificate', org: 'Link Academy', year: '2018', logo: '/link-academy-logo.avif' },
+  {
+    title: 'AI Agent Development',
+    org: 'Skillab',
+    year: '2026',
+    logo: '/skillab-logo.avif',
+    desc: 'LLM fine-tuning methods, RAG pipelines, and multi-agent system design.',
+  },
+  {
+    title: 'UX/UI Design',
+    org: 'IT School',
+    year: '2025',
+    logo: '/it-school-logo.avif',
+    desc: 'User-centered design, design thinking, wireframing, prototyping, and accessibility using Figma & Miro.',
+  },
+  {
+    title: 'Microsoft Azure Fundamentals AZ-900',
+    org: 'Pearson VUE',
+    year: '2022',
+    logo: '/azure-fundamentals-logo.avif',
+    desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
+    id: '1210-9259',
+  },
+  {
+    title: 'Oracle Java SE Programmer Certificate',
+    org: 'Link Academy',
+    year: '2018',
+    logo: '/link-academy-logo.avif',
+    desc: 'Java SE fundamentals, OOP principles, and computer programming standards.',
+  },
 ]
 
 const languages = [
@@ -53,6 +104,44 @@ const languages = [
   { name: 'German', level: 'Beginner', flag: 'https://flagcdn.com/de.svg' },
 ]
 
+// Icons that are dark/black and need inversion on dark backgrounds
+const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
+
+function SkillIcon({ icon, simple, inline }) {
+  if (!icon) return null
+
+  if (inline) {
+    // Anthropic / Claude logo
+    return (
+      <svg className="skill-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ color: '#d4956a' }}>
+        <path d="M17.304 3h-3.318l-5.99 18h3.318l5.99-18zM6.696 3H3.378L9.37 21h3.317L6.696 3z" />
+      </svg>
+    )
+  }
+
+  if (simple) {
+    return (
+      <img
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${icon}.svg`}
+        alt=""
+        className="skill-icon skill-icon-invert"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  const needsInvert = darkIcons.has(icon)
+  return (
+    <img
+      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original.svg`}
+      alt=""
+      className={`skill-icon${needsInvert ? ' skill-icon-invert' : ''}`}
+      aria-hidden="true"
+      onError={e => { e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg` }}
+    />
+  )
+}
+
 export default function Skills() {
   return (
     <section id="skills">
@@ -61,13 +150,18 @@ export default function Skills() {
 
       <div className="skills-bento">
         {categories.map(cat => (
-          <div key={cat.name} className="skills-card">
+          <div key={cat.name} className="skills-card" style={{ '--cat-accent': cat.accent }}>
             <div className="skills-card-header">
-              <span className="skills-icon">{cat.icon}</span>
+              <span className="skills-cat-dot" />
               <span className="skills-cat">{cat.name}</span>
             </div>
             <div className="skills-chips">
-              {cat.skills.map(s => <span key={s} className="skill-chip">{s}</span>)}
+              {cat.skills.map(s => (
+                <span key={s.name} className="skill-chip">
+                  <SkillIcon icon={s.icon} simple={s.simple} />
+                  {s.name}
+                </span>
+              ))}
             </div>
           </div>
         ))}
@@ -80,7 +174,8 @@ export default function Skills() {
                 {c.logo && <img src={c.logo} alt={c.org} className="cert-logo" />}
                 <div className="cert-text">
                   <span className="cert-title">{c.title}</span>
-                  <span className="cert-meta">{c.org} · {c.year}</span>
+                  <span className="cert-meta">{c.org} · {c.year}{c.id && <> · <span className="cert-id">#{c.id}</span></>}</span>
+                  {c.desc && <span className="cert-desc">{c.desc}</span>}
                 </div>
               </div>
             ))}
