@@ -12,6 +12,7 @@ const categories = [
       { name: 'HTML5', icon: 'html5' },
       { name: 'SCSS', icon: 'sass' },
       { name: 'React', icon: 'react' },
+      { name: 'Vite', icon: 'vitejs' },
       { name: 'Figma', icon: 'figma' },
       { name: 'Miro', icon: 'miro', simple: true },
     ],
@@ -72,6 +73,7 @@ const certifications = [
     year: '2026',
     logo: '/skillab-logo.avif',
     desc: 'LLM fine-tuning methods, RAG pipelines, and multi-agent system design.',
+    link: 'https://skillab.ro/',
   },
   {
     title: 'UX/UI Design',
@@ -79,6 +81,7 @@ const certifications = [
     year: '2025',
     logo: '/it-school-logo.avif',
     desc: 'User-centered design, design thinking, wireframing, prototyping, and accessibility using Figma & Miro.',
+    link: 'https://itschool.ro/',
   },
   {
     title: 'Microsoft Azure Fundamentals AZ-900',
@@ -87,6 +90,7 @@ const certifications = [
     logo: '/azure-fundamentals-logo.avif',
     desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
     id: '1210-9259',
+    link: 'https://learn.microsoft.com/en-us/certifications/azure-fundamentals/',
   },
   {
     title: 'Oracle Java SE Programmer Certificate',
@@ -94,6 +98,7 @@ const certifications = [
     year: '2018',
     logo: '/link-academy-logo.avif',
     desc: 'Java SE fundamentals, OOP principles, and computer programming standards.',
+    link: 'https://enrollment.link-academy.com/',
   },
 ]
 
@@ -137,7 +142,13 @@ function SkillIcon({ icon, simple, inline }) {
       alt=""
       className={`skill-icon${needsInvert ? ' skill-icon-invert' : ''}`}
       aria-hidden="true"
-      onError={e => { e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg` }}
+      onError={e => {
+        if (e.target.src.includes('-original')) {
+          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg`
+        } else {
+          e.target.style.display = 'none'
+        }
+      }}
     />
   )
 }
@@ -171,7 +182,11 @@ export default function Skills() {
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
-                {c.logo && <img src={c.logo} alt={c.org} className="cert-logo" />}
+                {c.logo && (
+                  c.link
+                    ? <a href={c.link} target="_blank" rel="noopener" className="cert-logo-link"><img src={c.logo} alt={c.org} className="cert-logo" /></a>
+                    : <img src={c.logo} alt={c.org} className="cert-logo" />
+                )}
                 <div className="cert-text">
                   <span className="cert-title">{c.title}</span>
                   <span className="cert-meta">{c.org} · {c.year}{c.id && <> · <span className="cert-id">#{c.id}</span></>}</span>

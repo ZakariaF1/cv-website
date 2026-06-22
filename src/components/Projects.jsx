@@ -37,6 +37,17 @@ const projects = [
     ],
   },
   {
+    title: 'Portfolio Website',
+    desc: 'This site — a React + Vite portfolio built with a custom CSS design system. Features an adaptive two-panel layout, dark theme with design tokens, SEO (Open Graph, JSON-LD structured data), responsive breakpoints across mobile, tablet, and ultrawide, and performance-optimised assets.',
+    tags: ['React', 'Vite', 'CSS', 'SEO', 'Vercel'],
+    link: 'https://zakariaahmad.site',
+    repo: 'https://github.com/ZakariaF1/cv-website',
+    year: '2026',
+    status: 'live',
+    logo: '/favicon.svg',
+    self: true,
+  },
+  {
     title: 'YNAB Automation Agent',
     desc: 'TypeScript automation suite for personal budget management. Scrapes ING HomeBanking via Playwright, transforms and deduplicates transactions, imports into YNAB, and auto-flags/approves using 200+ payee rules. Includes an LLM-based flag agent (OpenAI + Phoenix tracing) and a daily email reminder system via GitHub Actions, Vercel, and Resend.',
     tags: ['TypeScript', 'Playwright', 'OpenAI', 'YNAB API', 'GitHub Actions', 'Vercel'],
@@ -70,6 +81,18 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
   const { video, screenshots } = project
 
   if (!video && !screenshots?.length) {
+    if (project.self) {
+      return (
+        <div className="card-hero card-hero-private">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+          <span>Live Experience</span>
+          <p>Navigate the site to see it in action</p>
+        </div>
+      )
+    }
     if (project.repo === 'private') {
       return (
         <div className="card-hero card-hero-private">
@@ -135,14 +158,16 @@ function CardLinks({ p }) {
   return (
     <div className="card-links">
       {p.link !== '#' && (
-        <a href={p.link} target="_blank" rel="noopener" className="card-link-btn card-link-primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-          </svg>
-          Live Site
-        </a>
+        p.self
+          ? <span className="card-link-btn card-link-ghost card-link-private">You're here</span>
+          : <a href={p.link} target="_blank" rel="noopener" className="card-link-btn card-link-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              </svg>
+              Live Site
+            </a>
       )}
       {p.repo === 'private' ? (
         <span className="card-link-btn card-link-ghost card-link-private">

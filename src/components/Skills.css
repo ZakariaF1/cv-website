@@ -128,12 +128,16 @@
   border-bottom: none;
 }
 
+.cert-logo-link { flex-shrink: 0; display: flex; }
+.cert-logo-link:hover .cert-logo { opacity: 0.8; }
+
 .cert-logo {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
   object-fit: contain;
   border-radius: 6px;
+  transition: opacity 0.2s;
 }
 
 .cert-text {
