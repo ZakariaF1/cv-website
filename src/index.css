@@ -67,7 +67,7 @@
   --hero-title:    1.9rem;  /* left panel hero heading */
 
   /* Spacing scale */
-  --section-pad:   100px;   /* section top/bottom padding */
+  --section-pad:   72px;   /* section top/bottom padding */
   --main-pad:      6%;      /* main horizontal padding */
   --panel-pad:     48px;    /* left panel inner padding */
 }
@@ -83,7 +83,7 @@
     --text-xl:       32px;
     --section-title: 2.6rem;
     --hero-title:    2.4rem;
-    --section-pad:   120px;
+    --section-pad:   88px;
     --main-pad:      7%;
     --panel-pad:     64px;
   }
@@ -100,7 +100,7 @@
     --text-xl:       24px;
     --section-title: 1.7rem;
     --hero-title:    1.5rem;
-    --section-pad:   80px;
+    --section-pad:   60px;
     --main-pad:      5%;
     --panel-pad:     36px;
   }
@@ -117,7 +117,7 @@
     --text-xl:       28px;
     --section-title: 1.8rem;
     --hero-title:    2rem;
-    --section-pad:   72px;
+    --section-pad:   48px;
     --main-pad:      20px;
     --panel-pad:     20px;
   }
