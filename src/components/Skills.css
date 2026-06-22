@@ -208,10 +208,8 @@
 
 /* ── Ultrawide ── */
 @media (min-width: 1600px) {
-  .skills-bento { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .skills-bento { gap: 28px; }
   .skills-card { padding: 32px; }
-  .skills-card-certs { grid-column: span 3; }
-  .skills-card-langs { grid-column: span 1; }
 }
 
 /* ── Tablet ── */
