@@ -81,6 +81,7 @@ const certifications = [
     year: '2025',
     logo: '/it-school-logo.avif',
     desc: 'User-centered design, design thinking, wireframing, prototyping, and accessibility using Figma & Miro.',
+    id: 'ITSGO0625UI2701',
     link: 'https://itschool.ro/',
   },
   {
@@ -90,7 +91,7 @@ const certifications = [
     logo: '/azure-fundamentals-logo.avif',
     desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
     id: '1210-9259',
-    link: 'https://learn.microsoft.com/en-us/certifications/azure-fundamentals/',
+    link: 'https://www.credly.com/badges/e94c150f-e73f-4b52-9842-d4f31a09c81e?source=linked_in_profile',
   },
   {
     title: 'Oracle Java SE Programmer Certificate',
