@@ -46,6 +46,7 @@ const categories = [
       { name: 'AWS SQS', icon: 'amazonwebservices' },
       { name: 'Docker', icon: 'docker', primary: true },
       { name: 'Kubernetes', icon: 'kubernetes' },
+      { name: 'Microservices', icon: null },
       { name: 'GitHub Actions', icon: 'github' },
       { name: 'Vercel', icon: 'vercel' },
     ],
