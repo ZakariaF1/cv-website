@@ -49,7 +49,7 @@ const projects = [
   },
   {
     title: 'YNAB Automation Agent',
-    desc: 'End-to-end TypeScript automation for personal and business YNAB budgeting — fully hands-off from bank statement to categorized budget. Dual-lane Playwright pipelines scrape ING HomeBanking and ING Business in parallel, apply 200+ payee rules plus learned merchant mappings, deduplicate transactions, and import into separate YNAB accounts with smart auto-flagging. An AI payee-resolution agent handles unknown merchants via company registry lookup and LLM reasoning, with human-in-the-loop approve/reject over email on Vercel. Wallet-cash reminders and Windows Task Scheduler keep the whole system running without manual intervention.',
+    desc: 'End-to-end TypeScript automation for personal and business YNAB budgeting — fully hands-off from bank statement to categorized budget. Dual-lane Playwright pipelines fetch and sync transactions from personal and business accounts in parallel, apply 200+ payee rules plus learned merchant mappings, deduplicate entries, and import into separate YNAB budgets with smart auto-flagging. An AI payee-resolution agent handles unknown merchants via company registry lookup and LLM reasoning, with human-in-the-loop approve/reject over email on Vercel. Wallet-cash reminders and Windows Task Scheduler keep the whole system running without manual intervention.',
     tags: ['TypeScript', 'Playwright', 'OpenAI', 'YNAB API', 'Vercel', 'Resend'],
     link: '#',
     repo: 'private',
