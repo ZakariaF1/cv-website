@@ -5,8 +5,18 @@ import './Projects.css'
 
 const projects = [
   {
-    title: 'BestJobs Filter Extension',
+    title: 'Job Tracker',
     latest: true,
+    desc: 'A local, privacy-first agent that turns Outlook job emails and interview notes into a structured application pipeline — with zero cloud LLM cost. Connects to Outlook via Microsoft Graph, classifies and extracts company, role, status, and summaries with a local Ollama model (Qwen2.5) into SQLite, then reconciles LinkedIn CSVs, local note files, and duplicate applications through fuzzy matching and merge/fold rules. Built with DDD / hexagonal architecture, a Typer CLI, Streamlit dashboard, and a FastAPI query surface for future agents.',
+    tags: ['Python', 'Ollama', 'Microsoft Graph', 'Streamlit', 'FastAPI', 'SQLite'],
+    link: '#',
+    repo: 'private',
+    year: '2026',
+    status: 'live',
+    logo: 'briefcase',
+  },
+  {
+    title: 'BestJobs Filter Extension',
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: ['JavaScript', 'Browser Extension', 'Chrome', 'HTML/CSS'],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
@@ -71,6 +81,16 @@ function ProjectLogo({ logo, title }) {
         <path d="M9 20h6" />
         <line x1="3" y1="15" x2="1" y2="15" />
         <line x1="21" y1="15" x2="23" y2="15" />
+      </svg>
+    )
+  }
+  if (logo === 'briefcase') {
+    return (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" />
+        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+        <line x1="12" y1="12" x2="12" y2="12.01" />
+        <path d="M2 12h20" />
       </svg>
     )
   }

@@ -94,7 +94,7 @@ export default function Hero() {
           </div>
           <div className="hero-strip-div" />
           <div className="hero-stat">
-            <span className="hero-stat-num">3</span>
+            <span className="hero-stat-num">4</span>
             <span className="hero-stat-label">Personal Projects</span>
           </div>
         </div>
