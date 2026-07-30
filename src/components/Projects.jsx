@@ -7,8 +7,8 @@ const projects = [
   {
     title: 'Job Tracker',
     latest: true,
-    desc: 'A local, privacy-first agent that turns Outlook job emails and interview notes into a structured application pipeline — with zero cloud LLM cost. Connects to Outlook via Microsoft Graph, classifies and extracts company, role, status, and summaries with a local Ollama model (Qwen2.5) into SQLite, then reconciles LinkedIn CSVs, local note files, and duplicate applications through fuzzy matching and merge/fold rules. Built with DDD / hexagonal architecture, a Typer CLI, Streamlit dashboard, and a FastAPI query surface for future agents.',
-    tags: ['Python', 'Ollama', 'Microsoft Graph', 'Streamlit', 'FastAPI', 'SQLite'],
+    desc: 'A local, privacy-first job-search agent: Outlook mail via Microsoft Graph, local Ollama extraction into SQLite, and reconciliation of LinkedIn CSVs, notes, and duplicates. Includes naive RAG over interview notes (embeddings + cosine retrieval), with v2 adding synced emails on the same ask path. Built with DDD / hexagonal architecture, Typer CLI, Streamlit dashboard, and FastAPI.',
+    tags: ['Python', 'Ollama', 'RAG', 'Microsoft Graph', 'Streamlit', 'FastAPI'],
     link: '#',
     repo: 'private',
     year: '2026',

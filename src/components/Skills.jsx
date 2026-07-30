@@ -57,6 +57,8 @@ const categories = [
     skills: [
       { name: 'OpenAI API', icon: 'openai', primary: true, simple: true },
       { name: 'Claude Code', icon: 'claude', primary: true, inline: true },
+      { name: 'RAG', icon: null, primary: true },
+      { name: 'Ollama', icon: null },
       { name: 'Playwright', icon: 'playwright' },
       { name: 'Git / GitHub', icon: 'git' },
       { name: 'GitLab', icon: 'gitlab' },
