@@ -13,7 +13,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 ## Notes
 - Node 20.19+ / 22.12+ is required by Vite 8 (the cloud VM ships Node 22, which works).
 - Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served at the site root.
-- Portfolio copy (projects, experience, skills, certifications, languages) lives in `src/data/` so components stay presentational.
+- Portfolio copy (projects, experience, skills, certifications, languages, profile, nav) lives in `src/data/` so components stay presentational.
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
 
 ## Engineering slices (charter, no design changes)
@@ -26,4 +26,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | done |
 | 3 | Vitest + characterizing tests; add `npm test` to CI | done |
 | 4 | Extract content data (projects, skills, about) out of JSX into data modules | done |
-| 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | this PR |
+| 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | done |
+| 6 | Extract remaining identity/contact/nav copy into `src/data/profile.js` | this PR |

@@ -1,20 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
+import { navLinks, profile } from '../data/profile'
 import Nav from './Nav'
 
 describe('Nav', () => {
   it('renders section links and a resume download', () => {
     render(<Nav />)
 
-    expect(screen.getByRole('link', { name: /zakaria/i })).toHaveAttribute('href', '#about')
-    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '#about')
-    expect(screen.getByRole('link', { name: 'Personal Projects' })).toHaveAttribute('href', '#projects')
-    expect(screen.getByRole('link', { name: 'Skills' })).toHaveAttribute('href', '#skills')
-    expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '#contact')
+    expect(screen.getByRole('link', { name: new RegExp(profile.firstName, 'i') })).toHaveAttribute('href', '#about')
+    for (const link of navLinks) {
+      expect(screen.getByRole('link', { name: link.label })).toHaveAttribute('href', link.href)
+    }
 
     const resume = screen.getByRole('link', { name: /resume/i })
-    expect(resume).toHaveAttribute('href', '/ZakariaAhmadResume.pdf')
+    expect(resume).toHaveAttribute('href', profile.resume)
     expect(resume).toHaveAttribute('download')
   })
 
@@ -28,7 +28,7 @@ describe('Nav', () => {
     await user.click(screen.getByRole('button', { name: 'Toggle menu' }))
     expect(links).toHaveClass('open')
 
-    await user.click(screen.getByRole('link', { name: 'About' }))
+    await user.click(screen.getByRole('link', { name: navLinks[0].label }))
     expect(links).not.toHaveClass('open')
   })
 })
