@@ -7,8 +7,21 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 - **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`). Note: `src/components/Lightbox.jsx` currently emits one pre-existing `react-hooks/exhaustive-deps` warning (0 errors) — this is expected, not introduced by your changes.
 - **Build**: `npm run build` (outputs to `dist/`).
 - **Preview production build**: `npm run preview`.
+- **CI**: `.github/workflows/ci.yml` runs `npm ci`, `npm run lint`, and `npm run build` on every push to `main` and on every pull request.
 
 ## Notes
 - Node 20.19+ / 22.12+ is required by Vite 8 (the cloud VM ships Node 22, which works).
 - Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served at the site root.
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
+
+## Engineering slices (charter, no design changes)
+
+Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The current visual design stays as-is. Apply the agent charter incrementally, one PR at a time, and keep CI green between slices.
+
+| Slice | Change | Status |
+| ----- | ------ | ------ |
+| 1 | GitHub Actions CI: `npm ci` → lint → build | this PR |
+| 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | next |
+| 3 | Vitest + characterizing tests; add `npm test` to CI | later |
+| 4 | Extract content data (projects, skills, about) out of JSX into data modules | later |
+| 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | later |
