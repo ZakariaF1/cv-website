@@ -1,117 +1,5 @@
 import './Skills.css'
-
-const categories = [
-  {
-    name: 'Frontend',
-    accent: 'var(--accent)',
-    skills: [
-      { name: 'Angular', icon: 'angular', primary: true },
-      { name: 'TypeScript', icon: 'typescript', primary: true },
-      { name: 'RxJS', icon: 'rxjs', primary: true },
-      { name: 'JavaScript', icon: 'javascript' },
-      { name: 'HTML5', icon: 'html5' },
-      { name: 'SCSS', icon: 'sass' },
-      { name: 'React', icon: 'react' },
-      { name: 'Vite', icon: 'vitejs' },
-      { name: 'Figma', icon: 'figma' },
-      { name: 'Miro', icon: 'miro', simple: true },
-    ],
-  },
-  {
-    name: 'Backend',
-    accent: 'var(--accent2)',
-    skills: [
-      { name: 'C# / .NET', icon: 'csharp', primary: true },
-      { name: 'ASP.NET Core', icon: 'dotnetcore', primary: true },
-      { name: 'Entity Framework', icon: 'dotnetcore' },
-      { name: 'LINQ', icon: 'dotnetcore' },
-      { name: 'REST APIs', icon: null },
-      { name: 'PostgreSQL', icon: 'postgresql' },
-      { name: 'MySQL', icon: 'mysql' },
-      { name: 'MongoDB', icon: 'mongodb' },
-      { name: 'Elasticsearch', icon: 'elasticsearch' },
-      { name: 'Oracle DB', icon: 'oracle' },
-      { name: 'Redis', icon: 'redis' },
-      { name: 'MVC', icon: 'dotnetcore' },
-    ],
-  },
-  {
-    name: 'Cloud & DevOps',
-    accent: 'var(--accent3)',
-    skills: [
-      { name: 'Azure', icon: 'azure', primary: true },
-      { name: 'Azure Functions', icon: 'azure' },
-      { name: 'Azure Logic Apps', icon: 'azure' },
-      { name: 'AWS EKS', icon: 'amazonwebservices', primary: true },
-      { name: 'AWS SQS', icon: 'amazonwebservices' },
-      { name: 'Docker', icon: 'docker', primary: true },
-      { name: 'Kubernetes', icon: 'kubernetes' },
-      { name: 'Microservices', icon: null },
-      { name: 'GitHub Actions', icon: 'github' },
-      { name: 'Vercel', icon: 'vercel' },
-    ],
-  },
-  {
-    name: 'Tooling & AI',
-    accent: '#7b8fd4',
-    skills: [
-      { name: 'OpenAI API', icon: 'openai', primary: true, simple: true },
-      { name: 'Claude Code', icon: 'claude', primary: true, inline: true },
-      { name: 'RAG', icon: null, primary: true },
-      { name: 'Ollama', icon: null },
-      { name: 'Playwright', icon: 'playwright' },
-      { name: 'Git / GitHub', icon: 'git' },
-      { name: 'GitLab', icon: 'gitlab' },
-      { name: 'GitHub Copilot', icon: 'github' },
-      { name: 'JWT & Auth', icon: null },
-      { name: 'ETL Pipelines', icon: null },
-    ],
-  },
-]
-
-const certifications = [
-  {
-    title: 'AI Agent Development',
-    org: 'Skillab',
-    year: '2026',
-    logo: '/skillab-logo.avif',
-    desc: 'LLM fine-tuning methods, RAG pipelines, and multi-agent system design.',
-    link: 'https://skillab.ro/',
-  },
-  {
-    title: 'UX/UI Design',
-    org: 'IT School',
-    year: '2025',
-    logo: '/it-school-logo.avif',
-    desc: 'User-centered design, design thinking, wireframing, prototyping, and accessibility using Figma & Miro.',
-    id: 'ITSGO0625UI2701',
-    link: 'https://itschool.ro/',
-  },
-  {
-    title: 'Microsoft Azure Fundamentals AZ-900',
-    org: 'Pearson VUE',
-    year: '2022',
-    logo: '/azure-fundamentals-logo.avif',
-    desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
-    id: '1210-9259',
-    link: 'https://www.credly.com/badges/e94c150f-e73f-4b52-9842-d4f31a09c81e?source=linked_in_profile',
-  },
-  {
-    title: 'Oracle Java SE Programmer Certificate',
-    org: 'Link Academy',
-    year: '2018',
-    logo: '/link-academy-logo.avif',
-    desc: 'Java SE fundamentals, OOP principles, and computer programming standards.',
-    link: 'https://enrollment.link-academy.com/',
-  },
-]
-
-const languages = [
-  { name: 'English', level: 'Proficient', flag: 'https://flagcdn.com/gb.svg' },
-  { name: 'Romanian', level: 'Native', flag: 'https://flagcdn.com/ro.svg' },
-  { name: 'Arabic', level: 'Native', flag: 'https://flagcdn.com/sa.svg' },
-  { name: 'German', level: 'Beginner', flag: 'https://flagcdn.com/de.svg' },
-]
+import { certifications, languages, skillCategories } from '../data/skills'
 
 // Icons that are dark/black and need inversion on dark backgrounds
 const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
@@ -164,7 +52,7 @@ export default function Skills() {
       <h2 className="section-title">What I work <span>with</span></h2>
 
       <div className="skills-bento">
-        {categories.map(cat => (
+        {skillCategories.map(cat => (
           <div key={cat.name} className="skills-card" style={{ '--cat-accent': cat.accent }}>
             <div className="skills-card-header">
               <span className="skills-cat-dot" />

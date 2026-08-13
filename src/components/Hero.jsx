@@ -1,4 +1,6 @@
 import "./Hero.css";
+import { experience } from "../data/experience";
+import { projects } from "../data/projects";
 
 export default function Hero() {
   return (
@@ -89,12 +91,12 @@ export default function Hero() {
           </div>
           <div className="hero-strip-div" />
           <div className="hero-stat">
-            <span className="hero-stat-num">4</span>
+            <span className="hero-stat-num">{experience.length}</span>
             <span className="hero-stat-label">Companies</span>
           </div>
           <div className="hero-strip-div" />
           <div className="hero-stat">
-            <span className="hero-stat-num">5</span>
+            <span className="hero-stat-num">{projects.length}</span>
             <span className="hero-stat-label">Personal Projects</span>
           </div>
         </div>

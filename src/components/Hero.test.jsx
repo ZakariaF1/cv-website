@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { experience } from '../data/experience'
+import { projects } from '../data/projects'
 import Hero from './Hero'
 
 describe('Hero', () => {
@@ -13,5 +15,7 @@ describe('Hero', () => {
       '/personal-photo.avif',
     )
     expect(screen.getByRole('link', { name: 'View My Work' })).toHaveAttribute('href', '#projects')
+    expect(screen.getByText(String(experience.length))).toBeInTheDocument()
+    expect(screen.getByText(String(projects.length))).toBeInTheDocument()
   })
 })
