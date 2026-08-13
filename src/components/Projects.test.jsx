@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
+import { projects } from '../data/projects'
 import Projects from './Projects'
 
 describe('Projects', () => {
@@ -10,14 +11,8 @@ describe('Projects', () => {
     expect(document.getElementById('projects')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /things i've built/i })).toBeInTheDocument()
 
-    for (const title of [
-      'Job Tracker',
-      'BestJobs Filter Extension',
-      'Firehouse Restaurant',
-      'Portfolio Website',
-      'YNAB Automation Agent',
-    ]) {
-      expect(screen.getByRole('heading', { name: title })).toBeInTheDocument()
+    for (const project of projects) {
+      expect(screen.getByRole('heading', { name: project.title })).toBeInTheDocument()
     }
   })
 

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { experience } from '../data/experience'
 import About from './About'
 
 describe('About', () => {
@@ -9,12 +10,9 @@ describe('About', () => {
     expect(document.getElementById('about')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /where i've worked/i })).toBeInTheDocument()
 
-    expect(screen.getByText('Morningstar Sustainalytics')).toBeInTheDocument()
-    expect(screen.getByText('Deutsche Bank')).toBeInTheDocument()
-    expect(screen.getByText('Mindgeek')).toBeInTheDocument()
-    expect(screen.getByText('Simpology Australia')).toBeInTheDocument()
-
-    expect(screen.getByText('Backend-Focused Full Stack Developer (Contractor)')).toBeInTheDocument()
-    expect(screen.getByText('Senior Frontend (Angular) Developer')).toBeInTheDocument()
+    for (const job of experience) {
+      expect(screen.getByText(job.company)).toBeInTheDocument()
+      expect(screen.getByText(job.role)).toBeInTheDocument()
+    }
   })
 })

@@ -1,73 +1,8 @@
 import { useState } from 'react'
 import Lightbox from './Lightbox'
 import { buildMediaItems } from './projectUtils'
+import { projects } from '../data/projects'
 import './Projects.css'
-
-const projects = [
-  {
-    title: 'Job Tracker',
-    latest: true,
-    desc: 'A local, privacy-first job-search agent: Outlook mail via Microsoft Graph, local Ollama extraction into SQLite, and reconciliation of LinkedIn CSVs, notes, and duplicates. Includes naive RAG over interview notes (embeddings + cosine retrieval), with v2 adding synced emails on the same ask path. Built with DDD / hexagonal architecture, Typer CLI, Streamlit dashboard, and FastAPI.',
-    tags: ['Python', 'Ollama', 'RAG', 'Microsoft Graph', 'Streamlit', 'FastAPI'],
-    link: '#',
-    repo: 'private',
-    year: '2026',
-    status: 'live',
-    logo: 'briefcase',
-  },
-  {
-    title: 'BestJobs Filter Extension',
-    desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
-    tags: ['JavaScript', 'Browser Extension', 'Chrome', 'HTML/CSS'],
-    link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
-    repo: 'https://github.com/ZakariaF1/bestjobs-filter',
-    year: '2026',
-    status: 'live',
-    logo: '/bestJobs-Icon-48.png',
-    video: '/best-jobs-presentation.webm',
-    screenshots: [
-      '/best-jobs-screenshot1.avif',
-      '/best-jobs-screenshot2.avif',
-      '/best-jobs-screenshot3.avif',
-    ],
-  },
-  {
-    title: 'Firehouse Restaurant',
-    desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
-    tags: ['Angular', 'TypeScript', 'SSR', 'SCSS', 'OpenAI API'],
-    link: 'https://firehousebucharest.com',
-    repo: '#',
-    year: '2025',
-    status: 'live',
-    logo: '/fire-house-logo-square.png',
-    video: '/firehouse-presentation.webm',
-    screenshots: [
-      '/firehouse-screenshot1.avif',
-      '/firehouse-screenshot2.avif',
-    ],
-  },
-  {
-    title: 'Portfolio Website',
-    desc: 'This site — a React + Vite portfolio built with a custom CSS design system. Features an adaptive two-panel layout, dark theme with design tokens, SEO (Open Graph, JSON-LD structured data), responsive breakpoints across mobile, tablet, and ultrawide, and performance-optimised assets.',
-    tags: ['React', 'Vite', 'CSS', 'SEO', 'Vercel'],
-    link: 'https://zakariaahmad.site',
-    repo: 'https://github.com/ZakariaF1/cv-website',
-    year: '2026',
-    status: 'live',
-    logo: '/favicon.svg',
-    self: true,
-  },
-  {
-    title: 'YNAB Automation Agent',
-    desc: 'End-to-end TypeScript automation for personal and business YNAB budgeting — fully hands-off from bank statement to categorized budget. Dual-lane Playwright pipelines fetch and sync transactions from personal and business accounts in parallel, apply 200+ payee rules plus learned merchant mappings, deduplicate entries, and import into separate YNAB budgets with smart auto-flagging. An AI payee-resolution agent handles unknown merchants via company registry lookup and LLM reasoning, with human-in-the-loop approve/reject over email on Vercel. Wallet-cash reminders and Windows Task Scheduler keep the whole system running without manual intervention.',
-    tags: ['TypeScript', 'Playwright', 'OpenAI', 'YNAB API', 'Vercel', 'Resend'],
-    link: '#',
-    repo: 'private',
-    year: '2026',
-    status: 'live',
-    logo: 'robot',
-  },
-]
 
 function ProjectLogo({ logo, title }) {
   if (logo === 'robot') {
