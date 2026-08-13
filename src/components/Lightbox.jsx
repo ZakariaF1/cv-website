@@ -1,14 +1,22 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { buildMediaItems } from './projectUtils'
 
 export default function Lightbox({ project, startIndex, onClose }) {
-  const items = buildMediaItems(project)
+  const items = useMemo(() => buildMediaItems(project), [project])
   const [index, setIndex] = useState(startIndex)
   const videoRef = useRef(null)
+  const current = items[index]
+  const count = items.length
 
-  const prev = useCallback(() => setIndex(i => (i - 1 + items.length) % items.length), [items.length])
-  const next = useCallback(() => setIndex(i => (i + 1) % items.length), [items.length])
+  const prev = useCallback(() => {
+    if (!count) return
+    setIndex(i => (i - 1 + count) % count)
+  }, [count])
+  const next = useCallback(() => {
+    if (!count) return
+    setIndex(i => (i + 1) % count)
+  }, [count])
 
   useEffect(() => {
     const onKey = (e) => {
@@ -25,10 +33,9 @@ export default function Lightbox({ project, startIndex, onClose }) {
   }, [onClose, prev, next])
 
   useEffect(() => {
-    if (items[index].type === 'video') videoRef.current?.play()
-  }, [index])
+    if (current?.type === 'video') videoRef.current?.play()
+  }, [current])
 
-  const current = items[index]
   const touchStartX = useRef(null)
 
   const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
@@ -38,6 +45,8 @@ export default function Lightbox({ project, startIndex, onClose }) {
     if (Math.abs(diff) > 50) diff > 0 ? next() : prev()
     touchStartX.current = null
   }
+
+  if (!current) return null
 
   return createPortal(
     <div className="lightbox" onClick={onClose}>
