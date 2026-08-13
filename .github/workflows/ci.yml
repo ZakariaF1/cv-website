@@ -20,4 +20,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      - name: Publish Vitest report
+        if: always()
+        run: node scripts/write-test-summary.mjs >> "$GITHUB_STEP_SUMMARY"
       - run: npm run build
