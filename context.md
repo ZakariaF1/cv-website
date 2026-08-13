@@ -5,7 +5,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 ## Services / commands
 - **Dev server**: `npm run dev` — serves on `http://localhost:5173/` with HMR. This is the primary way to develop and test.
 - **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`; `--max-warnings 0`).
-- **Test**: `npm test` — Vitest in jsdom (`vitest run`). Characterizing tests live next to components as `*.test.js` / `*.test.jsx`.
+- **Test**: `npm test` — Vitest in jsdom (`vitest run`, verbose + JUnit `test-results.xml`). Each test’s purpose is listed in `TEST_REPORT.md` and posted to the GitHub Actions job summary on every CI run so failures show **which** test broke and **what** it was checking.
 - **Build**: `npm run build` (outputs to `dist/`).
 - **Preview production build**: `npm run preview`.
 - **CI**: `.github/workflows/ci.yml` runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every push to `main` and on every pull request.
@@ -28,4 +28,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 4 | Extract content data (projects, skills, about) out of JSX into data modules | done |
 | 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | done |
 | 6 | Extract remaining identity/contact/nav copy into `src/data/profile.js` | done |
-| 7 | Bump GitHub Actions (`checkout` / `setup-node`) off deprecated Node 20 | this PR |
+| 7 | Bump GitHub Actions (`checkout` / `setup-node`) off deprecated Node 20 | done |
+| 8 | Publish a per-test Vitest report (name + what it does) on every CI run | this PR |

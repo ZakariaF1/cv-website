@@ -7,5 +7,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: './src/test/setup.js',
+    reporters: ['verbose', 'github-actions', 'junit'],
+    outputFile: {
+      junit: './test-results.xml',
+    },
   },
 })

@@ -18,7 +18,7 @@ Dev server: `http://localhost:5173/`
 | `npm install` | Install dependencies |
 | `npm run dev` | Vite dev server with HMR on port 5173. Add `-- --host` to listen on the network |
 | `npm run lint` | ESLint across the repo (`--max-warnings 0`) |
-| `npm test` | Vitest once (characterizing unit/component tests) |
+| `npm test` | Vitest once (verbose + JUnit). See [TEST_REPORT.md](TEST_REPORT.md) for what each test checks |
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Serve the production build locally |
 
