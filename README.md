@@ -32,7 +32,9 @@ npm run lint         # before a PR
 npm run build        # confirm production build
 ```
 
-CI (GitHub Actions) runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every pull request and every push to `main`.
+CI (GitHub Actions) runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every pull request and every push to `main`. The required status check name is **`CI`**.
+
+Work lands on `main` through pull requests. After the GitHub ruleset is enabled (see `context.md` → Main branch guards), merge is blocked until `CI` is green. Do not push straight to `main`.
 
 ## Project
 
