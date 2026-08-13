@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { experience } from './experience'
+import { navLinks, profile } from './profile'
 import { projects } from './projects'
 import { certifications, languages, skillCategories } from './skills'
 
@@ -44,6 +45,18 @@ describe('portfolio content', () => {
       'Romanian',
       'Arabic',
       'German',
+    ])
+  })
+
+  it('keeps identity, contact, and nav links in one profile module', () => {
+    expect(profile.email).toMatch(/@/)
+    expect(profile.linkedinUrl).toMatch(/^https:\/\//)
+    expect(profile.phoneHref).toMatch(/^tel:/)
+    expect(navLinks.map((l) => l.href)).toEqual([
+      '#about',
+      '#projects',
+      '#skills',
+      '#contact',
     ])
   })
 })

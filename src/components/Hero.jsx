@@ -1,5 +1,6 @@
 import "./Hero.css";
 import { experience } from "../data/experience";
+import { profile } from "../data/profile";
 import { projects } from "../data/projects";
 
 export default function Hero() {
@@ -13,28 +14,27 @@ export default function Hero() {
           <div className="hero-identity-left">
             <div className="hero-badge">
               <span className="badge-dot" />
-              Available for work
+              {profile.availabilityBadge}
             </div>
 
             <h1 className="hero-title">
-              Hi, I'm <span className="hero-name">Zakaria</span>
+              Hi, I'm <span className="hero-name">{profile.firstName}</span>
               <br />
-              Full Stack Developer
+              {profile.title}
             </h1>
           </div>
 
           <div className="hero-photo-wrap">
             <img
-              src="/personal-photo.avif"
-              alt="Zakaria Ahmad"
+              src={profile.photo}
+              alt={profile.fullName}
               className="hero-photo"
             />
           </div>
         </div>
 
         <p className="hero-sub">
-          .NET · Angular · Cloud Systems — building scalable web applications
-          across frontend, backend, and data layers for 7+ years.
+          {profile.tagline}
         </p>
 
         <div className="hero-actions">
@@ -50,35 +50,29 @@ export default function Hero() {
 
         <div className="hero-about">
           <p className="hero-section-label">About Me</p>
-          <p className="hero-bio">
-            Full Stack Software Developer with 7+ years of experience building
-            scalable web applications across frontend, backend, and data layers.
-            Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with
-            exposure to Azure, AWS, and AI-assisted developer workflows.
-          </p>
-          <p className="hero-bio">
-            Currently expanding into applied AI — LLM fine-tuning, RAG, and
-            multi-agent systems. I care about maintainability, performance, and
-            clean cross-team collaboration.
-          </p>
+          {profile.bios.map((bio) => (
+            <p className="hero-bio" key={bio.slice(0, 32)}>
+              {bio}
+            </p>
+          ))}
 
           <div className="hero-details">
             <div className="hero-detail">
               <span className="hero-detail-key">Location</span>
-              <span className="hero-detail-val">Bucharest, Romania</span>
+              <span className="hero-detail-val">{profile.location}</span>
             </div>
             <div className="hero-detail">
               <span className="hero-detail-key">Email</span>
-              <span className="hero-detail-val">zackm.ahmad@outlook.com</span>
+              <span className="hero-detail-val">{profile.email}</span>
             </div>
             <div className="hero-detail">
               <span className="hero-detail-key">LinkedIn</span>
-              <span className="hero-detail-val">linkedin.com/in/syzack</span>
+              <span className="hero-detail-val">{profile.linkedinLabel}</span>
             </div>
             <div className="hero-detail">
               <span className="hero-detail-key">Availability</span>
               <span className="hero-detail-val hero-detail-available">
-                Open to opportunities
+                {profile.availabilityDetail}
               </span>
             </div>
           </div>
@@ -86,7 +80,7 @@ export default function Hero() {
 
         <div className="hero-stats">
           <div className="hero-stat">
-            <span className="hero-stat-num">7+</span>
+            <span className="hero-stat-num">{profile.yearsLabel}</span>
             <span className="hero-stat-label">Years</span>
           </div>
           <div className="hero-strip-div" />

@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react'
+import { navLinks, profile } from '../data/profile'
 import './Nav.css'
-
-const links = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Personal Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
-]
 
 export default function Nav({ scrollRef }) {
   const [scrolled, setScrolled] = useState(false)
@@ -26,23 +20,23 @@ export default function Nav({ scrollRef }) {
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
       <a href="#about" className="nav-logo">
         <span className="logo-bracket">&lt;</span>
-        Zakaria
+        {profile.firstName}
         <span className="logo-bracket"> /&gt;</span>
       </a>
 
       <ul className={`nav-links${open ? ' open' : ''}`}>
         <li className="nav-mobile-profile">
-          <img src="/personal-photo.avif" alt="Zakaria Ahmad" className="nav-mobile-photo" />
-          <span className="nav-mobile-name">Zakaria Ahmad</span>
-          <span className="nav-mobile-title">Full Stack Developer</span>
+          <img src={profile.photo} alt={profile.fullName} className="nav-mobile-photo" />
+          <span className="nav-mobile-name">{profile.fullName}</span>
+          <span className="nav-mobile-title">{profile.title}</span>
         </li>
-        {links.map(l => (
+        {navLinks.map(l => (
           <li key={l.href}>
             <a href={l.href} onClick={() => setOpen(false)}>{l.label}</a>
           </li>
         ))}
         <li>
-          <a href="/ZakariaAhmadResume.pdf" className="nav-cta" download onClick={() => setOpen(false)}>Resume ↓</a>
+          <a href={profile.resume} className="nav-cta" download onClick={() => setOpen(false)}>Resume ↓</a>
         </li>
       </ul>
 
