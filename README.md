@@ -18,21 +18,21 @@ Dev server: `http://localhost:5173/`
 | `npm install` | Install dependencies |
 | `npm run dev` | Vite dev server with HMR on port 5173. Add `-- --host` to listen on the network |
 | `npm run lint` | ESLint across the repo |
+| `npm test` | Vitest once (characterizing unit/component tests) |
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Serve the production build locally |
-
-There is no `npm test` yet (added in a later slice).
 
 **Typical workflow**
 
 ```bash
 npm install
 npm run dev          # develop
+npm test             # characterizing tests
 npm run lint         # before a PR
 npm run build        # confirm production build
 ```
 
-CI (GitHub Actions) runs `npm ci`, `npm run lint`, and `npm run build` on every pull request and every push to `main`.
+CI (GitHub Actions) runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every pull request and every push to `main`.
 
 ## Project
 

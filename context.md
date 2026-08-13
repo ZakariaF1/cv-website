@@ -5,9 +5,10 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 ## Services / commands
 - **Dev server**: `npm run dev` — serves on `http://localhost:5173/` with HMR. This is the primary way to develop and test.
 - **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`). Note: `src/components/Lightbox.jsx` currently emits one pre-existing `react-hooks/exhaustive-deps` warning (0 errors) — this is expected, not introduced by your changes.
+- **Test**: `npm test` — Vitest in jsdom (`vitest run`). Characterizing tests live next to components as `*.test.js` / `*.test.jsx`.
 - **Build**: `npm run build` (outputs to `dist/`).
 - **Preview production build**: `npm run preview`.
-- **CI**: `.github/workflows/ci.yml` runs `npm ci`, `npm run lint`, and `npm run build` on every push to `main` and on every pull request.
+- **CI**: `.github/workflows/ci.yml` runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every push to `main` and on every pull request.
 
 ## Notes
 - Node 20.19+ / 22.12+ is required by Vite 8 (the cloud VM ships Node 22, which works).
@@ -21,7 +22,7 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | Slice | Change | Status |
 | ----- | ------ | ------ |
 | 1 | GitHub Actions CI: `npm ci` → lint → build | done |
-| 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | this PR |
-| 3 | Vitest + characterizing tests; add `npm test` to CI | next |
-| 4 | Extract content data (projects, skills, about) out of JSX into data modules | later |
+| 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | done |
+| 3 | Vitest + characterizing tests; add `npm test` to CI | this PR |
+| 4 | Extract content data (projects, skills, about) out of JSX into data modules | next |
 | 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | later |
