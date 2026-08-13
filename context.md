@@ -4,7 +4,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 
 ## Services / commands
 - **Dev server**: `npm run dev` — serves on `http://localhost:5173/` with HMR. This is the primary way to develop and test.
-- **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`). Note: `src/components/Lightbox.jsx` currently emits one pre-existing `react-hooks/exhaustive-deps` warning (0 errors) — this is expected, not introduced by your changes.
+- **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`; `--max-warnings 0`).
 - **Test**: `npm test` — Vitest in jsdom (`vitest run`). Characterizing tests live next to components as `*.test.js` / `*.test.jsx`.
 - **Build**: `npm run build` (outputs to `dist/`).
 - **Preview production build**: `npm run preview`.
@@ -25,5 +25,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 1 | GitHub Actions CI: `npm ci` → lint → build | done |
 | 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | done |
 | 3 | Vitest + characterizing tests; add `npm test` to CI | done |
-| 4 | Extract content data (projects, skills, about) out of JSX into data modules | this PR |
-| 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | next |
+| 4 | Extract content data (projects, skills, about) out of JSX into data modules | done |
+| 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | this PR |

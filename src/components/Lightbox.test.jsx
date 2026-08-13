@@ -44,6 +44,33 @@ describe('Lightbox', () => {
     expect(onClose).toHaveBeenCalledTimes(2)
   })
 
+  it('navigates with arrow keys', async () => {
+    const user = userEvent.setup()
+    const { container } = render(<Lightbox project={project} startIndex={1} onClose={vi.fn()} />)
+    const media = () => container.ownerDocument.querySelector('.lightbox-img, .lightbox-video')
+
+    await user.keyboard('{ArrowRight}')
+    expect(media()).toHaveAttribute('src', '/firehouse-screenshot2.avif')
+
+    await user.keyboard('{ArrowLeft}')
+    expect(media()).toHaveAttribute('src', '/firehouse-screenshot1.avif')
+  })
+
+  it('plays the demo when navigating onto a video item', async () => {
+    const user = userEvent.setup()
+    HTMLMediaElement.prototype.play.mockClear()
+    render(<Lightbox project={project} startIndex={1} onClose={vi.fn()} />)
+
+    await user.click(screen.getByRole('button', { name: 'Previous' }))
+
+    expect(HTMLMediaElement.prototype.play).toHaveBeenCalled()
+  })
+
+  it('renders nothing when the project has no media', () => {
+    render(<Lightbox project={{ title: 'Empty' }} startIndex={0} onClose={vi.fn()} />)
+    expect(document.querySelector('.lightbox')).not.toBeInTheDocument()
+  })
+
   it('hides prev/next controls when there is only one media item', () => {
     render(
       <Lightbox
