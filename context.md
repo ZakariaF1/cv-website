@@ -27,4 +27,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 3 | Vitest + characterizing tests; add `npm test` to CI | done |
 | 4 | Extract content data (projects, skills, about) out of JSX into data modules | done |
 | 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | done |
-| 6 | Extract remaining identity/contact/nav copy into `src/data/profile.js` | this PR |
+| 6 | Extract remaining identity/contact/nav copy into `src/data/profile.js` | done |
+| 7 | Bump GitHub Actions (`checkout` / `setup-node`) off deprecated Node 20 | this PR |
