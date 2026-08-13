@@ -20,8 +20,8 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 
 | Slice | Change | Status |
 | ----- | ------ | ------ |
-| 1 | GitHub Actions CI: `npm ci` → lint → build | this PR |
-| 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | next |
-| 3 | Vitest + characterizing tests; add `npm test` to CI | later |
+| 1 | GitHub Actions CI: `npm ci` → lint → build | done |
+| 2 | README commands-first (`dev`, `lint`, `build`, `preview`; add `test` once it exists) | this PR |
+| 3 | Vitest + characterizing tests; add `npm test` to CI | next |
 | 4 | Extract content data (projects, skills, about) out of JSX into data modules | later |
 | 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | later |
