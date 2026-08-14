@@ -54,6 +54,12 @@ export const testCatalog = [
     does: 'Renders About, Projects, Skills, Contact, and the Back to top button.',
   },
   {
+    file: 'src/App.test.jsx',
+    group: 'App',
+    name: 'defers projects, skills, and contact until after first paint',
+    does: 'Keeps Projects, Skills, and Contact out of the first paint, then mounts them after idle.',
+  },
+  {
     file: 'src/components/Hero.test.jsx',
     group: 'Hero',
     name: 'renders identity, availability, and primary actions',

@@ -29,6 +29,7 @@ export default function Hero() {
               src={profile.photo}
               alt={profile.fullName}
               className="hero-photo"
+              fetchPriority="high"
             />
           </div>
         </div>

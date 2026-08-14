@@ -1,11 +1,18 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { lazy, Suspense, useState, useEffect, useRef, useCallback } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Contact from './components/Contact'
 import './App.css'
+
+const Projects = lazy(() => import('./components/Projects'))
+const Skills = lazy(() => import('./components/Skills'))
+const Contact = lazy(() => import('./components/Contact'))
+
+function shouldLoadRestImmediately() {
+  if (typeof window === 'undefined') return false
+  const hash = window.location.hash
+  return Boolean(hash && hash !== '#about')
+}
 
 function ScrollToTop({ scrollRef }) {
   const [visible, setVisible] = useState(false)
@@ -72,14 +79,80 @@ function ScrollToTop({ scrollRef }) {
 
 export default function App() {
   const rightRef = useRef(null)
+  const pendingAnchorIdRef = useRef(null)
+  const [loadRest, setLoadRest] = useState(shouldLoadRestImmediately)
+
+  useEffect(() => {
+    if (loadRest) return undefined
+
+    const load = () => setLoadRest(true)
+
+    let idleId
+    let timeoutId
+    if (typeof window.requestIdleCallback === 'function') {
+      idleId = window.requestIdleCallback(load, { timeout: 1500 })
+    } else {
+      timeoutId = window.setTimeout(load, 1)
+    }
+
+    return () => {
+      if (idleId !== undefined && typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId)
+      }
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId)
+    }
+  }, [loadRest])
+
+  useEffect(() => {
+    if (!loadRest) return undefined
+    const id = pendingAnchorIdRef.current
+    if (!id) return undefined
+
+    let cancelled = false
+    let attempts = 0
+    const tryScroll = () => {
+      if (cancelled) return
+      const target = document.getElementById(id)
+      const panel = rightRef.current
+      if (target) {
+        pendingAnchorIdRef.current = null
+        if (panel && panel.scrollHeight > panel.clientHeight) {
+          const offset = target.getBoundingClientRect().top - panel.getBoundingClientRect().top + panel.scrollTop
+          panel.scrollTo({ top: offset, behavior: 'smooth' })
+        } else {
+          target.scrollIntoView({ behavior: 'smooth' })
+        }
+        return
+      }
+      if (attempts++ > 60) {
+        pendingAnchorIdRef.current = null
+        return
+      }
+      requestAnimationFrame(tryScroll)
+    }
+    tryScroll()
+    return () => {
+      cancelled = true
+    }
+  }, [loadRest])
 
   // Intercept anchor clicks so they scroll inside panel-right instead of the window
   const handleAnchorClick = useCallback((e) => {
     const anchor = e.target.closest('a[href^="#"]')
     if (!anchor) return
     const id = anchor.getAttribute('href').slice(1)
+    if (!id) return
+
     const target = document.getElementById(id)
     const panel = rightRef.current
+
+    if (!target && id !== 'about') {
+      pendingAnchorIdRef.current = id
+      setLoadRest(true)
+      e.preventDefault()
+      return
+    }
+
     if (!target || !panel) return
     // Only intercept when the panel is the scroll container (desktop)
     if (panel.scrollHeight <= panel.clientHeight) return
@@ -99,9 +172,13 @@ export default function App() {
         <div className="panel-right" ref={rightRef}>
           <main>
             <About />
-            <Projects />
-            <Skills />
-            <Contact />
+            {loadRest ? (
+              <Suspense fallback={null}>
+                <Projects />
+                <Skills />
+                <Contact />
+              </Suspense>
+            ) : null}
           </main>
           <ScrollToTop scrollRef={rightRef} />
         </div>

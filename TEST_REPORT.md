@@ -15,6 +15,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/projectUtils.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
 | `src/components/projectUtils.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
 | `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, and the Back to top button. |
+| `src/App.test.jsx` | App | defers projects, skills, and contact until after first paint | Keeps Projects, Skills, and Contact out of the first paint, then mounts them after idle. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
 | `src/components/Nav.test.jsx` | Nav | toggles the mobile menu from the burger button | Burger opens the menu; clicking a section link closes it. |
