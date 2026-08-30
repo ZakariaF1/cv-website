@@ -156,6 +156,18 @@ export const testCatalog = [
     does: 'Keeps the Cloudflare Web Analytics beacon and site token in index.html.',
   },
   {
+    file: 'src/test/cdn.test.js',
+    group: 'Cloudflare CDN origin headers',
+    name: 'caches public photos, videos, and the resume PDF at the edge',
+    does: 'vercel.json sets a 30-day Cache-Control on avif/png/webp/svg/webm/pdf so Cloudflare can cache them.',
+  },
+  {
+    file: 'src/test/cdn.test.js',
+    group: 'Cloudflare CDN origin headers',
+    name: 'caches hashed Vite assets as immutable',
+    does: 'Hashed /assets files get a one-year immutable Cache-Control header.',
+  },
+  {
     file: 'src/test/report.test.js',
     group: 'test catalog',
     name: 'documents every characterizing test in the catalog',
