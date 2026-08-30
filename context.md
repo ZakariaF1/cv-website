@@ -15,6 +15,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 - Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served at the site root.
 - Portfolio copy (projects, experience, skills, certifications, languages, profile, nav) lives in `src/data/` so components stay presentational.
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
+- RUM is Cloudflare Web Analytics via a JS beacon in `index.html` (domain stays at Namecheap; no Vercel Analytics).
 
 ## Engineering slices (charter, no design changes)
 
