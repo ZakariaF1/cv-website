@@ -31,5 +31,6 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/Lightbox.test.jsx` | Lightbox | plays the demo when navigating onto a video item | Moving onto the demo video calls play(). |
 | `src/components/Lightbox.test.jsx` | Lightbox | renders nothing when the project has no media | No lightbox markup if the project has neither video nor screenshots. |
 | `src/components/Lightbox.test.jsx` | Lightbox | hides prev/next controls when there is only one media item | Single-image galleries do not show Next/Previous. |
+| `src/test/analytics.test.js` | Cloudflare Web Analytics | installs the RUM beacon with the site token | Keeps the Cloudflare Web Analytics beacon and site token in index.html. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |

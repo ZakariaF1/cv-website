@@ -150,6 +150,12 @@ export const testCatalog = [
     does: 'Single-image galleries do not show Next/Previous.',
   },
   {
+    file: 'src/test/analytics.test.js',
+    group: 'Cloudflare Web Analytics',
+    name: 'installs the RUM beacon with the site token',
+    does: 'Keeps the Cloudflare Web Analytics beacon and site token in index.html.',
+  },
+  {
     file: 'src/test/report.test.js',
     group: 'test catalog',
     name: 'documents every characterizing test in the catalog',
