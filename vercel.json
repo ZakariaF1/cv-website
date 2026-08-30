@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(avif|png|webp|svg|webm|pdf)$",
+      "source": "/:path*.(avif|png|webp|svg|webm|pdf)",
       "headers": [
         {
           "key": "Cache-Control",

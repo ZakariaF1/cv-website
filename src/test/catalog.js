@@ -159,7 +159,7 @@ export const testCatalog = [
     file: 'src/test/cdn.test.js',
     group: 'Cloudflare CDN origin headers',
     name: 'caches public photos, videos, and the resume PDF at the edge',
-    does: 'vercel.json sets a 30-day Cache-Control on avif/png/webp/svg/webm/pdf so Cloudflare can cache them.',
+    does: 'vercel.json matches /:path*.(avif|…) and sets a 30-day Cache-Control so Cloudflare can cache them.',
   },
   {
     file: 'src/test/cdn.test.js',
