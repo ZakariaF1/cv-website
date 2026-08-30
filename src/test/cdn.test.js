@@ -10,7 +10,7 @@ function headerValue(sourcePattern, headerName) {
 
 describe('Cloudflare CDN origin headers', () => {
   it('caches public photos, videos, and the resume PDF at the edge', () => {
-    expect(headerValue('/(.*)\\.(avif|png|webp|svg|webm|pdf)$', 'Cache-Control')).toBe(
+    expect(headerValue('/:path*.(avif|png|webp|svg|webm|pdf)', 'Cache-Control')).toBe(
       'public, max-age=2592000, stale-while-revalidate=86400',
     )
   })

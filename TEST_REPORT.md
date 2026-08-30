@@ -32,7 +32,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/Lightbox.test.jsx` | Lightbox | renders nothing when the project has no media | No lightbox markup if the project has neither video nor screenshots. |
 | `src/components/Lightbox.test.jsx` | Lightbox | hides prev/next controls when there is only one media item | Single-image galleries do not show Next/Previous. |
 | `src/test/analytics.test.js` | Cloudflare Web Analytics | installs the RUM beacon with the site token | Keeps the Cloudflare Web Analytics beacon and site token in index.html. |
-| `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches public photos, videos, and the resume PDF at the edge | vercel.json sets a 30-day Cache-Control on avif/png/webp/svg/webm/pdf so Cloudflare can cache them. |
+| `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches public photos, videos, and the resume PDF at the edge | vercel.json matches /:path*.(avif|…) and sets a 30-day Cache-Control so Cloudflare can cache them. |
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches hashed Vite assets as immutable | Hashed /assets files get a one-year immutable Cache-Control header. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |
