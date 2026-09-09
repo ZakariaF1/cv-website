@@ -15,7 +15,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 - Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served at the site root.
 - Portfolio copy (projects, experience, skills, certifications, languages, profile, nav) lives in `src/data/` so components stay presentational.
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
-- RUM is Cloudflare Web Analytics via a JS beacon in `index.html` (domain stays at Namecheap; no Vercel Analytics).
+- RUM is Cloudflare Web Analytics via **Automatic** injection while the domain is proxied (no manual `beacon.min.js` in `index.html`). Disable any leftover JS-snippet Web Analytics site in the Cloudflare dashboard so visits are not double-counted.
 - CDN: keep the domain registered at Namecheap; use Cloudflare as DNS + reverse-proxy in front of Vercel. Photos stay in `public/` — do not re-upload them to Cloudflare. `vercel.json` sets Cache-Control so the edge can cache images, videos, and the resume. See the README “Domain / CDN” section.
 - Availability: free **UptimeRobot** HTTPS monitor (Cloudflare Health Checks need Pro). Recover via [RUNBOOK.md](RUNBOOK.md) (DNS, SSL Full strict, Vercel rollback, cache purge).
 - Quality attributes (Lesson 8 stimulus–response scenarios for this site): [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md).

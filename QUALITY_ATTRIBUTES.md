@@ -43,7 +43,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | ------ | ----- |
 | Visits / page views / LCP / INP / CLS | **Not enough data** (dashboard empty: 0 visits, 0 page views, vitals blank) |
 
-**Why:** RUM needs the beacon + real browser sessions on the **active** Web Analytics property. Zone Overview can show 101 visitors while Web Analytics shows 0 if the Automatic property has no beacons yet, or traffic is mostly non-browser. Earlier snippet property had **14 / 14** views; consolidate to one property so vitals can fill in.
+**Why (historical):** Zone Overview showed traffic while Web Analytics RUM was empty because visits were split / wrong property. The site now uses **Automatic** injection only (manual snippet removed from `index.html`). Disable the old JS-snippet Web Analytics site in Cloudflare so Core Web Vitals fill on the Automatic property.
 
 ### Lab performance (PageSpeed Insights — mobile, your run)
 
@@ -101,7 +101,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Measure (real)** | **Lab:** LCP **3.1 s**, FCP **2.7 s**, CLS **0**, score **90**. **Edge:** photo **HIT** + **30-day** `Cache-Control`; 24h **29.48%** bytes/requests cached mix, **2 MB** cached of **6 MB** served. **Field RUM:** **no CWV yet** (Web Analytics empty) — re-measure when visits appear on one analytics property. |
 
 **Tactics in use:** CDN copies of media, AVIF, long cache headers, **prioritize events** (`fetchPriority=high` on hero), **reduce overhead** (preload LCP photo in `index.html` before React).  
-**Still open:** field RUM CWV empty until one Web Analytics property receives beacons; optional later — defer below-fold JS / less render-blocking CSS if lab LCP stays ~3 s.
+**Still open:** wait for Automatic Web Analytics CWV after disabling the old JS-snippet site in Cloudflare; optional later — defer below-fold JS if lab LCP stays ~3 s.
 
 ---
 
@@ -114,7 +114,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Environment** | Build time — PR → `main` → Vercel |
 | **Artifact** | `src/data/*`, `public/`, CI |
 | **Response** | Edit data/asset → `npm test` + lint → merge → deploy |
-| **Measure (real)** | Content lives in data modules (already). Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. **Debt:** two Web Analytics setups (snippet vs Automatic) — Automatic RUM currently **0**; consolidate. |
+| **Measure (real)** | Content lives in data modules (already). Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. Analytics: single Automatic RUM path (manual snippet removed). |
 
 ---
 
@@ -151,8 +151,8 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | Attribute | Real baseline now | Next slice |
 | --------- | ----------------- | ---------- |
 | Availability | Live; 24h 101 visitors / 470 req | Free uptime monitor + runbook |
-| Performance | Lab LCP 3.1 s / score 90; photo HIT; RUM empty; LCP preload + fetchPriority | Single Web Analytics property → collect CWV; optional defer below-fold JS |
-| Modifiability | Data modules + CI | Remove duplicate analytics beacon |
+| Performance | Lab LCP 3.1 s / score 90; photo HIT; LCP preload; Automatic RUM only | Disable old JS-snippet analytics site; wait for CWV; optional defer below-fold JS |
+| Modifiability | Data modules + CI; single analytics binding in HTML | — |
 | Usability | Resume/lightbox tests; GSC 7 clicks / 102 impr. | Keyboard/a11y pass if needed |
 | Scalability | 5.53k req/30d; media HIT; low HTML cache ratio OK | Keep cache headers; purge after big asset deploys |
 
