@@ -58,6 +58,8 @@ Registrar stays **Namecheap**. Hosting stays **Vercel**. **Cloudflare** is DNS +
 5. Optional: **Caching → Cache Rules** — match `*.avif`, `*.png`, `*.webp`, `*.svg`, `*.webm`, `*.pdf` and cache at the edge. Origin already sends Cache-Control via `vercel.json`.
 6. Confirm CDN: open `/personal-photo.avif`, reload, Network tab → `server: cloudflare` and `cf-cache-status: HIT`.
 
+RUM: with the domain proxied, use Cloudflare Web Analytics **Automatic** setup only. Do not add a manual JS snippet in HTML (that creates a second property and splits visits). In **Web Analytics**, disable or remove any leftover **JS Snippet** site for `zakariaahmad.site`.
+
 ## Project
 
 Single-page portfolio with an adaptive two-panel layout. Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served from the site root.

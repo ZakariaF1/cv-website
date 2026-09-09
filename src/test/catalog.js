@@ -158,8 +158,8 @@ export const testCatalog = [
   {
     file: 'src/test/analytics.test.js',
     group: 'Cloudflare Web Analytics',
-    name: 'installs the RUM beacon with the site token',
-    does: 'Keeps the Cloudflare Web Analytics beacon and site token in index.html.',
+    name: 'relies on Automatic injection instead of a manual beacon',
+    does: 'Keeps the manual Cloudflareinsights beacon out of index.html so proxied Automatic RUM is the only property.',
   },
   {
     file: 'src/test/cdn.test.js',
