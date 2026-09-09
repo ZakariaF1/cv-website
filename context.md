@@ -17,6 +17,7 @@ This repository is a single-page **React + Vite** personal portfolio/CV website 
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
 - RUM is Cloudflare Web Analytics via a JS beacon in `index.html` (domain stays at Namecheap; no Vercel Analytics).
 - CDN: keep the domain registered at Namecheap; use Cloudflare as DNS + reverse-proxy in front of Vercel. Photos stay in `public/` — do not re-upload them to Cloudflare. `vercel.json` sets Cache-Control so the edge can cache images, videos, and the resume. See the README “Domain / CDN” section.
+- Quality attributes (Lesson 8 stimulus–response scenarios for this site): [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md).
 
 ## Engineering slices (charter, no design changes)
 
