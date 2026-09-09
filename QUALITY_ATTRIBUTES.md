@@ -2,165 +2,164 @@
 
 Lesson 8 (Skillab / Adrian Popescu): *Atributele unui sistem și tactici de îmbunătățire*.
 
-This file fills the course templates for **zakariaahmad.site** (static React + Vite on Vercel, Cloudflare DNS/CDN + Web Analytics). There is no backend or database; tactics are mapped only where they fit a personal portfolio.
+Filled for **zakariaahmad.site** (static React + Vite → Vercel → Cloudflare). Scenarios use the lesson’s six fields. **Measures below use real baselines captured 8–9 Sep 2026** (and Search Console last 3 months).
 
 ## How to write a scenario (method)
 
-For each quality attribute, answer the six fields from the lesson. Every field must be concrete enough to test or observe.
-
-| Field (EN) | Field (RO from lesson) | Ask yourself |
-| ---------- | ---------------------- | ------------ |
-| **Source of stimulus** | Sursa stimulului | Who or what starts it? (visitor, deployer, Cloudflare, Vercel, you) |
-| **Stimulus** | Stimulul | What event or condition happens? |
-| **Environment** | Mediul | Startup, normal use, high load, mobile 4G, after a deploy? |
-| **Artifact** | Artefactul | Which part of *this* system responds? (Hero, Nav, edge cache, CI, …) |
+| Field (EN) | Field (RO) | Ask yourself |
+| ---------- | ---------- | ------------ |
+| **Source** | Sursa stimulului | Who/what starts it? |
+| **Stimulus** | Stimulul | What event happens? |
+| **Environment** | Mediul | Normal / mobile / after deploy / spike? |
+| **Artifact** | Artefactul | Which part of *this* system responds? |
 | **Response** | Răspunsul | What does the system (or operator) do? |
-| **Response measure** | Măsurarea răspunsului | How do you know it succeeded? (time, %, error count, …) |
+| **Measure** | Măsurarea | How do you verify? Prefer numbers from tools you have. |
 
-Rules of thumb:
+---
 
-1. Prefer one **primary user job** (recruiter opens the site, downloads resume, opens a project).
-2. The **measure** must be checkable with tools you already have (browser, Cloudflare Web Analytics, GitHub Actions, Vercel dashboard) or a free uptime check.
-3. If a tactic needs a database or multi-service failover, write “N/A for this architecture” instead of inventing infrastructure.
+## Measured baseline (real data)
+
+Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics** (RUM), Google **Search Console** (3 months), PageSpeed lab (your earlier run), live edge check (this agent), production `npm run build`, Cloudflare CSV export `data_cached_*.csv` (hourly **Data Cached** bytes).
+
+### Cloudflare zone / CDN (edge HTTP — not RUM)
+
+| Window | Metric | Value |
+| ------ | ------ | ----- |
+| Last **24 hours** (8–9 Sep) | Unique visitors | **101** |
+| 24h | Total requests | **470** |
+| 24h | Percent cached | **29.48%** |
+| 24h | Total data served | **6 MB** |
+| 24h | Data cached | **2 MB** (CSV sum of hourly cached bytes ≈ **1.70 MB** / 1 699 389 B) |
+| Previous **30 days** | Total requests through Cloudflare | **5.53k** |
+| 30d | Cached requests | **176** |
+| 30d | Uncached requests | **5.35k** (~**3.2%** of requests cached) |
+| Live check (agent) | `/personal-photo.avif` | `server: cloudflare`, `cache-control: max-age=2592000`, **`cf-cache-status: HIT`** |
+
+**How to read this:** Overview/HTTP Traffic count **all** edge requests (HTML, bots, favicon, JS). HTML is often `DYNAMIC` / uncached, so **~3% request cache** over 30d is expected. Media with long `Cache-Control` still shows **HIT** (photo check above). Do not treat “29% / 3% cached” as “CDN broken.”
+
+### Cloudflare Web Analytics (browser RUM / Core Web Vitals)
+
+| Metric | Value |
+| ------ | ----- |
+| Visits / page views / LCP / INP / CLS | **Not enough data** (dashboard empty: 0 visits, 0 page views, vitals blank) |
+
+**Why:** RUM needs the beacon + real browser sessions on the **active** Web Analytics property. Zone Overview can show 101 visitors while Web Analytics shows 0 if the Automatic property has no beacons yet, or traffic is mostly non-browser. Earlier snippet property had **14 / 14** views; consolidate to one property so vitals can fill in.
+
+### Lab performance (PageSpeed Insights — mobile, your run)
+
+| Metric | Value |
+| ------ | ----- |
+| Performance score | **90** |
+| FCP | **2.7 s** |
+| LCP | **3.1 s** |
+| Speed Index | **2.7 s** |
+| TBT | **0 ms** |
+| CLS | **0** |
+
+### Production bundle (`npm run build`)
+
+| Asset | Raw | Gzip |
+| ----- | --- | ---- |
+| `index-*.js` | **222.10 kB** | **69.44 kB** |
+| `index-*.css` | **25.54 kB** | **5.39 kB** |
+| `index.html` | **3.35 kB** | **1.17 kB** |
+
+### Google Search Console (Web, last 3 months)
+
+| Metric | Value |
+| ------ | ----- |
+| Clicks | **7** |
+| Impressions | **102** |
+| Average CTR | **6.9%** |
+| Average position | **5.7** |
+| Top queries (impressions) | `zakaria ahmad` (12), `ahmad zakaria` (4), … |
 
 ---
 
 ## 1. Availability
 
-**Goal (lesson):** The site responds when needed; downtime stays within an agreed budget.
-
-| Field | Value for this site |
-| ----- | ------------------- |
-| **Source** | External — Vercel platform / Cloudflare edge / Namecheap DNS misconfiguration |
-| **Stimulus** | Origin or DNS failure: `https://www.zakariaahmad.site` returns errors or does not resolve |
-| **Environment** | Normal operation (production) |
-| **Artifact** | Hosting + DNS path: Cloudflare proxy → Vercel deployment |
-| **Response** | Detect via HTTP status / DNS; restore by Vercel rollback or fixing Cloudflare DNS/SSL (Full strict, proxied A/www); keep MX/TXT DNS-only |
-| **Measure** | Detect within 5 minutes of an alert (uptime monitor or manual check); restore (MTTR) under 30 minutes; target informal availability ≥ 99.5% (~1.8 days downtime/year) for a personal site |
-
-**Tactics that fit:** detect (external ping), recover (rollback / fix DNS), prevent (CI green before merge, never SSL Flexible).
-
-**Tactics that do not fit yet:** active/passive app redundancy, heartbeats between microservices.
+| Field | Value |
+| ----- | ----- |
+| **Source** | External — Vercel / Cloudflare / DNS |
+| **Stimulus** | `https://www.zakariaahmad.site` errors or fails to resolve |
+| **Environment** | Normal production |
+| **Artifact** | Cloudflare proxy → Vercel |
+| **Response** | Detect (HTTP/DNS); restore via Vercel rollback or DNS/SSL fix (Full strict; A/www proxied) |
+| **Measure (real)** | **Today:** site reachable; Cloudflare DNS Full; 24h **470** requests / **101** unique visitors with no outage signal in Overview. **Target:** detect &lt; 5 min (add free uptime alert); MTTR &lt; 30 min. Informal availability goal ≥ **99.5%**. |
 
 ---
 
 ## 2. Performance
 
-**Goal (lesson):** Process a stimulus within a reference time; handle concurrent visitors.
+| Field | Value |
+| ----- | ----- |
+| **Source** | Recruiter / visitor on mobile or desktop |
+| **Stimulus** | Opens homepage (cold or warm cache) |
+| **Environment** | Production; lab = Slow 4G PageSpeed; field = Web Analytics (when data exists) |
+| **Artifact** | HTML + JS/CSS + `/personal-photo.avif` via Cloudflare → Vercel |
+| **Response** | Paint page; serve LCP image; prefer edge HIT for media |
+| **Measure (real)** | **Lab:** LCP **3.1 s**, FCP **2.7 s**, CLS **0**, score **90**. **Edge:** photo **HIT** + **30-day** `Cache-Control`; 24h **29.48%** bytes/requests cached mix, **2 MB** cached of **6 MB** served. **Field RUM:** **no CWV yet** (Web Analytics empty) — re-measure when visits appear on one analytics property. |
 
-| Field | Value for this site |
-| ----- | ------------------- |
-| **Source** | External user (recruiter / hiring manager) on a mobile network |
-| **Stimulus** | Opens `https://www.zakariaahmad.site/` (first visit or warm cache) |
-| **Environment** | Normal operation; emulated Slow 4G in lab, real devices in the field |
-| **Artifact** | First paint path: HTML + main JS/CSS + hero photo (`/personal-photo.avif`) via Cloudflare → Vercel |
-| **Response** | Serve shell and LCP image; subsequent photo requests preferably from Cloudflare edge (`cf-cache-status: HIT` / `REVALIDATED`) |
-| **Measure** | **Field (primary):** Cloudflare Web Analytics — LCP “Good” share improving over 28 days; CLS stay Good. **Lab (secondary):** PageSpeed mobile LCP/FCP noted (currently ~3.1 s / ~2.7 s) without treating lab as the only truth |
-
-**Tactics already in use:** maintain multiple copies of data (CDN), increase resource efficiency (AVIF, long `Cache-Control` on media).
-
-**Next tactics (later slices):** reduce overhead (LCP preload / defer below-fold JS) if field LCP stays poor.
+**Tactics in use:** CDN copies of media, AVIF, long cache headers.  
+**Next:** LCP preload / less render-blocking JS if field LCP stays poor once RUM has data.
 
 ---
 
 ## 3. Modifiability
 
-**Goal (lesson):** Change the system for new requirements with low time, cost, and blast radius.
-
-| Field | Value for this site |
-| ----- | ------------------- |
-| **Source** | Developer (site owner) |
-| **Stimulus** | Add or edit a project / update job title / replace resume PDF |
-| **Environment** | Design / build time (local edit → PR → `main` → Vercel) |
-| **Artifact** | Content modules under `src/data/` and `public/` assets; components stay presentational |
-| **Response** | Edit data (or swap PDF), run `npm test` + `npm run lint`, merge; production updates via Vercel |
-| **Measure** | Content-only change in under 30 minutes of work; characterizing tests stay green; no CSS/layout edits required for copy changes |
-
-**Tactics in use:** encapsulate content in data modules, restrict dependencies (tests + CI), high cohesion in section components.
-
-**Known debt:** two Cloudflare Web Analytics properties (JS snippet + Automatic) — consolidate later so analytics config has a single binding.
+| Field | Value |
+| ----- | ----- |
+| **Source** | Developer (you) |
+| **Stimulus** | Edit project/job copy or replace resume PDF |
+| **Environment** | Build time — PR → `main` → Vercel |
+| **Artifact** | `src/data/*`, `public/`, CI |
+| **Response** | Edit data/asset → `npm test` + lint → merge → deploy |
+| **Measure (real)** | Content lives in data modules (already). Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. **Debt:** two Web Analytics setups (snippet vs Automatic) — Automatic RUM currently **0**; consolidate. |
 
 ---
 
 ## 4. Usability
 
-**Goal (lesson):** User completes a task easily; system shows progress / success / failure.
-
-| Field | Value for this site |
-| ----- | ------------------- |
-| **Source** | End user (recruiter) visiting for the first time |
-| **Stimulus** | Wants resume PDF and one project proof within the first minute |
-| **Environment** | Runtime — desktop or mobile browser |
-| **Artifact** | Nav (Resume ↓), Hero CTAs, Projects section + lightbox |
-| **Response** | Resume download from nav; scroll/jump to Projects; open lightbox for screenshots/demo; Escape/close to leave lightbox |
-| **Measure** | Resume reachable in ≤ 2 clicks from first paint; project preview openable without reading docs; lightbox closable via control and Escape (covered by characterizing tests) |
-
-**Tactics in use:** clear primary actions, maintain system feedback (lightbox UI), cancel (close lightbox).
-
-**Later check:** keyboard / focus path on nav + lightbox without visual redesign.
+| Field | Value |
+| ----- | ----- |
+| **Source** | Recruiter, first visit |
+| **Stimulus** | Needs resume + one project proof in ~1 minute |
+| **Environment** | Runtime, desktop/mobile |
+| **Artifact** | Nav Resume ↓, Hero CTAs, Projects + lightbox |
+| **Response** | Download resume; open project media; close lightbox (button/Escape) |
+| **Measure (real)** | Resume path + lightbox covered by Vitest. Search discovery weak but present: GSC **7** clicks / **102** impressions / **3 months**, avg position **5.7**. **Target:** resume ≤ 2 clicks; no docs needed for lightbox. |
 
 ---
 
 ## 5. Scalability
 
-**Goal (lesson):** Usage can grow without collapsing performance or exploding cost.
+| Field | Value |
+| ----- | ----- |
+| **Source** | Traffic spike (share / bots / crawlers) |
+| **Stimulus** | Many concurrent reads of HTML + media |
+| **Environment** | Production elevated read load |
+| **Artifact** | Cloudflare edge + Vercel origin (stateless) |
+| **Response** | Serve from edge when eligible; origin for HTML/uncacheable |
+| **Measure (real)** | **30d:** **5.53k** requests, only **176** cached (**~3.2%**) — mostly uncached HTML/other. **24h:** **101** uniques, **470** requests, **29.48%** cached, **2 MB** cached / **6 MB** served. **Media path:** photo **HIT** proves edge scaling for static assets. Free plan sufficient at this volume; no DB to shard. |
 
-| Field | Value for this site |
-| ----- | ------------------- |
-| **Source** | External — traffic spike (e.g. LinkedIn share) |
-| **Stimulus** | Many concurrent reads of the homepage and static media |
-| **Environment** | Normal operation with elevated read load |
-| **Artifact** | Cloudflare edge cache + Vercel origin (stateless static assets) |
-| **Response** | Serve HTML/JS from origin/edge; serve photos/PDF from edge when cached; origin sees fewer bytes on repeat hits |
-| **Measure** | After warm-up, media requests show `server: cloudflare` and `cf-cache-status: HIT` or `REVALIDATED`; no origin/DB scaling work (there is no DB); Free Cloudflare + Vercel remain sufficient at CV traffic levels |
-
-**Tactics in use:** multiple copies of data (CDN), no per-user server on the server, cache static media.
-
-**Honest N/A:** DB partitioning, sharding, read replicas, connection pools — no database.
-
-**Jacobi invert (lesson):** ask “what would make this *not* scale?” → putting large videos without cache headers, SSL Flexible redirect loops, or blocking bots that scrapers/PageSpeed need. Avoid those.
+**Jacobi invert:** site would “not scale” if media lacked cache headers, SSL Flexible caused loops, or all traffic bypassed proxy — not the current setup for images.
 
 ---
 
 ## Summary matrix
 
-| Attribute | Primary measure today | Next improvement (plan only) |
-| --------- | --------------------- | ---------------------------- |
-| Availability | Manual / future uptime alert; Vercel rollback | Free uptime monitor + short runbook |
-| Performance | Cloudflare RUM + PageSpeed lab | LCP preload / defer below-fold if field stays weak |
-| Modifiability | Data modules + CI tests | Single analytics setup |
-| Usability | Resume + projects path; lightbox tests | Keyboard/a11y audit |
-| Scalability | Edge cache HIT on media | Keep cache headers; purge after big asset deploys |
+| Attribute | Real baseline now | Next slice |
+| --------- | ----------------- | ---------- |
+| Availability | Live; 24h 101 visitors / 470 req | Free uptime monitor + runbook |
+| Performance | Lab LCP 3.1 s / score 90; photo HIT; RUM empty | Fix single Web Analytics property → collect CWV |
+| Modifiability | Data modules + CI | Remove duplicate analytics beacon |
+| Usability | Resume/lightbox tests; GSC 7 clicks / 102 impr. | Keyboard/a11y pass if needed |
+| Scalability | 5.53k req/30d; media HIT; low HTML cache ratio OK | Keep cache headers; purge after big asset deploys |
 
 ---
 
-## Course blank templates (copy if you need to rewrite by hand)
+## Course blanks (copy from tables above)
 
-### Availability
+### Availability / Performance / Usability
 
-- Source:
-- Stimulus:
-- Environment:
-- Artifact:
-- Response:
-- Measure:
-
-### Performance
-
-- Source:
-- Stimulus:
-- Environment:
-- Artifact:
-- Response:
-- Measure:
-
-### Usability
-
-- Source:
-- Stimulus:
-- Environment:
-- Artifact:
-- Response:
-- Measure:
-
-*(Modifiability and Scalability follow the same six bullets; filled versions are above.)*
+Use the six bullets in each section’s table (Source → Measure). Modifiability and Scalability are filled the same way in sections 3 and 5.
