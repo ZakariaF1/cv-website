@@ -168,6 +168,12 @@ export const testCatalog = [
     does: 'Hashed /assets files get a one-year immutable Cache-Control header.',
   },
   {
+    file: 'src/test/runbook.test.js',
+    group: 'availability runbook',
+    name: 'documents UptimeRobot detect and Vercel rollback recover steps',
+    does: 'Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions.',
+  },
+  {
     file: 'src/test/report.test.js',
     group: 'test catalog',
     name: 'documents every characterizing test in the catalog',
