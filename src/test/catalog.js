@@ -186,6 +186,12 @@ export const testCatalog = [
     does: 'Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions.',
   },
   {
+    file: 'src/test/runbook.test.js',
+    group: 'scalability (edge cache)',
+    name: 'documents purge-after-deploy and spike response using existing CDN headers',
+    does: 'Locks RUNBOOK spike/purge guidance to vercel.json media and /assets Cache-Control rules.',
+  },
+  {
     file: 'src/test/lcp.test.js',
     group: 'LCP image preload',
     name: 'preloads the hero photo before the React module runs',

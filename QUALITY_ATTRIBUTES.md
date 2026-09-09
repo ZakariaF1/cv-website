@@ -140,7 +140,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Environment** | Production elevated read load |
 | **Artifact** | Cloudflare edge + Vercel origin (stateless) |
 | **Response** | Serve from edge when eligible; origin for HTML/uncacheable |
-| **Measure (real)** | **30d:** **5.53k** requests, only **176** cached (**~3.2%**) — mostly uncached HTML/other. **24h:** **101** uniques, **470** requests, **29.48%** cached, **2 MB** cached / **6 MB** served. **Media path:** photo **HIT** proves edge scaling for static assets. Free plan sufficient at this volume; no DB to shard. |
+| **Measure (real)** | **30d:** **5.53k** requests, only **176** cached (**~3.2%**) — mostly uncached HTML/other. **24h:** **101** uniques, **470** requests, **29.48%** cached, **2 MB** cached / **6 MB** served. **Media path:** photo **HIT** proves edge scaling for static assets. Free plan sufficient at this volume; no DB to shard. **Locked in:** `vercel.json` cache headers (Vitest), RUNBOOK purge + spike checklist. |
 
 **Jacobi invert:** site would “not scale” if media lacked cache headers, SSL Flexible caused loops, or all traffic bypassed proxy — not the current setup for images.
 
@@ -150,11 +150,11 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 
 | Attribute | Real baseline now | Next slice |
 | --------- | ----------------- | ---------- |
-| Availability | Live; 24h 101 visitors / 470 req | Free uptime monitor + runbook |
-| Performance | Lab LCP 3.1 s / score 90; photo HIT; LCP preload; Automatic RUM only | Disable old JS-snippet analytics site; wait for CWV; optional defer below-fold JS |
-| Modifiability | Data modules + CI; single analytics binding in HTML | — |
-| Usability | Resume/lightbox tests; GSC 7 clicks / 102 impr. | Keyboard/a11y pass if needed |
-| Scalability | 5.53k req/30d; media HIT; low HTML cache ratio OK | Keep cache headers; purge after big asset deploys |
+| Availability | Live; UptimeRobot + RUNBOOK | — |
+| Performance | Lab LCP preload; photo HIT; Automatic RUM only | Optional: wait for CWV; defer below-fold JS only if needed |
+| Modifiability | `src/data/*` + profile URL/SEO lock + CI | — |
+| Usability | Resume ≤ 2 clicks; lightbox + Demo keyboard already work | — |
+| Scalability | Edge media HIT; `vercel.json` headers; purge after asset deploys | — |
 
 ---
 

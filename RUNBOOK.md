@@ -90,6 +90,19 @@ curl -sI https://www.zakariaahmad.site/ | findstr /i "HTTP server cf-ray locatio
 2. Hard-refresh or open `?v=timestamp` on the asset
 3. Confirm `server: cloudflare` and a fresh `cache-control` / body
 
+### F. Scalability under a traffic spike (read-only static site)
+
+This app has **no database and no app servers to scale**. Concurrent visitors are served by **Cloudflare edge** when `Cache-Control` allows it (`vercel.json` for `/assets/*` and media/PDF), and by **Vercel origin** for HTML.
+
+| Check | What “scales” looks like |
+| ----- | ------------------------ |
+| Media | `/personal-photo.avif` shows `cf-cache-status: HIT` after a warm request |
+| Hashed JS/CSS | `/assets/*` long-cache immutable at the edge |
+| HTML | Often `DYNAMIC` / uncached — expected; origin must stay healthy (Availability) |
+| After replacing a public asset | Purge that URL (or Purge Everything) so the edge does not keep a stale body |
+
+Free Cloudflare + Vercel is enough at current volume (thousands of requests / month). Do not add replicas, queues, or a CDN “product” beyond what is already proxied.
+
 ---
 
 ## 3. Prevent
@@ -114,7 +127,7 @@ curl -sI https://www.zakariaahmad.site/ | findstr /i "HTTP server cf-ray locatio
 | Cloudflare | DNS, SSL/TLS, Caching, Analytics |
 | Vercel | Deployments / Domains |
 | Registrar | Namecheap → Domain List |
-| Quality scenarios | [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md) (when merged) |
+| Quality scenarios | [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md) |
 | CDN setup detail | [README.md](README.md) — Domain / CDN |
 
 ---
