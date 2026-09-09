@@ -304,5 +304,5 @@ This charter applies to **greenfield and existing repos alike**. Applying it to 
 - [ ] Empty/loading/error states present
 - [ ] Structured logging added
 - [ ] README updated if architecture, usage, or **commands/scripts** changed (commands table at top when the app has entry points)
-- [ ] Quality-attribute impact considered (availability / performance / modifiability / usability / scalability) — apply a tactic only when it moves a real measure
+- [ ] Quality attributes: if the task touches availability/performance/modifiability/usability/scalability, pick a tactic from that table only when it moves a real measure
 - [ ] No secrets committed
