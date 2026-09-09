@@ -127,7 +127,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Environment** | Runtime, desktop/mobile |
 | **Artifact** | Nav Resume ↓, Hero CTAs, Projects + lightbox |
 | **Response** | Download resume; open project media; close lightbox (button/Escape) |
-| **Measure (real)** | Resume path + lightbox covered by Vitest. Search discovery weak but present: GSC **7** clicks / **102** impressions / **3 months**, avg position **5.7**. **Target:** resume ≤ 2 clicks; no docs needed for lightbox. |
+| **Measure (real)** | Resume path + lightbox Escape covered by Vitest. Keyboard: gallery open, dialog focus/restore, burger Escape/`aria-expanded`, skip link, back-to-top not in tab order while hidden. GSC **7** clicks / **102** impressions / **3 months**, avg position **5.7**. **Target:** resume ≤ 2 clicks; project proof without mouse. |
 
 ---
 
@@ -153,7 +153,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | Availability | Live; 24h 101 visitors / 470 req | Free uptime monitor + runbook |
 | Performance | Lab LCP 3.1 s / score 90; photo HIT; LCP preload; Automatic RUM only | Disable old JS-snippet analytics site; wait for CWV; optional defer below-fold JS |
 | Modifiability | Data modules + CI; single analytics binding in HTML | — |
-| Usability | Resume/lightbox tests; GSC 7 clicks / 102 impr. | Keyboard/a11y pass if needed |
+| Usability | Resume + keyboard gallery/lightbox/nav a11y; GSC 7 clicks / 102 impr. | — |
 | Scalability | 5.53k req/30d; media HIT; low HTML cache ratio OK | Keep cache headers; purge after big asset deploys |
 
 ---

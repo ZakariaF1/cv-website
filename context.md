@@ -33,4 +33,6 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 5 | Non-visual presentation cleanup (e.g. Lightbox hook deps) with tests; markup/classes unchanged | done |
 | 6 | Extract remaining identity/contact/nav copy into `src/data/profile.js` | done |
 | 7 | Bump GitHub Actions (`checkout` / `setup-node`) off deprecated Node 20 | done |
-| 8 | Publish a per-test Vitest report (name + what it does) on every CI run | this PR |
+| 8 | Publish a per-test Vitest report (name + what it does) on every CI run | done |
+| 9 | Lean modifiability: profile URLs, SEO lock, projectMedia rename | done |
+| 10 | Usability a11y: lightbox dialog/focus, keyboard gallery, burger Escape, skip link | this PR |

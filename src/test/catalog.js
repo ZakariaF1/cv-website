@@ -60,6 +60,12 @@ export const testCatalog = [
     does: 'Renders About, Projects, Skills, Contact, and the Back to top button.',
   },
   {
+    file: 'src/App.test.jsx',
+    group: 'App',
+    name: 'offers a skip link to main content and hides back-to-top from the tab order until scrolled',
+    does: 'Skip link targets #main-content; Back to top stays out of tab order while hidden.',
+  },
+  {
     file: 'src/components/Hero.test.jsx',
     group: 'Hero',
     name: 'renders identity, availability, and primary actions',
@@ -84,6 +90,12 @@ export const testCatalog = [
     does: 'Burger opens the menu; clicking a section link closes it.',
   },
   {
+    file: 'src/components/Nav.test.jsx',
+    group: 'Nav',
+    name: 'exposes menu expanded state and closes with Escape on mobile',
+    does: 'Burger sets aria-expanded/aria-controls; Escape closes the mobile drawer.',
+  },
+  {
     file: 'src/components/About.test.jsx',
     group: 'About',
     name: 'renders the experience timeline companies and roles',
@@ -106,6 +118,12 @@ export const testCatalog = [
     group: 'Projects',
     name: 'opens the Firehouse lightbox from the preview image',
     does: 'Clicking the Firehouse preview opens the lightbox with that project title.',
+  },
+  {
+    file: 'src/components/Projects.test.jsx',
+    group: 'Projects',
+    name: 'opens the Firehouse lightbox from the keyboard on the media preview',
+    does: 'Enter on the Firehouse gallery control opens the dialog without a mouse.',
   },
   {
     file: 'src/components/Skills.test.jsx',
@@ -160,6 +178,18 @@ export const testCatalog = [
     group: 'Lightbox',
     name: 'hides prev/next controls when there is only one media item',
     does: 'Single-image galleries do not show Next/Previous.',
+  },
+  {
+    file: 'src/components/Lightbox.test.jsx',
+    group: 'Lightbox',
+    name: 'exposes a modal dialog and moves focus to the close control',
+    does: 'Lightbox is role=dialog aria-modal and focuses Close when opened.',
+  },
+  {
+    file: 'src/components/Lightbox.test.jsx',
+    group: 'Lightbox',
+    name: 'restores focus to the previously focused element when closed',
+    does: 'Unmounting the lightbox returns focus to the control that opened it.',
   },
   {
     file: 'src/test/analytics.test.js',

@@ -40,7 +40,10 @@ function ScrollToTop({ scrollRef }) {
 
   return (
     <button
+      type="button"
       className={`scroll-top${visible ? ' visible' : ''}`}
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
       onClick={() => {
         const el = scrollRef.current
         if (el && el.scrollHeight > el.clientHeight) {
@@ -90,6 +93,7 @@ export default function App() {
 
   return (
     <div className="layout" onClick={handleAnchorClick}>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav scrollRef={rightRef} />
       <div className="panels">
         <aside className="panel-left">
@@ -97,7 +101,7 @@ export default function App() {
         </aside>
 
         <div className="panel-right" ref={rightRef}>
-          <main>
+          <main id="main-content">
             <About />
             <Projects />
             <Skills />

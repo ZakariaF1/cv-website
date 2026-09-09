@@ -83,4 +83,26 @@ describe('Lightbox', () => {
     expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Previous' })).not.toBeInTheDocument()
   })
+
+  it('exposes a modal dialog and moves focus to the close control', () => {
+    render(<Lightbox project={project} startIndex={0} onClose={vi.fn()} />)
+
+    const dialog = screen.getByRole('dialog', { name: 'Firehouse Restaurant' })
+    expect(dialog).toHaveAttribute('aria-modal', 'true')
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveFocus()
+  })
+
+  it('restores focus to the previously focused element when closed', () => {
+    const trigger = document.createElement('button')
+    trigger.textContent = 'Open'
+    document.body.appendChild(trigger)
+    trigger.focus()
+
+    const { unmount } = render(<Lightbox project={project} startIndex={0} onClose={vi.fn()} />)
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveFocus()
+
+    unmount()
+    expect(trigger).toHaveFocus()
+    trigger.remove()
+  })
 })

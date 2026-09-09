@@ -16,14 +16,17 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
 | `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, and the Back to top button. |
+| `src/App.test.jsx` | App | offers a skip link to main content and hides back-to-top from the tab order until scrolled | Skip link targets #main-content; Back to top stays out of tab order while hidden. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
 | `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
 | `src/components/Nav.test.jsx` | Nav | toggles the mobile menu from the burger button | Burger opens the menu; clicking a section link closes it. |
+| `src/components/Nav.test.jsx` | Nav | exposes menu expanded state and closes with Escape on mobile | Burger sets aria-expanded/aria-controls; Escape closes the mobile drawer. |
 | `src/components/About.test.jsx` | About | renders the experience timeline companies and roles | Experience heading plus every company and job title from the data. |
 | `src/components/Projects.test.jsx` | Projects | renders the portfolio section and every current project | Portfolio heading plus a card heading for each project in the data. |
 | `src/components/Projects.test.jsx` | Projects | marks private repos and the live portfolio without fake external links | Shows Private Repo and You're here, and includes the Firehouse live-site URL. |
 | `src/components/Projects.test.jsx` | Projects | opens the Firehouse lightbox from the preview image | Clicking the Firehouse preview opens the lightbox with that project title. |
+| `src/components/Projects.test.jsx` | Projects | opens the Firehouse lightbox from the keyboard on the media preview | Enter on the Firehouse gallery control opens the dialog without a mouse. |
 | `src/components/Skills.test.jsx` | Skills | renders stack categories, certifications, and languages | Category names, sample skills, every certification title, and every language. |
 | `src/components/Contact.test.jsx` | Contact | renders contact channels | Mail, LinkedIn, and phone links use the profile values. |
 | `src/components/Lightbox.test.jsx` | Lightbox | shows the project title and starts on the requested media item | Opens on screenshot 1 when startIndex is 1. |
@@ -33,6 +36,8 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/Lightbox.test.jsx` | Lightbox | plays the demo when navigating onto a video item | Moving onto the demo video calls play(). |
 | `src/components/Lightbox.test.jsx` | Lightbox | renders nothing when the project has no media | No lightbox markup if the project has neither video nor screenshots. |
 | `src/components/Lightbox.test.jsx` | Lightbox | hides prev/next controls when there is only one media item | Single-image galleries do not show Next/Previous. |
+| `src/components/Lightbox.test.jsx` | Lightbox | exposes a modal dialog and moves focus to the close control | Lightbox is role=dialog aria-modal and focuses Close when opened. |
+| `src/components/Lightbox.test.jsx` | Lightbox | restores focus to the previously focused element when closed | Unmounting the lightbox returns focus to the control that opened it. |
 | `src/test/analytics.test.js` | Cloudflare Web Analytics | relies on Automatic injection instead of a manual beacon | Keeps the manual Cloudflareinsights beacon out of index.html so proxied Automatic RUM is the only property. |
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches public photos, videos, and the resume PDF at the edge | vercel.json matches /:path*.(avif|…) and sets a 30-day Cache-Control so Cloudflare can cache them. |
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches hashed Vite assets as immutable | Hashed /assets files get a one-year immutable Cache-Control header. |

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { navLinks, profile } from '../data/profile'
 import Nav from './Nav'
 
@@ -30,5 +30,29 @@ describe('Nav', () => {
 
     await user.click(screen.getByRole('link', { name: navLinks[0].label }))
     expect(links).not.toHaveClass('open')
+  })
+
+  it('exposes menu expanded state and closes with Escape on mobile', async () => {
+    const user = userEvent.setup()
+    window.matchMedia = vi.fn().mockImplementation((query) => ({
+      matches: query === '(max-width: 767px)',
+      media: query,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+    }))
+
+    render(<Nav />)
+    const burger = screen.getByRole('button', { name: 'Toggle menu' })
+
+    expect(burger).toHaveAttribute('aria-expanded', 'false')
+    expect(burger).toHaveAttribute('aria-controls', 'nav-menu')
+
+    await user.click(burger)
+    expect(burger).toHaveAttribute('aria-expanded', 'true')
+
+    await user.keyboard('{Escape}')
+    expect(burger).toHaveAttribute('aria-expanded', 'false')
   })
 })

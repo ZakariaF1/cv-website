@@ -36,4 +36,16 @@ describe('Projects', () => {
     expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument()
     expect(document.querySelector('.lightbox-title')).toHaveTextContent('Firehouse Restaurant')
   })
+
+  it('opens the Firehouse lightbox from the keyboard on the media preview', async () => {
+    const user = userEvent.setup()
+    render(<Projects />)
+
+    const opener = screen.getByRole('button', { name: /open gallery for firehouse restaurant/i })
+    opener.focus()
+    await user.keyboard('{Enter}')
+
+    expect(screen.getByRole('dialog', { name: 'Firehouse Restaurant' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument()
+  })
 })

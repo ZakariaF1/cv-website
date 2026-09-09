@@ -2,12 +2,19 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { buildMediaItems } from './projectMedia'
 
+const FOCUSABLE =
+  'button:not([disabled]), [href], input, select, textarea, video, [tabindex]:not([tabindex="-1"])'
+
 export default function Lightbox({ project, startIndex, onClose }) {
   const items = useMemo(() => buildMediaItems(project), [project])
   const [index, setIndex] = useState(startIndex)
   const videoRef = useRef(null)
+  const dialogRef = useRef(null)
+  const closeRef = useRef(null)
+  const previouslyFocused = useRef(null)
   const current = items[index]
   const count = items.length
+  const titleId = 'lightbox-title'
 
   const prev = useCallback(() => {
     if (!count) return
@@ -19,10 +26,34 @@ export default function Lightbox({ project, startIndex, onClose }) {
   }, [count])
 
   useEffect(() => {
+    previouslyFocused.current = document.activeElement
+    closeRef.current?.focus()
+    return () => {
+      const el = previouslyFocused.current
+      if (el && typeof el.focus === 'function') el.focus()
+    }
+  }, [])
+
+  useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowLeft') prev()
       if (e.key === 'ArrowRight') next()
+      if (e.key === 'Tab' && dialogRef.current) {
+        const nodes = [...dialogRef.current.querySelectorAll(FOCUSABLE)].filter(
+          (node) => !node.hasAttribute('disabled') && node.getAttribute('aria-hidden') !== 'true',
+        )
+        if (!nodes.length) return
+        const first = nodes[0]
+        const last = nodes[nodes.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -49,12 +80,19 @@ export default function Lightbox({ project, startIndex, onClose }) {
   if (!current) return null
 
   return createPortal(
-    <div className="lightbox" onClick={onClose}>
+    <div
+      className="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      ref={dialogRef}
+      onClick={onClose}
+    >
       <div className="lightbox-inner" onClick={e => e.stopPropagation()}>
 
         <div className="lightbox-header">
-          <span className="lightbox-title">{project.title}</span>
-          <button className="lightbox-close" onClick={onClose} aria-label="Close">
+          <span id={titleId} className="lightbox-title">{project.title}</span>
+          <button ref={closeRef} className="lightbox-close" onClick={onClose} aria-label="Close">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
             </svg>

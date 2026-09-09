@@ -66,26 +66,39 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
   const items = buildMediaItems(project)
   const previewSrc = screenshots?.[0]
   const screenshotStartIndex = video ? 1 : 0
+  const openGallery = () => setLightboxIndex(previewSrc ? screenshotStartIndex : 0)
 
   return (
     <>
-      <div className="card-hero" onClick={() => setLightboxIndex(previewSrc ? screenshotStartIndex : 0)}>
+      <div
+        className="card-hero"
+        role="button"
+        tabIndex={0}
+        aria-label={`Open gallery for ${project.title}`}
+        onClick={openGallery}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            openGallery()
+          }
+        }}
+      >
         {previewSrc && (
           <img src={previewSrc} alt="Preview" className="card-hero-img" loading="lazy" />
         )}
         <div className="card-hero-overlay" />
         {project.latest && <span className="card-just-shipped">Just Shipped</span>}
         {video && (
-          <button
+          <span
             className="card-hero-play"
             onClick={e => { e.stopPropagation(); setLightboxIndex(0) }}
-            aria-label="Play demo"
+            aria-hidden="true"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
             Demo
-          </button>
+          </span>
         )}
         {items.length > 1 && (
           <span className="card-hero-count">
