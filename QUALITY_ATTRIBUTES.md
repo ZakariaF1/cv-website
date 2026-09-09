@@ -114,7 +114,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Environment** | Build time — PR → `main` → Vercel |
 | **Artifact** | `src/data/*`, `public/`, CI |
 | **Response** | Edit data/asset → `npm test` + lint → merge → deploy |
-| **Measure (real)** | Content lives in data modules (already). Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. Analytics: single Automatic RUM path (manual snippet removed). |
+| **Measure (real)** | Content lives in `src/data/*`. Site/GitHub URLs in `profile` with SEO markup locked by tests. Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. Analytics: single Automatic RUM path (manual snippet removed). |
 
 ---
 

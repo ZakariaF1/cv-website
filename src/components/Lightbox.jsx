@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
-import { buildMediaItems } from './projectUtils'
+import { buildMediaItems } from './projectMedia'
 
 export default function Lightbox({ project, startIndex, onClose }) {
   const items = useMemo(() => buildMediaItems(project), [project])

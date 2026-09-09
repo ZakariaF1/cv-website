@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { experience } from './experience'
 import { navLinks, profile } from './profile'
@@ -52,11 +53,23 @@ describe('portfolio content', () => {
     expect(profile.email).toMatch(/@/)
     expect(profile.linkedinUrl).toMatch(/^https:\/\//)
     expect(profile.phoneHref).toMatch(/^tel:/)
+    expect(profile.siteUrl).toBe('https://zakariaahmad.site')
+    expect(profile.githubUrl).toMatch(/^https:\/\/github\.com\//)
     expect(navLinks.map((l) => l.href)).toEqual([
       '#about',
       '#projects',
       '#skills',
       '#contact',
     ])
+  })
+
+  it('keeps SEO markup aligned with profile site and GitHub URLs', () => {
+    const html = readFileSync('index.html', 'utf8')
+    expect(html).toContain(`href="${profile.siteUrl}"`)
+    expect(html).toContain(`content="${profile.siteUrl}"`)
+    expect(html).toContain(`"url": "${profile.siteUrl}"`)
+    expect(html).toContain(profile.githubUrl)
+    expect(html).toContain(profile.fullName)
+    expect(html).toContain(profile.email)
   })
 })

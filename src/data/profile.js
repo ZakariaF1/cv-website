@@ -22,6 +22,8 @@ export const profile = {
   ],
   contactIntro:
     'Open to full-time roles, contracts, and technical consulting. Drop me a line — I reply to everything.',
+  siteUrl: 'https://zakariaahmad.site',
+  githubUrl: 'https://github.com/ZakariaF1',
 }
 
 export const navLinks = [

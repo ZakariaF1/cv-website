@@ -1,3 +1,5 @@
+import { profile } from './profile'
+
 export const projects = [
   {
     title: 'Job Tracker',
@@ -15,7 +17,7 @@ export const projects = [
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: ['JavaScript', 'Browser Extension', 'Chrome', 'HTML/CSS'],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
-    repo: 'https://github.com/ZakariaF1/bestjobs-filter',
+    repo: `${profile.githubUrl}/bestjobs-filter`,
     year: '2026',
     status: 'live',
     logo: '/bestJobs-Icon-48.png',
@@ -45,8 +47,8 @@ export const projects = [
     title: 'Portfolio Website',
     desc: 'This site — a React + Vite portfolio built with a custom CSS design system. Features an adaptive two-panel layout, dark theme with design tokens, SEO (Open Graph, JSON-LD structured data), responsive breakpoints across mobile, tablet, and ultrawide, and performance-optimised assets.',
     tags: ['React', 'Vite', 'CSS', 'SEO', 'Vercel'],
-    link: 'https://zakariaahmad.site',
-    repo: 'https://github.com/ZakariaF1/cv-website',
+    link: profile.siteUrl,
+    repo: `${profile.githubUrl}/cv-website`,
     year: '2026',
     status: 'live',
     logo: '/favicon.svg',
