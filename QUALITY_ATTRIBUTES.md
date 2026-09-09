@@ -114,7 +114,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Environment** | Build time — PR → `main` → Vercel |
 | **Artifact** | `src/data/*`, `public/`, CI |
 | **Response** | Edit data/asset → `npm test` + lint → merge → deploy |
-| **Measure (real)** | Content lives in data modules (already). Resume swap shipped as one PR. **Target:** content-only change ≤ **30 min**; CI green. Analytics: single Automatic RUM path (manual snippet removed). |
+| **Measure (real)** | Content + chrome copy in `src/data/*` (`profile`, `projects`, `uiCopy`, `skillIconConfig`, `projectSentinels`). Gallery helper in `projectMedia` (no `Utils` dump). SEO URLs locked to `profile.siteUrl` / `githubUrl` via tests. Resume swap was one PR. **Target:** content-only change ≤ **30 min**; CI green. Analytics: single Automatic RUM path. |
 
 ---
 
@@ -152,7 +152,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | --------- | ----------------- | ---------- |
 | Availability | Live; 24h 101 visitors / 470 req | Free uptime monitor + runbook |
 | Performance | Lab LCP 3.1 s / score 90; photo HIT; LCP preload; Automatic RUM only | Disable old JS-snippet analytics site; wait for CWV; optional defer below-fold JS |
-| Modifiability | Data modules + CI; single analytics binding in HTML | — |
+| Modifiability | Data modules + uiCopy/sentinels/icon config; SEO/profile tests; CI | Keep chrome strings out of JSX |
 | Usability | Resume/lightbox tests; GSC 7 clicks / 102 impr. | Keyboard/a11y pass if needed |
 | Scalability | 5.53k req/30d; media HIT; low HTML cache ratio OK | Keep cache headers; purge after big asset deploys |
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { navLinks, profile } from '../data/profile'
+import { uiCopy } from '../data/uiCopy'
 import './Nav.css'
 
 export default function Nav({ scrollRef }) {
@@ -36,7 +37,7 @@ export default function Nav({ scrollRef }) {
           </li>
         ))}
         <li>
-          <a href={profile.resume} className="nav-cta" download onClick={() => setOpen(false)}>Resume ↓</a>
+          <a href={profile.resume} className="nav-cta" download onClick={() => setOpen(false)}>{uiCopy.nav.resume}</a>
         </li>
       </ul>
 

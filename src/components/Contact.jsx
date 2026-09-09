@@ -1,11 +1,14 @@
 import './Contact.css'
 import { profile } from '../data/profile'
+import { uiCopy } from '../data/uiCopy'
+
+const { contact: copy } = uiCopy
 
 export default function Contact() {
   return (
     <section id="contact">
-      <p className="section-label">Contact</p>
-      <h2 className="section-title">Available for <span>new work</span></h2>
+      <p className="section-label">{copy.label}</p>
+      <h2 className="section-title">{copy.titleBefore}<span>{copy.titleAccent}</span></h2>
       <div className="contact-grid">
         <div className="contact-left">
           <p className="contact-intro">
@@ -49,16 +52,16 @@ export default function Contact() {
 
       <footer className="footer">
         <span>
-          Made with{' '}
+          {copy.madeWith}{' '}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="#e63946" stroke="#e63946" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', margin: '0 2px' }}>
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
-          {' '}by{' '}
+          {' '}{copy.by}{' '}
           <a href={profile.linkedinUrl} target="_blank" rel="noopener" className="footer-author">
             {profile.authorName}
           </a>
         </span>
-        <span className="footer-stack">React + Vite</span>
+        <span className="footer-stack">{copy.stack}</span>
       </footer>
     </section>
   )

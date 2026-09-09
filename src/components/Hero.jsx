@@ -2,6 +2,9 @@ import "./Hero.css";
 import { experience } from "../data/experience";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
+import { uiCopy } from "../data/uiCopy";
+
+const { hero: copy } = uiCopy;
 
 export default function Hero() {
   return (
@@ -18,7 +21,7 @@ export default function Hero() {
             </div>
 
             <h1 className="hero-title">
-              Hi, I'm <span className="hero-name">{profile.firstName}</span>
+              {copy.greetingPrefix}<span className="hero-name">{profile.firstName}</span>
               <br />
               {profile.title}
             </h1>
@@ -40,17 +43,17 @@ export default function Hero() {
 
         <div className="hero-actions">
           <a href="#projects" className="btn btn-primary">
-            View My Work
+            {copy.viewWork}
           </a>
           <a href="#contact" className="btn btn-ghost">
-            Get In Touch
+            {copy.getInTouch}
           </a>
         </div>
 
         <div className="hero-divider" />
 
         <div className="hero-about">
-          <p className="hero-section-label">About Me</p>
+          <p className="hero-section-label">{copy.aboutLabel}</p>
           {profile.bios.map((bio) => (
             <p className="hero-bio" key={bio.slice(0, 32)}>
               {bio}
@@ -59,19 +62,19 @@ export default function Hero() {
 
           <div className="hero-details">
             <div className="hero-detail">
-              <span className="hero-detail-key">Location</span>
+              <span className="hero-detail-key">{copy.detailKeys.location}</span>
               <span className="hero-detail-val">{profile.location}</span>
             </div>
             <div className="hero-detail">
-              <span className="hero-detail-key">Email</span>
+              <span className="hero-detail-key">{copy.detailKeys.email}</span>
               <span className="hero-detail-val">{profile.email}</span>
             </div>
             <div className="hero-detail">
-              <span className="hero-detail-key">LinkedIn</span>
+              <span className="hero-detail-key">{copy.detailKeys.linkedin}</span>
               <span className="hero-detail-val">{profile.linkedinLabel}</span>
             </div>
             <div className="hero-detail">
-              <span className="hero-detail-key">Availability</span>
+              <span className="hero-detail-key">{copy.detailKeys.availability}</span>
               <span className="hero-detail-val hero-detail-available">
                 {profile.availabilityDetail}
               </span>
@@ -82,17 +85,17 @@ export default function Hero() {
         <div className="hero-stats">
           <div className="hero-stat">
             <span className="hero-stat-num">{profile.yearsLabel}</span>
-            <span className="hero-stat-label">Years</span>
+            <span className="hero-stat-label">{copy.stats.years}</span>
           </div>
           <div className="hero-strip-div" />
           <div className="hero-stat">
             <span className="hero-stat-num">{experience.length}</span>
-            <span className="hero-stat-label">Companies</span>
+            <span className="hero-stat-label">{copy.stats.companies}</span>
           </div>
           <div className="hero-strip-div" />
           <div className="hero-stat">
             <span className="hero-stat-num">{projects.length}</span>
-            <span className="hero-stat-label">Personal Projects</span>
+            <span className="hero-stat-label">{copy.stats.projects}</span>
           </div>
         </div>
       </div>

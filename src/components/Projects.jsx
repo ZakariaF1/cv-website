@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import Lightbox from './Lightbox'
-import { buildMediaItems } from './projectUtils'
+import { buildMediaItems } from './projectMedia'
 import { projects } from '../data/projects'
+import { logoBriefcase, logoRobot, noLink, privateRepo } from '../data/projectSentinels'
+import { uiCopy } from '../data/uiCopy'
 import './Projects.css'
 
+const { projects: copy } = uiCopy
+
 function ProjectLogo({ logo, title }) {
-  if (logo === 'robot') {
+  if (logo === logoRobot) {
     return (
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" />
@@ -19,7 +23,7 @@ function ProjectLogo({ logo, title }) {
       </svg>
     )
   }
-  if (logo === 'briefcase') {
+  if (logo === logoBriefcase) {
     return (
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -43,20 +47,20 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
             <rect x="2" y="3" width="20" height="14" rx="2" />
             <path d="M8 21h8M12 17v4" />
           </svg>
-          <span>Live Experience</span>
-          <p>Navigate the site to see it in action</p>
+          <span>{copy.liveExperience}</span>
+          <p>{copy.liveExperienceHint}</p>
         </div>
       )
     }
-    if (project.repo === 'private') {
+    if (project.repo === privateRepo) {
       return (
         <div className="card-hero card-hero-private">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             <rect x="3" y="11" width="18" height="11" rx="2" />
             <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
-          <span>Private Project</span>
-          <p>Source &amp; preview available on request</p>
+          <span>{copy.privateProject}</span>
+          <p>{copy.privateProjectHint}</p>
         </div>
       )
     }
@@ -74,7 +78,7 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
           <img src={previewSrc} alt="Preview" className="card-hero-img" loading="lazy" />
         )}
         <div className="card-hero-overlay" />
-        {project.latest && <span className="card-just-shipped">Just Shipped</span>}
+        {project.latest && <span className="card-just-shipped">{copy.justShipped}</span>}
         {video && (
           <button
             className="card-hero-play"
@@ -84,7 +88,7 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
-            Demo
+            {copy.demo}
           </button>
         )}
         {items.length > 1 && (
@@ -109,35 +113,35 @@ function CardMedia({ project, lightboxIndex, setLightboxIndex }) {
 }
 
 function CardLinks({ p }) {
-  if (p.repo === '#' && p.link === '#') return null
+  if (p.repo === noLink && p.link === noLink) return null
   return (
     <div className="card-links">
-      {p.link !== '#' && (
+      {p.link !== noLink && (
         p.self
-          ? <span className="card-link-btn card-link-ghost card-link-private">You're here</span>
+          ? <span className="card-link-btn card-link-ghost card-link-private">{copy.youreHere}</span>
           : <a href={p.link} target="_blank" rel="noopener" className="card-link-btn card-link-primary">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <polyline points="15 3 21 3 21 9" />
                 <line x1="10" y1="14" x2="21" y2="3" />
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               </svg>
-              Live Site
+              {copy.liveSite}
             </a>
       )}
-      {p.repo === 'private' ? (
+      {p.repo === privateRepo ? (
         <span className="card-link-btn card-link-ghost card-link-private">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <rect x="3" y="11" width="18" height="11" rx="2" />
             <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
-          Private Repo
+          {copy.privateRepo}
         </span>
-      ) : p.repo !== '#' && (
+      ) : p.repo !== noLink && (
         <a href={p.repo} target="_blank" rel="noopener" className="card-link-btn card-link-ghost">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12" />
           </svg>
-          Source Code
+          {copy.sourceCode}
         </a>
       )}
     </div>
@@ -157,7 +161,7 @@ function ProjectCard({ project: p }) {
           <ProjectLogo logo={p.logo} title={p.title} />
         </div>
         <div className="card-badges">
-          <span className={`card-status ${p.status}`}>⬤ Live · {p.year}</span>
+          <span className={`card-status ${p.status}`}>{copy.liveStatusPrefix}{p.year}</span>
         </div>
       </div>
 
@@ -176,8 +180,8 @@ function ProjectCard({ project: p }) {
 export default function Projects() {
   return (
     <section id="projects">
-      <p className="section-label">Portfolio</p>
-      <h2 className="section-title">Things I've <span>built</span></h2>
+      <p className="section-label">{copy.label}</p>
+      <h2 className="section-title">{copy.titleBefore}<span>{copy.titleAccent}</span></h2>
       <div className="projects-bento">
         {projects.map((p, i) => <ProjectCard key={i} project={p} />)}
       </div>

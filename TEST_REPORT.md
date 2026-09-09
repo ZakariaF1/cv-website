@@ -9,11 +9,14 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires tags plus status live on each. |
 | `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role and period on each job. |
 | `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that AI Agent Development is listed, and the four languages. |
-| `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, and nav hashes stay in profile data. |
-| `src/components/projectUtils.test.js` | buildMediaItems | returns an empty list when the project has no video or screenshots | Gallery helper returns [] when media is missing or screenshots is empty. |
-| `src/components/projectUtils.test.js` | buildMediaItems | puts the demo video first, then screenshots in order | Video is item 0; screenshots follow in the given order. |
-| `src/components/projectUtils.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
-| `src/components/projectUtils.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
+| `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
+| `src/data/content.test.js` | portfolio content | keeps SEO markup aligned with profile site and GitHub URLs | Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email. |
+| `src/data/content.test.js` | portfolio content | centralizes UI chrome copy and skill icon CDN config | Locks hero/projects/nav chrome strings and skill icon CDN helpers in data modules outside JSX. |
+| `src/data/content.test.js` | portfolio content | uses shared project sentinels instead of magic strings | Private/no-link/logo sentinels and portfolio site/repo URLs come from shared data constants. |
+| `src/components/projectMedia.test.js` | buildMediaItems | returns an empty list when the project has no video or screenshots | Gallery helper returns [] when media is missing or screenshots is empty. |
+| `src/components/projectMedia.test.js` | buildMediaItems | puts the demo video first, then screenshots in order | Video is item 0; screenshots follow in the given order. |
+| `src/components/projectMedia.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
+| `src/components/projectMedia.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
 | `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, and the Back to top button. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
 | `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |

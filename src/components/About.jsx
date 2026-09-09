@@ -1,5 +1,8 @@
 import './About.css'
 import { experience } from '../data/experience'
+import { uiCopy } from '../data/uiCopy'
+
+const { about: copy } = uiCopy
 
 function CompanyLogo({ logo, company }) {
   if (logo) {
@@ -15,8 +18,8 @@ function CompanyLogo({ logo, company }) {
 export default function About() {
   return (
     <section id="about">
-      <p className="section-label">Experience</p>
-      <h2 className="section-title">Where I've <span>worked</span></h2>
+      <p className="section-label">{copy.label}</p>
+      <h2 className="section-title">{copy.titleBefore}<span>{copy.titleAccent}</span></h2>
       <div className="timeline">
         {experience.map((e, i) => (
           <div className="timeline-item" key={i}>

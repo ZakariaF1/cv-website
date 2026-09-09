@@ -1,8 +1,9 @@
 import './Skills.css'
 import { certifications, languages, skillCategories } from '../data/skills'
+import { darkIcons, deviconUrl, simpleIconUrl } from '../data/skillIconConfig'
+import { uiCopy } from '../data/uiCopy'
 
-// Icons that are dark/black and need inversion on dark backgrounds
-const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
+const { skills: copy } = uiCopy
 
 function SkillIcon({ icon, simple, inline }) {
   if (!icon) return null
@@ -19,7 +20,7 @@ function SkillIcon({ icon, simple, inline }) {
   if (simple) {
     return (
       <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${icon}.svg`}
+        src={simpleIconUrl(icon)}
         alt=""
         className="skill-icon skill-icon-invert"
         aria-hidden="true"
@@ -30,13 +31,13 @@ function SkillIcon({ icon, simple, inline }) {
   const needsInvert = darkIcons.has(icon)
   return (
     <img
-      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original.svg`}
+      src={deviconUrl(icon, 'original')}
       alt=""
       className={`skill-icon${needsInvert ? ' skill-icon-invert' : ''}`}
       aria-hidden="true"
       onError={e => {
         if (e.target.src.includes('-original')) {
-          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg`
+          e.target.src = deviconUrl(icon, 'plain')
         } else {
           e.target.style.display = 'none'
         }
@@ -48,8 +49,8 @@ function SkillIcon({ icon, simple, inline }) {
 export default function Skills() {
   return (
     <section id="skills">
-      <p className="section-label">Stack</p>
-      <h2 className="section-title">What I work <span>with</span></h2>
+      <p className="section-label">{copy.label}</p>
+      <h2 className="section-title">{copy.titleBefore}<span>{copy.titleAccent}</span></h2>
 
       <div className="skills-bento">
         {skillCategories.map(cat => (
@@ -70,7 +71,7 @@ export default function Skills() {
         ))}
 
         <div className="skills-card skills-card-certs">
-          <p className="section-label skills-extra-label">Certifications</p>
+          <p className="section-label skills-extra-label">{copy.certifications}</p>
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
@@ -90,7 +91,7 @@ export default function Skills() {
         </div>
 
         <div className="skills-card skills-card-langs">
-          <p className="section-label skills-extra-label">Languages</p>
+          <p className="section-label skills-extra-label">{copy.languages}</p>
           <div className="lang-list">
             {languages.map((l, i) => (
               <div className="lang-item" key={i}>
