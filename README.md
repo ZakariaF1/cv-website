@@ -34,6 +34,12 @@ npm run build        # confirm production build
 
 CI (GitHub Actions) runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every pull request and every push to `main`.
 
+## Availability
+
+Detect outages with a free **UptimeRobot** HTTPS monitor on `https://www.zakariaahmad.site/` (every 5 minutes). Cloudflare Health Checks need Pro — do not rely on them on the Free plan.
+
+Incident steps (DNS, SSL Full strict, Vercel rollback, cache purge): see [RUNBOOK.md](RUNBOOK.md).
+
 ## Domain / CDN
 
 Registrar stays **Namecheap**. Hosting stays **Vercel**. **Cloudflare** is DNS + CDN (do not transfer or buy the domain). Photos stay in `public/` and keep paths like `/personal-photo.avif`.
