@@ -20,4 +20,13 @@ describe('Hero', () => {
     expect(screen.getByText(String(experience.length))).toBeInTheDocument()
     expect(screen.getByText(String(projects.length))).toBeInTheDocument()
   })
+
+  it('prioritizes the hero photo as the LCP image', () => {
+    render(<Hero />)
+
+    expect(screen.getByRole('img', { name: profile.fullName })).toHaveAttribute(
+      'fetchPriority',
+      'high',
+    )
+  })
 })

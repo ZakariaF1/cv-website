@@ -60,6 +60,12 @@ export const testCatalog = [
     does: 'Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats.',
   },
   {
+    file: 'src/components/Hero.test.jsx',
+    group: 'Hero',
+    name: 'prioritizes the hero photo as the LCP image',
+    does: 'Sets fetchPriority=high on the hero photo so the browser loads the LCP image first.',
+  },
+  {
     file: 'src/components/Nav.test.jsx',
     group: 'Nav',
     name: 'renders section links and a resume download',
@@ -172,6 +178,12 @@ export const testCatalog = [
     group: 'availability runbook',
     name: 'documents UptimeRobot detect and Vercel rollback recover steps',
     does: 'Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions.',
+  },
+  {
+    file: 'src/test/lcp.test.js',
+    group: 'LCP image preload',
+    name: 'preloads the hero photo before the React module runs',
+    does: 'index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle.',
   },
   {
     file: 'src/test/report.test.js',
