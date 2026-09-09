@@ -16,6 +16,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/projectUtils.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
 | `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, and the Back to top button. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
+| `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
 | `src/components/Nav.test.jsx` | Nav | toggles the mobile menu from the burger button | Burger opens the menu; clicking a section link closes it. |
 | `src/components/About.test.jsx` | About | renders the experience timeline companies and roles | Experience heading plus every company and job title from the data. |
@@ -35,5 +36,6 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches public photos, videos, and the resume PDF at the edge | vercel.json matches /:path*.(avif|…) and sets a 30-day Cache-Control so Cloudflare can cache them. |
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches hashed Vite assets as immutable | Hashed /assets files get a one-year immutable Cache-Control header. |
 | `src/test/runbook.test.js` | availability runbook | documents UptimeRobot detect and Vercel rollback recover steps | Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions. |
+| `src/test/lcp.test.js` | LCP image preload | preloads the hero photo before the React module runs | index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |
