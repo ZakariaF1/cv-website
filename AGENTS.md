@@ -212,98 +212,17 @@ Avoids the classic long-lived-branch failure modes: slow release cycles, painful
 
 ## Quality attributes (tactics)
 
-When improving or reviewing a system, name the **quality attribute**, write a short **stimulus → response → measure** scenario, then apply the **smallest tactic** that moves the measure. Do not invent infrastructure the architecture does not need (e.g. no Redis “for scale” on a static site; no a11y rewrite when the primary path already works with keyboard).
+Lesson framing: quality attributes are **measurable**. For each concern, write a short **stimulus → response → measure** scenario (source, stimulus, environment, artifact, response, measure), then apply the **smallest** fitting tactic. Right-size — do not add platforms you have not measured a need for.
 
-Use real baselines when you can (uptime checks, RUM/lab LCP, cache HIT rates, time-to-change a content field). Prefer numbers over vibes.
+| Attribute | Meaning | Tactic groups (rule of thumb) |
+| --------- | ------- | ----------------------------- |
+| **Availability** | Respond when needed; mask/recover so downtime stays within budget (`Availability ≈ MTBF / (MTBF + MTTR)`) | **Detect** (monitor, heartbeat, exceptions) → **Recover** (retry, rollback, redundancy, degrade) → **Prevent** (transactions, remove from service, exception prevention) |
+| **Performance** | Process stimuli within a time/throughput budget | **Control demand** (prioritize, bound work, cut overhead) and/or **Manage resources** (scale concurrency/replicas, cache copies, schedule, bound queues) |
+| **Modifiability** | Change cheaply (time, cost, modules touched, bugs) | Prefer **high cohesion / low coupling**: encapsulate, intermediaries (ports/adapters), restrict dependencies, split modules, defer binding, abstract shared services. Avoid Utils dumps and content/common coupling |
+| **Usability** | User completes the job with little friction | Cancel / undo / pause; aggregate bulk actions; keep task/user/system models so progress and errors are visible; optimize the few primary jobs |
+| **Scalability** | Load growth without wrecking performance or cost | **Scale out** (more nodes) before heroic **scale up** when possible; cache; indexes; stateless app tiers; partition/shard/replicas when the DB is the limit. **Jacobi invert:** list what would stop scaling (single server, single DB, tight coupling, no cache, session in memory) and remove those |
 
-### How to frame a scenario
-
-| Field | Ask |
-| ----- | --- |
-| **Source** | Who/what triggers it? |
-| **Stimulus** | What event happens? |
-| **Environment** | Normal / spike / after deploy / mobile? |
-| **Artifact** | Which part of *this* system responds? |
-| **Response** | What should the system or operator do? |
-| **Measure** | How do you verify (target or baseline)? |
-
-### Availability — system stays up / recovers
-
-**Rule of thumb:** detect fast, recover with a known playbook, prevent the same class of failure.
-
-| Common issue | Mitigations (pick what fits) |
-| ------------ | ---------------------------- |
-| Silent outage | External HTTPS monitor + alert (email/Slack); health endpoint if you have a backend |
-| Bad deploy | Instant rollback path (platform “Promote previous”); keep `main` always deployable via CI |
-| DNS / TLS misconfig | Document expected SSL mode and DNS proxy rules; checklist in a short runbook |
-| Dependency down | Timeouts, retries with backoff, circuit breaker on external calls; degrade gracefully |
-| Single region / host | Multi-AZ or failover only when downtime cost justifies it |
-
-**Prevent:** green CI gate on `main`, least privilege, no surprise infra toggles in prod without a rollback note.
-
-### Performance — responds in time
-
-**Rule of thumb:** measure the user-visible bottleneck first (LCP, TTFB, p95 API latency), then fix that path.
-
-| Common issue | Mitigations (pick what fits) |
-| ------------ | ---------------------------- |
-| Slow first paint / LCP | Preload LCP asset; right-size images; avoid blocking JS/CSS on the critical path |
-| Slow APIs | Index/query tuning; cache read-heavy results; async for non-critical work |
-| Fat bundles | Code-split routes; defer non-critical JS; drop unused deps |
-| Chatty UI | Batch requests; pagination; avoid N+1; skeleton/loading states so perceived wait is clear |
-| Cold origin | CDN/edge for static and cacheable responses; set explicit `Cache-Control` |
-
-**Prevent:** budget in CI or periodic lab/RUM checks; don’t ship “nice to have” scripts on the critical path.
-
-### Modifiability — cheap, safe change
-
-**Rule of thumb:** change one reason in one place; keep business rules out of UI/ORM; characterize before big moves.
-
-| Common issue | Mitigations (pick what fits) |
-| ------------ | ---------------------------- |
-| Copy/config scattered in UI | Content and settings in data/config modules; UI stays presentational |
-| God classes / Utils dumps | Split by ubiquitous language; delete dead code when moving |
-| Fear of change | Characterizing tests before refactor; TDD for new behavior |
-| Swap of vendor/API | Port + adapter (anti-corruption); no SDK types in domain |
-| SEO/URLs drift from app identity | Single source of truth + a test that locks edge markup/config to it |
-
-**Prevent:** right-size layers (no empty folder theater); small PRs; CI on every push. Skip ceremony that does not reduce change cost.
-
-### Usability — users complete the job
-
-**Rule of thumb:** optimize the 2–5 jobs to be done; don’t polish paths nobody uses.
-
-| Common issue | Mitigations (pick what fits) |
-| ------------ | ---------------------------- |
-| Can’t find primary action | One clear CTA per view; progressive disclosure |
-| Forms/errors opaque | Inline validation; human-readable errors; preserve input |
-| Keyboard / AT gaps | Semantic HTML; labels; focus order; Escape closes dialogs; don’t trap focus badly |
-| Empty/loading confusion | Explicit empty, loading, and error states |
-| Mobile miss-taps | ≥ 44×44px targets; don’t rely on hover-only |
-
-**Prevent:** WCAG 2.1 AA as default for UI work; test the primary job with keyboard once. Don’t ship large a11y refactors when the primary path already works.
-
-### Scalability — handles growth in load
-
-**Rule of thumb:** scale the bottleneck you measured; stateless + cache beats premature sharding.
-
-| Common issue | Mitigations (pick what fits) |
-| ------------ | ---------------------------- |
-| Read spike on static/media | CDN/edge cache; long-cache hashed assets; purge after replacing public files |
-| App server CPU/RAM | Horizontal replicas behind a load balancer; keep sessions external or sticky only if required |
-| DB overload | Indexes; read replicas; cache hot keys; queue writes; pagination |
-| Queue / worker backlog | Compete consumers; idempotent handlers; backpressure |
-| “Scale” cargo cult | No new datastore/queue/cluster without a measured limit you are hitting |
-
-**Prevent:** cache headers and horizontal-friendly design from the start when traffic is expected; document purge/failover. Static or mostly-static sites often need **edge + origin health only**.
-
-### Cross-cutting habits
-
-1. **One attribute per change set** when possible — easier to measure and review.
-2. **Baseline → change → re-measure** — otherwise you cannot tell if the tactic worked.
-3. **Runbook for ops attributes** (availability, scale incidents): detect → recover → prevent.
-4. **Jacobi invert:** ask “what would make this attribute fail?” and close those holes first.
-5. **Right-size:** prefer a free monitor, a cache header, or a data module over a new platform.
+**Habits:** one attribute per change when possible; baseline → change → re-measure; keep a short detect/recover/prevent runbook for ops.
 
 ---
 
