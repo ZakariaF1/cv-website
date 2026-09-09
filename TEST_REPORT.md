@@ -37,6 +37,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches public photos, videos, and the resume PDF at the edge | vercel.json matches /:path*.(avif|…) and sets a 30-day Cache-Control so Cloudflare can cache them. |
 | `src/test/cdn.test.js` | Cloudflare CDN origin headers | caches hashed Vite assets as immutable | Hashed /assets files get a one-year immutable Cache-Control header. |
 | `src/test/runbook.test.js` | availability runbook | documents UptimeRobot detect and Vercel rollback recover steps | Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions. |
+| `src/test/runbook.test.js` | scalability (edge cache) | documents purge-after-deploy and spike response using existing CDN headers | Locks RUNBOOK spike/purge guidance to vercel.json media and /assets Cache-Control rules. |
 | `src/test/lcp.test.js` | LCP image preload | preloads the hero photo before the React module runs | index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |
