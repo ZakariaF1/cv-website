@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Lightbox from './Lightbox'
-import { buildMediaItems } from './projectUtils'
+import { buildMediaItems } from './projectMedia'
 import { projects } from '../data/projects'
 import './Projects.css'
 

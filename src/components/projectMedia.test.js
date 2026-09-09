@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildMediaItems } from './projectUtils'
+import { buildMediaItems } from './projectMedia'
 
 describe('buildMediaItems', () => {
   it('returns an empty list when the project has no video or screenshots', () => {
