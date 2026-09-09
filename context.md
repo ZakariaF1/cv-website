@@ -35,4 +35,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 7 | Bump GitHub Actions (`checkout` / `setup-node`) off deprecated Node 20 | done |
 | 8 | Publish a per-test Vitest report (name + what it does) on every CI run | done |
 | 9 | Lean modifiability: profile URLs, SEO lock, projectMedia rename | done |
-| 10 | Scalability docs: RUNBOOK spike/purge checklist locked to `vercel.json` headers | this PR |
+| 10 | Scalability docs: RUNBOOK spike/purge checklist locked to `vercel.json` headers | done |
+| 11 | Lesson 8 tactics as general rule-of-thumb guidance in `AGENTS.md` | this PR |
