@@ -15,7 +15,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists skill categories, certifications, and languages',
-    does: 'Checks stack category names, that AI Agent Development is listed, and the four languages.',
+    does: 'Checks stack category names, that Software Architect is listed, and the four languages.',
   },
   {
     file: 'src/data/content.test.js',

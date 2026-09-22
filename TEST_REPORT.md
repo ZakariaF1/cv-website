@@ -8,7 +8,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | ---- | ----- | ---- | ------------ |
 | `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires tags plus status live on each. |
 | `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role and period on each job. |
-| `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that AI Agent Development is listed, and the four languages. |
+| `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect is listed, and the four languages. |
 | `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
 | `src/data/content.test.js` | portfolio content | keeps SEO markup aligned with profile site and GitHub URLs | Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns an empty list when the project has no video or screenshots | Gallery helper returns [] when media is missing or screenshots is empty. |

@@ -40,7 +40,10 @@ describe('portfolio content', () => {
       'Cloud & DevOps',
       'Tooling & AI',
     ])
-    expect(certifications.map((c) => c.title)).toContain('AI Agent Development')
+    expect(certifications.map((c) => c.title)).toContain('Software Architect')
+    expect(certifications.find((c) => c.org === 'Skillab').desc).toContain('Adrian Popescu')
+    expect(certifications.find((c) => c.org === 'Skillab').desc).toContain('ATAM')
+    expect(certifications.find((c) => c.org === 'Skillab').link).toContain('devino-software-architect')
     expect(languages.map((l) => l.name)).toEqual([
       'English',
       'Romanian',
