@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { experience } from './experience'
 import { navLinks, profile } from './profile'
@@ -64,6 +64,13 @@ describe('portfolio content', () => {
       '#skills',
       '#contact',
     ])
+  })
+
+  it('ships the resume PDF linked from the profile at the public path', () => {
+    expect(profile.resume).toBe('/ZakariaAhmadResume.pdf')
+    const path = `public${profile.resume}`
+    expect(existsSync(path)).toBe(true)
+    expect(readFileSync(path).subarray(0, 4).toString('utf8')).toBe('%PDF')
   })
 
   it('keeps SEO markup aligned with profile site and GitHub URLs', () => {

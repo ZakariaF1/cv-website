@@ -26,6 +26,12 @@ export const testCatalog = [
   {
     file: 'src/data/content.test.js',
     group: 'portfolio content',
+    name: 'ships the resume PDF linked from the profile at the public path',
+    does: 'Asserts public/ZakariaAhmadResume.pdf exists and is a PDF for the Nav download link.',
+  },
+  {
+    file: 'src/data/content.test.js',
+    group: 'portfolio content',
     name: 'keeps SEO markup aligned with profile site and GitHub URLs',
     does: 'Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email.',
   },
