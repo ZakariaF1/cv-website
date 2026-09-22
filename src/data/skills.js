@@ -69,12 +69,12 @@ export const skillCategories = [
 
 export const certifications = [
   {
-    title: 'AI Agent Development',
+    title: 'Software Architect',
     org: 'Skillab',
     year: '2026',
     logo: '/skillab-logo.avif',
-    desc: 'LLM fine-tuning methods, RAG pipelines, and multi-agent system design.',
-    link: 'https://skillab.ro/',
+    desc: '16-lesson program led by Adrian Popescu, covering architectural patterns, DDD, microservices, service communication, data stores, AWS, Docker, CI/CD, quality-attribute tactics, security, and architecture evaluation (ATAM).',
+    link: 'https://skillab.ro/lecture/1223-devino-software-architect',
   },
   {
     title: 'UX/UI Design',
