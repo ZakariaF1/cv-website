@@ -6,6 +6,8 @@
 
 Standards: [`engineering-charter.md`](engineering-charter.md). Ops: [`../RUNBOOK.md`](../RUNBOOK.md). Commands: [`../README.md`](../README.md).
 
+**How to view diagrams:** open this file in **VS Code** → **Ctrl+Shift+V**. If an SVG shows “error occurred while loading the image”, run **Markdown: Change Preview Security Settings** → **Allow insecure content** (Strict blocks local SVGs). Cursor’s inline Markdown toggle does not render these images.
+
 ---
 
 ## 1. Context
@@ -50,7 +52,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 
 ## 4. Deployment
 
-![Deployment diagram: Visitor → Cloudflare → Vercel; Namecheap registrar; UptimeRobot monitor](deployment.svg)
+![Deployment diagram: Visitor to Cloudflare to Vercel; Namecheap registrar; UptimeRobot monitor](deployment.svg)
 
 - Production URL: `https://www.zakariaahmad.site/` (apex redirects to www).
 - SSL: Cloudflare **Full (strict)** toward Vercel.
