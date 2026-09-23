@@ -25,7 +25,7 @@ This is a small presentational SPA. Content lives in `src/data/`; components sta
 | [`README.md`](README.md) | Commands, how to run, CDN setup overview |
 | [`context.md`](context.md) | Env notes, engineering slice tracker |
 | [`docs/engineering-charter.md`](docs/engineering-charter.md) | Shared engineering standards |
-| [`docs/ARD.md`](docs/ARD.md) | Architecture — topology, deployment, COGS |
+| [`docs/ARD.md`](docs/ARD.md) | Architecture — topology, deployment, security, COGS |
 | [`RUNBOOK.md`](RUNBOOK.md) | Availability ops: detect → recover → prevent |
 | [`QUALITY_ATTRIBUTES.md`](QUALITY_ATTRIBUTES.md) | Lesson 8 measured stimulus–response scenarios |
 | [`TEST_REPORT.md`](TEST_REPORT.md) | What each Vitest checks |

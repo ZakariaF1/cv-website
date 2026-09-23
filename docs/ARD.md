@@ -2,7 +2,7 @@
 
 **System:** zakariaahmad.site (`cv-website`)  
 **Status:** current production  
-**Last updated:** 2026-09-23
+**Last updated:** 2026-09-23 (Lesson 13 security map in §7)
 
 Standards: [`engineering-charter.md`](engineering-charter.md). Ops: [`../RUNBOOK.md`](../RUNBOOK.md). Commands: [`../README.md`](../README.md).
 
@@ -95,14 +95,60 @@ Diagrams: [deployment.svg](deployment.svg). Add C4 Context / Containers / sequen
 
 ## 7. Security Concerns
 
+Lesson 13 (Skillab / Cyber Security): map **CIA**, **OWASP Top 10**, and a few best practices onto **current production** of this static portfolio. AuthN/AuthZ protocols (OAuth, JWT, RBAC, MFA), secrets managers, and OWASP LLM Top 10 are **Out of Scope** — there is no login, API, or AI agent surface.
+
+### CIA (current production)
+
+| Principle | How it applies here |
+| --------- | ------------------- |
+| **Confidentiality** | No private user data store. Public resume/contact are intentional. HTTPS (Cloudflare Full strict → Vercel) protects data in transit. No app secrets expected in git — a committed secret is P0. |
+| **Integrity** | Content is first-party `src/data/*` + `public/*`, shipped via Git + CI + Vercel. React escaping reduces XSS on rendered copy. Lockfile pins npm deps. No user-generated content. |
+| **Availability** | Detect/recover via [`../RUNBOOK.md`](../RUNBOOK.md) + UptimeRobot; CDN edge for media. DDoS/abuse: rely on Cloudflare edge; do not enable Bot Fight Mode blindly (can block monitors). |
+
+### Posture summary
+
 | Concern | Current posture |
 | ------- | --------------- |
 | Transport | HTTPS via Cloudflare + Vercel; Full (strict) |
-| AuthZ / AuthN | None — fully public read-only site |
+| AuthZ / AuthN | None — fully public read-only site (by design) |
 | Secrets in repo | None expected; treat a committed secret as a P0 |
 | Supply chain | npm lockfile + CI; third-party CDNs for fonts/icons (availability/privacy tradeoff) |
-| Abuse / scrape | Static; optional Cloudflare controls — do not enable Bot Fight Mode blindly (can block monitors) |
+| Abuse / scrape | Static; optional Cloudflare controls — do not enable Bot Fight Mode blindly |
 | XSS | React escaping; content is first-party data modules, not user-generated |
+
+### OWASP Top 10 — applicability
+
+| # | Risk | Applies? | Notes for this site |
+| - | ---- | -------- | ------------------- |
+| 1 | Broken access control | **N/A** | No authenticated resources or privileged APIs |
+| 2 | Cryptographic failures | **Low** | TLS 1.2+ via Cloudflare/Vercel; no password store to hash |
+| 3 | Injection | **Low** | No SQL/server templates; React escapes text; no form POST backend |
+| 4 | Insecure design | **Addressed** | Public read-only SPA; threat surface kept small on purpose |
+| 5 | Security misconfiguration | **Watch** | No default creds; origin is static hosting. Security HTTP headers beyond Cache-Control are a possible follow-up |
+| 6 | Vulnerable components | **Watch** | Depend on `package-lock.json` + CI build; periodic `npm audit` / Dependabot is a possible follow-up |
+| 7 | Authentication failures | **N/A** | No login |
+| 8 | Software and data integrity | **Partial** | GitHub → Vercel deploy path; lockfile; no signed releases yet |
+| 9 | Security logging failures | **Minimal** | Hosting/CDN/RUM dashboards; no app security-event log (acceptable for static public site) |
+| 10 | SSRF | **N/A** | No server that fetches caller-controlled URLs |
+
+### Explicitly out of scope (Lesson 13)
+
+- Password/MFA/OIDC/SAML/Kerberos/LDAP authentication
+- OAuth 2.0 / JWT / RBAC authorization models
+- Centralized secrets managers (Vault, AWS Secrets Manager, etc.)
+- Application-layer cryptography beyond TLS
+- OWASP LLM/GenAI Top 10 (no AI features)
+- NIS2 / CRA organizational compliance programs (personal portfolio, not an in-scope entity product)
+
+### NIST CSF (lightweight map)
+
+| Function | This site |
+| -------- | --------- |
+| Identify | ARD + this section; third-party fonts/icons listed under Dependencies |
+| Protect | HTTPS, lockfile, React escaping, no secrets in repo |
+| Detect | UptimeRobot; Cloudflare/Vercel dashboards |
+| Respond | [`../RUNBOOK.md`](../RUNBOOK.md) |
+| Recover | Vercel rollback + Cloudflare purge (runbook) |
 
 ---
 
