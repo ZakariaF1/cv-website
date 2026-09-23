@@ -169,6 +169,8 @@ For every deployable app (including small ones with hosting or external APIs):
    - **Secrets** — where they live, or “none in the app / none in git”
    - **Transport** — TLS posture (and any in-transit exceptions)
    - **Top risks for this surface** — only threats that apply (OWASP-class or equivalent). Mark true N/A with a one-line reason. Do **not** paste a full Top 10 / framework table unless at least three items meaningfully apply
+   - **Threat view** — for each important flow, note assets, what can go wrong, and mitigations (diagram optional). Use a full STRIDE table only when the surface warrants it
+   - **Fitness checks** — prefer automated gates (tests, CI, dependency/security scans, metric thresholds) over one-off review theater; document the ones that actually run
    - Right-size: do not invent login, secrets managers, or compliance programs the product does not have
 6. When architecture, deployment, external dependencies, **or security/trust boundaries** change, update the ARD (including diagram images and Security Concerns) in the same change as the code.
 

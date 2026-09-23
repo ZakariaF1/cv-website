@@ -4,7 +4,7 @@ Lesson 8 (Skillab / Adrian Popescu): *Atributele unui sistem și tactici de îmb
 
 Filled for **zakariaahmad.site** (static React + Vite → Vercel → Cloudflare). Scenarios use the lesson’s six fields. **Measures below use real baselines captured 8–9 Sep 2026** (and Search Console last 3 months).
 
-Architecture topology: [`docs/ARD.md`](docs/ARD.md). Availability ops checklist: [`RUNBOOK.md`](RUNBOOK.md) (do not duplicate the six-field Availability table there).
+These tables are the system’s lightweight **evaluation scenarios** (utility-tree leaves). Architecture / threat model: [`docs/ARD.md`](docs/ARD.md). Availability ops checklist: [`RUNBOOK.md`](RUNBOOK.md) (do not duplicate the six-field Availability table there).
 
 ## How to write a scenario (method)
 

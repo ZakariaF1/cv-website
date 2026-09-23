@@ -35,5 +35,5 @@ If a fact appears in two places, delete one copy and leave a link (charter rule)
 ## Working rules
 
 1. Follow the charter’s refactor mode: characterize with tests, change incrementally, keep CI green.
-2. When architecture, deployment, or external dependencies change, update the ARD in the same change.
+2. When architecture, deployment, external dependencies, or security/trust boundaries change, update the ARD (including Security Concerns / threat view) in the same change.
 3. Course quality-attribute work stays in `QUALITY_ATTRIBUTES.md` / `RUNBOOK.md` — not re-copied into this brief or the reusable charter.
