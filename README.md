@@ -42,6 +42,8 @@ Incident steps (DNS, SSL Full strict, Vercel rollback, cache purge): see [RUNBOO
 
 ## Domain / CDN
 
+Architecture (topology, deployment, COGS): [`docs/ARD.md`](docs/ARD.md). Incident ops: [`RUNBOOK.md`](RUNBOOK.md).
+
 Registrar stays **Namecheap**. Hosting stays **Vercel**. **Cloudflare** is DNS + CDN (do not transfer or buy the domain). Photos stay in `public/` and keep paths like `/personal-photo.avif`.
 
 1. Cloudflare → **Add a site** → `zakariaahmad.site` → Free plan. Do **not** click “I updated my nameservers” yet.

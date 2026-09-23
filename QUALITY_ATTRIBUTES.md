@@ -4,6 +4,8 @@ Lesson 8 (Skillab / Adrian Popescu): *Atributele unui sistem și tactici de îmb
 
 Filled for **zakariaahmad.site** (static React + Vite → Vercel → Cloudflare). Scenarios use the lesson’s six fields. **Measures below use real baselines captured 8–9 Sep 2026** (and Search Console last 3 months).
 
+Architecture topology: [`docs/ARD.md`](docs/ARD.md). Availability ops checklist: [`RUNBOOK.md`](RUNBOOK.md) (do not duplicate the six-field Availability table there).
+
 ## How to write a scenario (method)
 
 | Field (EN) | Field (RO) | Ask yourself |
@@ -90,8 +92,8 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Stimulus** | `https://www.zakariaahmad.site` errors or fails to resolve |
 | **Environment** | Normal production |
 | **Artifact** | Cloudflare proxy → Vercel |
-| **Response** | Detect (HTTP/DNS); restore via Vercel rollback or DNS/SSL fix (Full strict; A/www proxied) |
-| **Measure (real)** | **Today:** site reachable; Cloudflare DNS Full; 24h **470** requests / **101** unique visitors with no outage signal in Overview. **Target:** detect &lt; 5 min (add free uptime alert); MTTR &lt; 30 min. Informal availability goal ≥ **99.5%**. |
+| **Response** | UptimeRobot alerts → [`RUNBOOK.md`](RUNBOOK.md) (DNS/SSL Full strict, Vercel rollback, purge) |
+| **Measure (real)** | **Baseline (8–9 Sep 2026):** site reachable; Cloudflare DNS Full; 24h **470** requests / **101** unique visitors with no outage signal in Overview. **Target:** detect &lt; 5 min; MTTR &lt; 30 min. Informal availability goal ≥ **99.5%**. |
 
 ---
 
