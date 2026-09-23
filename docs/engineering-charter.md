@@ -151,6 +151,8 @@ Keep `README.md` in sync with the actual CLI/entry-point code — treat a stale 
 
 ## Architecture and project docs
 
+This charter is the **only** reusable doc to copy between repos. Per-repo files (`AGENTS.md`, README, ARD, runbooks, etc.) are created by agents for that project when they have real content — do not copy them as a pack.
+
 Use layered docs the same way you right-size code layers: create them when they have real content. Per-repo ownership lives in that repo’s root `AGENTS.md` — if a fact appears in two places, delete one copy and leave a link.
 
 ### ARD (Architecture Response Document)
