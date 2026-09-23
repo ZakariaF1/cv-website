@@ -161,7 +161,14 @@ For every deployable app (including small ones with hosting or external APIs):
 2. Describe **current production**, not a future backend, unless clearly labeled Out of Scope / target.
 3. **Diagrams are visual image assets**, not ASCII art or text-only box drawings. Ship real figures beside the ARD (SVG preferred; PNG/JPEG exports of C4 / sequence / deployment diagrams are fine). A short text topology may supplement an image — it must not replace one. Minimum useful set: C4 Context, C4 Containers, Deployment, plus a sequence diagram for each non-trivial API or async flow.
 4. **How to view diagrams:** open the ARD with the default VS Code Markdown preview (**Ctrl+Shift+V**). Cursor’s inline Markdown toggle does **not** render SVG/images — do not treat a blank preview there as missing diagrams.
-5. When architecture, deployment, or external dependencies change, update the ARD (including diagram images) in the same change as the code.
+5. **Security Concerns** must describe **current production** (not a wish list):
+   - **CIA** — short table or three bullets: what Confidentiality, Integrity, and Availability mean for *this* system and how they are achieved
+   - **AuthN / AuthZ** — what exists, or explicit “none / public read-only”
+   - **Secrets** — where they live, or “none in the app / none in git”
+   - **Transport** — TLS posture (and any in-transit exceptions)
+   - **Top risks for this surface** — only threats that apply (OWASP-class or equivalent). Mark true N/A with a one-line reason. Do **not** paste a full Top 10 / framework table unless at least three items meaningfully apply
+   - Right-size: do not invent login, secrets managers, or compliance programs the product does not have
+6. When architecture, deployment, external dependencies, **or security/trust boundaries** change, update the ARD (including diagram images and Security Concerns) in the same change as the code.
 
 Skip a full ARD only for true throwaway scripts with no deployable surface.
 
@@ -283,7 +290,7 @@ Streamlit (and similarly limited frameworks) is weak for responsive UX; prefer a
 6. Wire in composition root
 7. Add thin presentation layer
 8. Build UI mobile → tablet → desktop → ultrawide (when UI exists)
-9. Add tests, logging, docs — **README commands section at top** when the app has scripts/CLI; update **ARD** when architecture/deployment changes (no duplicate command lists elsewhere)
+9. Add tests, logging, docs — **README commands section at top** when the app has scripts/CLI; update **ARD** (including Security Concerns) when architecture, deployment, or trust boundaries change (no duplicate command lists elsewhere)
 10. Delete obsolete folders/files after moves or refactors
 
 ### Existing repos (refactor mode)
@@ -307,6 +314,6 @@ This charter applies to **greenfield and existing repos alike**. Applying it to 
 - [ ] Empty/loading/error states present
 - [ ] Structured logging added
 - [ ] README updated if architecture, usage, or **commands/scripts** changed (commands table at top when the app has entry points) — single command list only
-- [ ] ARD updated if architecture, deployment, or external dependencies changed (when an ARD exists)
+- [ ] ARD updated if architecture, deployment, external dependencies, or **security/trust boundaries** changed (when an ARD exists) — Security Concerns still matches the real threat surface
 - [ ] No secrets committed
 - [ ] No duplicated docs (commands only in README; architecture only in ARD)
