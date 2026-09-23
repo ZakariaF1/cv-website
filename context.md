@@ -2,27 +2,22 @@
 
 This repository is a single-page **React + Vite** personal portfolio/CV website (`cv-website`). There is no backend — it is a static frontend served by Vite.
 
-## Services / commands
-- **Dev server**: `npm run dev` — serves on `http://localhost:5173/` with HMR. This is the primary way to develop and test.
-- **Lint**: `npm run lint` (ESLint flat config in `eslint.config.js`; `--max-warnings 0`).
-- **Test**: `npm test` — Vitest in jsdom (`vitest run`, verbose + JUnit `test-results.xml`). Each test’s purpose is listed in `TEST_REPORT.md` and posted to the GitHub Actions job summary on every CI run so failures show **which** test broke and **what** it was checking.
-- **Build**: `npm run build` (outputs to `dist/`).
-- **Preview production build**: `npm run preview`.
-- **CI**: `.github/workflows/ci.yml` runs `npm ci`, `npm run lint`, `npm test`, and `npm run build` on every push to `main` and on every pull request.
+**Commands:** see [`README.md`](README.md) (only command list — do not duplicate here).
 
 ## Notes
+
 - Node 20.19+ / 22.12+ is required by Vite 8 (the cloud VM ships Node 22, which works).
 - Static assets (images, PDFs, `robots.txt`, `sitemap.xml`) live in `public/` and are served at the site root.
 - Portfolio copy (projects, experience, skills, certifications, languages, profile, nav) lives in `src/data/` so components stay presentational.
 - Vite binds to `localhost` only by default; pass `--host` to `npm run dev` if you need to expose it on the network.
 - RUM is Cloudflare Web Analytics via **Automatic** injection while the domain is proxied (no manual `beacon.min.js` in `index.html`). Disable any leftover JS-snippet Web Analytics site in the Cloudflare dashboard so visits are not double-counted.
-- CDN: keep the domain registered at Namecheap; use Cloudflare as DNS + reverse-proxy in front of Vercel. Photos stay in `public/` — do not re-upload them to Cloudflare. `vercel.json` sets Cache-Control so the edge can cache images, videos, and the resume. See the README “Domain / CDN” section.
-- Availability: free **UptimeRobot** HTTPS monitor (Cloudflare Health Checks need Pro). Recover via [RUNBOOK.md](RUNBOOK.md) (DNS, SSL Full strict, Vercel rollback, cache purge).
-- Quality attributes (Lesson 8 stimulus–response scenarios for this site): [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md).
+- Photos stay in `public/` — do not re-upload them to Cloudflare. Architecture / CDN topology: [`docs/ARD.md`](docs/ARD.md). Setup steps: [`README.md`](README.md) — Domain / CDN.
+- Availability ops: [`RUNBOOK.md`](RUNBOOK.md). Measured quality scenarios: [`QUALITY_ATTRIBUTES.md`](QUALITY_ATTRIBUTES.md).
+- Engineering standards: [`docs/engineering-charter.md`](docs/engineering-charter.md). Always-on agent brief: [`AGENTS.md`](AGENTS.md).
 
-## Engineering slices (charter, no design changes)
+## Engineering slices (no design changes)
 
-Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The current visual design stays as-is. Apply the agent charter incrementally, one PR at a time, and keep CI green between slices.
+Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The current visual design stays as-is. Apply the charter incrementally, one PR at a time, and keep CI green between slices.
 
 | Slice | Change | Status |
 | ----- | ------ | ------ |
@@ -36,4 +31,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 8 | Publish a per-test Vitest report (name + what it does) on every CI run | done |
 | 9 | Lean modifiability: profile URLs, SEO lock, projectMedia rename | done |
 | 10 | Scalability docs: RUNBOOK spike/purge checklist locked to `vercel.json` headers | done |
-| 11 | Lesson 8 tactics as general rule-of-thumb guidance in `AGENTS.md` | this PR |
+| 11 | Lesson 8 quality-attribute tactics (course scenarios + runbook; not re-copied into reusable charter) | done |
+| 12 | Docs layout per charter: short `AGENTS.md`, `docs/engineering-charter.md`, ARD, dedupe commands | this PR |

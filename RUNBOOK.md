@@ -1,8 +1,8 @@
 # Availability runbook
 
-Lesson 8 tactics for **zakariaahmad.site**: detect faults → recover → prevent.
+Ops checklist for **zakariaahmad.site**: detect faults → recover → prevent.
 
-Stack: **Namecheap** (registrar) → **Cloudflare** (DNS + CDN) → **Vercel** (origin). Static site; no app servers to restart.
+Topology (architecture source of truth): [`docs/ARD.md`](docs/ARD.md). Measured Availability scenario: [`QUALITY_ATTRIBUTES.md`](QUALITY_ATTRIBUTES.md) §1.
 
 **Targets:** detect within ~5 minutes · restore (MTTR) under 30 minutes · informal availability ≥ 99.5%.
 
@@ -127,18 +127,6 @@ Free Cloudflare + Vercel is enough at current volume (thousands of requests / mo
 | Cloudflare | DNS, SSL/TLS, Caching, Analytics |
 | Vercel | Deployments / Domains |
 | Registrar | Namecheap → Domain List |
+| Architecture (ARD) | [docs/ARD.md](docs/ARD.md) |
 | Quality scenarios | [QUALITY_ATTRIBUTES.md](QUALITY_ATTRIBUTES.md) |
-| CDN setup detail | [README.md](README.md) — Domain / CDN |
-
----
-
-## 5. Availability scenario (Lesson 8)
-
-| Field | Value |
-| ----- | ----- |
-| **Source** | External — Vercel / Cloudflare / DNS |
-| **Stimulus** | Site errors or does not resolve |
-| **Environment** | Production |
-| **Artifact** | Cloudflare → Vercel |
-| **Response** | UptimeRobot alerts → run this runbook → rollback / fix DNS/SSL |
-| **Measure** | Alert within one 5‑minute poll; MTTR &lt; 30 minutes using the checklist above |
+| CDN setup steps | [README.md](README.md) — Domain / CDN |
