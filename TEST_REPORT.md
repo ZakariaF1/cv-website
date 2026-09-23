@@ -16,7 +16,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/projectMedia.test.js` | buildMediaItems | puts the demo video first, then screenshots in order | Video is item 0; screenshots follow in the given order. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
-| `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, and the Back to top button. |
+| `src/App.test.jsx` | App | assembles the main landmark sections | Renders About immediately; waits for lazy Projects, Skills, Contact, plus Back to top. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
 | `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
@@ -40,5 +40,9 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/test/runbook.test.js` | availability runbook | documents UptimeRobot detect and Vercel rollback recover steps | Keeps RUNBOOK.md with UptimeRobot monitoring, Full strict SSL, and Vercel rollback instructions. |
 | `src/test/runbook.test.js` | scalability (edge cache) | documents purge-after-deploy and spike response using existing CDN headers | Locks RUNBOOK spike/purge guidance to vercel.json media and /assets Cache-Control rules. |
 | `src/test/lcp.test.js` | LCP image preload | preloads the hero photo before the React module runs | index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle. |
+| `src/test/lcp.test.js` | LCP font and JS critical path | loads Inter and Space Mono from HTML without a CSS @import | Fonts load via an HTML stylesheet link with only used weights; CSS must not @import Google Fonts. |
+| `src/test/lcp.test.js` | LCP font and JS critical path | preconnects to Google Fonts before the stylesheet | fonts.googleapis.com and fonts.gstatic.com preconnect before the css2 stylesheet. |
+| `src/test/lcp.test.js` | LCP font and JS critical path | defers Projects, Skills, and Contact behind React.lazy | Below-fold sections are lazy() imports wrapped in Suspense so they leave the first JS download. |
+| `src/test/lcp.test.js` | LCP font and JS critical path | does not modulepreload deferred chunks on first paint | vite build.modulePreload is false so async chunks are not preloaded during first paint. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |

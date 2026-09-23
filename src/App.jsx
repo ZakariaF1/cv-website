@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { lazy, Suspense, useState, useEffect, useRef, useCallback } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Contact from './components/Contact'
 import './App.css'
+
+const Projects = lazy(() => import('./components/Projects'))
+const Skills = lazy(() => import('./components/Skills'))
+const Contact = lazy(() => import('./components/Contact'))
 
 function ScrollToTop({ scrollRef }) {
   const [visible, setVisible] = useState(false)
@@ -99,9 +100,11 @@ export default function App() {
         <div className="panel-right" ref={rightRef}>
           <main>
             <About />
-            <Projects />
-            <Skills />
-            <Contact />
+            <Suspense fallback={null}>
+              <Projects />
+              <Skills />
+              <Contact />
+            </Suspense>
           </main>
           <ScrollToTop scrollRef={rightRef} />
         </div>

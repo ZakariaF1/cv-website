@@ -41,9 +41,12 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 
 | Metric | Value |
 | ------ | ----- |
-| Visits / page views / LCP / INP / CLS | **Not enough data** (dashboard empty: 0 visits, 0 page views, vitals blank) |
+| LCP — P50 | **6,100 ms** |
+| LCP — P75 | **6,176 ms** |
+| LCP — P90 | **12,804 ms** |
+| LCP — P99 | **12,804 ms** |
 
-**Why (historical):** Zone Overview showed traffic while Web Analytics RUM was empty because visits were split / wrong property. The site now uses **Automatic** injection only (manual snippet removed from `index.html`). Disable the old JS-snippet Web Analytics site in Cloudflare so Core Web Vitals fill on the Automatic property.
+**Target:** LCP ≤ **2.5 s** (good). Field RUM now shows CWV; numbers above are the baseline that triggered the font + defer-JS slice.
 
 ### Lab performance (PageSpeed Insights — mobile, your run)
 
@@ -60,9 +63,12 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 
 | Asset | Raw | Gzip |
 | ----- | --- | ---- |
-| `index-*.js` | **222.10 kB** | **69.44 kB** |
-| `index-*.css` | **25.54 kB** | **5.39 kB** |
-| `index.html` | **3.35 kB** | **1.17 kB** |
+| `index-*.js` (first paint) | **204.67 kB** | **65.02 kB** |
+| Projects chunk | **9.27 kB** | **2.80 kB** |
+| Skills chunk | **6.29 kB** | **2.26 kB** |
+| Contact chunk | **3.45 kB** | **1.16 kB** |
+| CSS (split) | shell **12.59 kB** + section CSS | off critical path for deferred CSS |
+| `index.html` | **3.59 kB** | **1.23 kB** |
 
 ### Google Search Console (Web, last 3 months)
 
@@ -95,13 +101,13 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | ----- | ----- |
 | **Source** | Recruiter / visitor on mobile or desktop |
 | **Stimulus** | Opens homepage (cold or warm cache) |
-| **Environment** | Production; lab = Slow 4G PageSpeed; field = Web Analytics (when data exists) |
-| **Artifact** | HTML + JS/CSS + `/personal-photo.avif` via Cloudflare → Vercel |
-| **Response** | Paint page; serve LCP image; prefer edge HIT for media |
-| **Measure (real)** | **Lab:** LCP **3.1 s**, FCP **2.7 s**, CLS **0**, score **90**. **Edge:** photo **HIT** + **30-day** `Cache-Control`; 24h **29.48%** bytes/requests cached mix, **2 MB** cached of **6 MB** served. **Field RUM:** **no CWV yet** (Web Analytics empty) — re-measure when visits appear on one analytics property. |
+| **Environment** | Production; lab = Slow 4G PageSpeed; field = Web Analytics CWV |
+| **Artifact** | HTML + JS/CSS + fonts + `/personal-photo.avif` via Cloudflare → Vercel |
+| **Response** | Paint hero; serve LCP image; prefer edge HIT for media; keep below-fold JS off the first download |
+| **Measure (real)** | **Field RUM (before this slice):** LCP P50 **6.1 s**, P75 **6.2 s**, P90/P99 **12.8 s** (fail). **Lab (earlier):** LCP **3.1 s**, FCP **2.7 s**, CLS **0**, score **90**. **Edge:** photo **HIT** + **30-day** `Cache-Control`. **Target:** field LCP P75 ≤ **2.5 s**. |
 
-**Tactics in use:** CDN copies of media, AVIF, long cache headers, **prioritize events** (`fetchPriority=high` on hero), **reduce overhead** (preload LCP photo in `index.html` before React).  
-**Still open:** wait for Automatic Web Analytics CWV after disabling the old JS-snippet site in Cloudflare; optional later — defer below-fold JS if lab LCP stays ~3 s.
+**Tactics in use:** CDN copies of media, AVIF, long cache headers, **prioritize events** (`fetchPriority=high` on hero), **reduce overhead** (preload LCP photo in `index.html`), **remove render-blocking font `@import`** (HTML `preconnect` + stylesheet, weights 400–700 only), **defer** Projects/Skills/Contact via `React.lazy` + `modulePreload: false`.  
+**Still open:** re-measure field LCP after deploy; self-host fonts if Google Fonts RTT still dominates.
 
 ---
 
@@ -151,7 +157,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | Attribute | Real baseline now | Next slice |
 | --------- | ----------------- | ---------- |
 | Availability | Live; UptimeRobot + RUNBOOK | — |
-| Performance | Lab LCP preload; photo HIT; Automatic RUM only | Optional: wait for CWV; defer below-fold JS only if needed |
+| Performance | Field LCP fail (P75 ~6 s); fonts + defer-JS shipped | Re-measure field LCP after deploy |
 | Modifiability | `src/data/*` + profile URL/SEO lock + CI | — |
 | Usability | Resume ≤ 2 clicks; lightbox + Demo keyboard already work | — |
 | Scalability | Edge media HIT; `vercel.json` headers; purge after asset deploys | — |
