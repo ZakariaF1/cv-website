@@ -159,8 +159,9 @@ For every deployable app (including small ones with hosting or external APIs):
 
 1. Keep these **section headers** even when a section is empty: Context (Scope / Out of Scope), Proposed Approach, Individual Components Roles and Responsibilities, Deployment, Dependencies, Data Flows/APIs, Security Concerns, COGS.
 2. Describe **current production**, not a future backend, unless clearly labeled Out of Scope / target.
-3. Prefer SVG diagrams beside the ARD. Minimum useful set: C4 Context, C4 Containers, Deployment, plus a sequence diagram for each non-trivial API or async flow.
-4. When architecture, deployment, or external dependencies change, update the ARD in the same change as the code.
+3. **Diagrams are visual image assets**, not ASCII art or text-only box drawings. Ship real figures beside the ARD (SVG preferred; PNG/JPEG exports of C4 / sequence / deployment diagrams are fine). A short text topology may supplement an image — it must not replace one. Minimum useful set: C4 Context, C4 Containers, Deployment, plus a sequence diagram for each non-trivial API or async flow.
+4. **How to view diagrams:** open the ARD with the default VS Code Markdown preview (**Ctrl+Shift+V**). Cursor’s inline Markdown toggle does **not** render SVG/images — do not treat a blank preview there as missing diagrams.
+5. When architecture, deployment, or external dependencies change, update the ARD (including diagram images) in the same change as the code.
 
 Skip a full ARD only for true throwaway scripts with no deployable surface.
 
