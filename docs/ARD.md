@@ -50,11 +50,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 
 ## 4. Deployment
 
-```
-Visitor → Cloudflare (proxied DNS, CDN) → Vercel origin (static SPA)
-                ↑
-         Namecheap (registrar)
-```
+![Deployment diagram: Visitor → Cloudflare → Vercel; Namecheap registrar; UptimeRobot monitor](deployment.svg)
 
 - Production URL: `https://www.zakariaahmad.site/` (apex redirects to www).
 - SSL: Cloudflare **Full (strict)** toward Vercel.
@@ -91,7 +87,7 @@ No application database. No secrets required for the static site itself (hosting
 - RUM: Cloudflare Automatic injection on proxied pages (no manual beacon in HTML).
 - Contact links are `mailto:` / external profile URLs — no form POST backend.
 
-Diagrams (C4 / sequence): not yet added; add SVG beside this ARD when flows become non-trivial.
+Diagrams: [deployment.svg](deployment.svg). Add C4 Context / Containers / sequence SVGs beside this ARD when flows become non-trivial.
 
 ---
 
