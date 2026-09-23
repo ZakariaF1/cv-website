@@ -2,7 +2,7 @@
 
 **System:** zakariaahmad.site (`cv-website`)  
 **Status:** current production  
-**Last updated:** 2026-09-23 (Lesson 13 security map in §7)
+**Last updated:** 2026-09-23 (threat model + fitness checks in §7)
 
 Standards: [`engineering-charter.md`](engineering-charter.md). Ops: [`../RUNBOOK.md`](../RUNBOOK.md). Commands: [`../README.md`](../README.md).
 
@@ -89,13 +89,15 @@ No application database. No secrets required for the static site itself (hosting
 - RUM: Cloudflare Automatic injection on proxied pages (no manual beacon in HTML).
 - Contact links are `mailto:` / external profile URLs — no form POST backend.
 
-Diagrams: [deployment.svg](deployment.svg). Add C4 Context / Containers / sequence SVGs beside this ARD when flows become non-trivial.
+Diagrams: [deployment.svg](deployment.svg), [threat-model-visitor-load.svg](threat-model-visitor-load.svg). Add C4 Context / Containers / sequence SVGs beside this ARD when flows become non-trivial.
 
 ---
 
 ## 7. Security Concerns
 
-Lesson 13 (Skillab / Cyber Security): map **CIA**, **OWASP Top 10**, and a few best practices onto **current production** of this static portfolio. AuthN/AuthZ protocols (OAuth, JWT, RBAC, MFA), secrets managers, and OWASP LLM Top 10 are **Out of Scope** — there is no login, API, or AI agent surface.
+Current production security for this static public portfolio. AuthN/AuthZ protocols (OAuth, JWT, RBAC, MFA), secrets managers, and GenAI/LLM app risks are **Out of Scope** — there is no login, API, or AI agent surface.
+
+Quality-attribute **evaluation scenarios** (stimulus → response → measure) live in [`../QUALITY_ATTRIBUTES.md`](../QUALITY_ATTRIBUTES.md) — treat those as the lightweight utility-tree leaves for this system; do not duplicate them here.
 
 ### CIA (current production)
 
@@ -104,6 +106,34 @@ Lesson 13 (Skillab / Cyber Security): map **CIA**, **OWASP Top 10**, and a few b
 | **Confidentiality** | No private user data store. Public resume/contact are intentional. HTTPS (Cloudflare Full strict → Vercel) protects data in transit. No app secrets expected in git — a committed secret is P0. |
 | **Integrity** | Content is first-party `src/data/*` + `public/*`, shipped via Git + CI + Vercel. React escaping reduces XSS on rendered copy. Lockfile pins npm deps. No user-generated content. |
 | **Availability** | Detect/recover via [`../RUNBOOK.md`](../RUNBOOK.md) + UptimeRobot; CDN edge for media. DDoS/abuse: rely on Cloudflare edge; do not enable Bot Fight Mode blindly (can block monitors). |
+
+### Threat model — visitor loads site / resume
+
+**Scope:** public visitor opens `https://www.zakariaahmad.site/` and may download `/ZakariaAhmadResume.pdf`.
+
+![Threat model: visitor to Cloudflare to Vercel; third-party CDNs; GitHub CI deploy](threat-model-visitor-load.svg)
+
+| STRIDE | Applies? | What can go wrong | Mitigation (current) |
+| ------ | -------- | ----------------- | -------------------- |
+| **S**poofing | **Low** | Phishing / lookalike domain; no in-app identity to steal | Public site only; registrar + Cloudflare DNS ownership |
+| **T**ampering | **Medium** | Bad deploy, stale/poisoned edge cache, compromised dependency | GitHub → Vercel path; CI lint/test/build; lockfile; Cloudflare purge in runbook |
+| **R**epudiation | **N/A** | No privileged actions to deny | Read-only public GET |
+| **I**nformation disclosure | **Low** | Resume/contact are public by design; accidental secret in repo | No secrets expected; treat commit of secrets as P0 |
+| **D**enial of service | **Medium** | Flood / scrape / origin overload | Cloudflare edge; UptimeRobot; runbook rollback |
+| **E**levation of privilege | **N/A** | No authz roles or admin surface | Fully public read-only |
+
+### Fitness checks (automated / operational)
+
+Architecture fitness here means gates that already run — not a separate review ritual:
+
+| Check | Gate | Quality attribute |
+| ----- | ---- | ----------------- |
+| `npm run lint` | CI | Modifiability / consistency |
+| `npm test` (incl. CDN header + runbook locks) | CI | Integrity / scalability docs↔config |
+| `npm run build` | CI | Deployability |
+| UptimeRobot HTTPS every 5 min | Runtime | Availability |
+| Cloudflare Web Analytics (LCP) | Runtime RUM | Performance |
+| Measured scenarios | [`../QUALITY_ATTRIBUTES.md`](../QUALITY_ATTRIBUTES.md) | Evaluation baseline |
 
 ### Posture summary
 
@@ -131,14 +161,15 @@ Lesson 13 (Skillab / Cyber Security): map **CIA**, **OWASP Top 10**, and a few b
 | 9 | Security logging failures | **Minimal** | Hosting/CDN/RUM dashboards; no app security-event log (acceptable for static public site) |
 | 10 | SSRF | **N/A** | No server that fetches caller-controlled URLs |
 
-### Explicitly out of scope (Lesson 13)
+### Explicitly out of scope
 
 - Password/MFA/OIDC/SAML/Kerberos/LDAP authentication
 - OAuth 2.0 / JWT / RBAC authorization models
 - Centralized secrets managers (Vault, AWS Secrets Manager, etc.)
 - Application-layer cryptography beyond TLS
-- OWASP LLM/GenAI Top 10 (no AI features)
-- NIS2 / CRA organizational compliance programs (personal portfolio, not an in-scope entity product)
+- GenAI/LLM application threat catalogs (no AI features)
+- Full multi-stakeholder ATAM workshops (solo portfolio; scenarios live in QUALITY_ATTRIBUTES)
+- Organizational compliance programs (NIS2 / CRA) as product obligations
 
 ### NIST CSF (lightweight map)
 

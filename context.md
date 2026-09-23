@@ -33,4 +33,5 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout. The c
 | 10 | Scalability docs: RUNBOOK spike/purge checklist locked to `vercel.json` headers | done |
 | 11 | Lesson 8 quality-attribute tactics (course scenarios + runbook; not re-copied into reusable charter) | done |
 | 12 | Docs layout per charter: short `AGENTS.md`, `docs/engineering-charter.md`, ARD, dedupe commands | done |
-| 13 | Lesson 13 cyber security mapped into ARD §7 (CIA, OWASP Top 10, NIST CSF) | this PR |
+| 13 | Lesson 13 cyber security mapped into ARD §7 (CIA, OWASP Top 10, NIST CSF) | done |
+| 14 | Architecture evaluation: threat model diagram + STRIDE + fitness checks; lean charter threat/fitness bullets | this PR |
