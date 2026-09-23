@@ -63,7 +63,7 @@ export const testCatalog = [
     file: 'src/App.test.jsx',
     group: 'App',
     name: 'assembles the main landmark sections',
-    does: 'Renders About, Projects, Skills, Contact, and the Back to top button.',
+    does: 'Renders About immediately; waits for lazy Projects, Skills, Contact, plus Back to top.',
   },
   {
     file: 'src/components/Hero.test.jsx',
@@ -202,6 +202,30 @@ export const testCatalog = [
     group: 'LCP image preload',
     name: 'preloads the hero photo before the React module runs',
     does: 'index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle.',
+  },
+  {
+    file: 'src/test/lcp.test.js',
+    group: 'LCP font and JS critical path',
+    name: 'loads Inter and Space Mono from HTML without a CSS @import',
+    does: 'Fonts load via an HTML stylesheet link with only used weights; CSS must not @import Google Fonts.',
+  },
+  {
+    file: 'src/test/lcp.test.js',
+    group: 'LCP font and JS critical path',
+    name: 'preconnects to Google Fonts before the stylesheet',
+    does: 'fonts.googleapis.com and fonts.gstatic.com preconnect before the css2 stylesheet.',
+  },
+  {
+    file: 'src/test/lcp.test.js',
+    group: 'LCP font and JS critical path',
+    name: 'defers Projects, Skills, and Contact behind React.lazy',
+    does: 'Below-fold sections are lazy() imports wrapped in Suspense so they leave the first JS download.',
+  },
+  {
+    file: 'src/test/lcp.test.js',
+    group: 'LCP font and JS critical path',
+    name: 'does not modulepreload deferred chunks on first paint',
+    does: 'vite build.modulePreload is false so async chunks are not preloaded during first paint.',
   },
   {
     file: 'src/test/report.test.js',
