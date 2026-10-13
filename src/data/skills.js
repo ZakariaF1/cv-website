@@ -74,7 +74,8 @@ export const certifications = [
     year: '2026',
     logo: '/skillab-logo.avif',
     desc: '16-lesson program led by Adrian Popescu, covering architectural patterns, DDD, microservices, service communication, data stores, AWS, Docker, CI/CD, quality-attribute tactics, security, and architecture evaluation (ATAM).',
-    link: 'https://skillab.ro/lecture/1223-devino-software-architect',
+    id: 'ef943bc322a48a2a41e29a6911b532da',
+    link: 'https://lms.skillab.ro/certificate/ef943bc322a48a2a41e29a6911b532da',
   },
   {
     title: 'UX/UI Design',
