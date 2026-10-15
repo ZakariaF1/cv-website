@@ -24,8 +24,7 @@ export const projects = [
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: [
       { name: 'JavaScript', core: true },
-      { name: 'Browser Extension', core: true },
-      { name: 'Chrome' },
+      { name: 'Chrome Extension', core: true },
     ],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
     repo: `${profile.githubUrl}/bestjobs-filter`,
