@@ -7,7 +7,7 @@ export const experience = [
     desc: 'Contributed to Canvas, a centralized ESG orchestration platform. Developed .NET/C# backend flows, async event-driven processing (SQS, batch jobs, ETL pipelines), and contributed to a Pentaho → C# migration that reduced bugs by ~50%.',
     stack: [
       { name: 'C# / .NET', core: true },
-      { name: 'AWS SQS' },
+      { name: 'AWS SQS', core: true },
       { name: 'ETL' },
       { name: 'PostgreSQL' },
     ],
@@ -34,7 +34,7 @@ export const experience = [
     stack: [
       { name: 'Azure', core: true },
       { name: 'C# / .NET', core: true },
-      { name: 'Angular' },
+      { name: 'Angular', core: true },
       { name: 'SSIS' },
       { name: 'Elasticsearch' },
       { name: 'SQL Server' },
