@@ -32,9 +32,9 @@ export const experience = [
     desc: 'Worked across the full development lifecycle on Fraud and Reporting applications. Integrated Azure Logic Apps and Functions, automating workflows that reduced chargebacks and fraud cases by ~15%.',
     stack: [
       { name: 'Azure', core: true },
-      { name: 'Azure Functions', core: true },
       { name: 'C# / .NET', core: true },
-      { name: 'Azure Logic Apps' },
+      { name: 'Angular' },
+      { name: 'SSIS' },
       { name: 'Elasticsearch' },
       { name: 'SQL Server' },
     ],
