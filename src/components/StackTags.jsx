@@ -37,14 +37,23 @@ const ICONS = {
 /** simple-icons slug when no (or broken) Devicon exists. */
 const SIMPLE_ICONS = {
   'Telerik Kendo': 'progress',
+  Ollama: 'ollama',
+  OpenAI: 'openai',
+  'OpenAI API': 'openai',
+  Resend: 'resend',
+  'Microsoft Graph': 'microsoft',
 }
 
 /** Prefer wordmark asset (e.g. AWS original.svg is 403 on jsDelivr). */
 const WORDMARK = new Set(['amazonwebservices'])
 
-/** Material Design Icons for concepts without a brand mark (e.g. ETL). */
+/** Material Design Icons for concepts without a brand mark. */
 const MDI_ICONS = {
   ETL: 'transit-connection-variant',
+  RAG: 'brain',
+  SSR: 'server',
+  SEO: 'magnify',
+  'YNAB API': 'wallet',
 }
 
 const INVERT = new Set(['vercel'])
@@ -54,7 +63,7 @@ function TagIcon({ name }) {
   if (simple) {
     return (
       <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/${simple}.svg`}
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${simple}.svg`}
         alt=""
         className="stack-tag-icon stack-tag-icon-invert"
         aria-hidden="true"
