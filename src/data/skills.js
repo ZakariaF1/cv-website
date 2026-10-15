@@ -1,11 +1,9 @@
+/** Shared / foundation skills. Main stack + specialized tools live on Experience & Projects. */
 export const skillCategories = [
   {
     name: 'Frontend',
     accent: 'var(--accent)',
     skills: [
-      { name: 'Angular', icon: 'angular', primary: true },
-      { name: 'TypeScript', icon: 'typescript', primary: true },
-      { name: 'RxJS', icon: 'rxjs', primary: true },
       { name: 'JavaScript', icon: 'javascript' },
       { name: 'HTML5', icon: 'html5' },
       { name: 'SCSS', icon: 'sass' },
@@ -19,50 +17,32 @@ export const skillCategories = [
     name: 'Backend',
     accent: 'var(--accent2)',
     skills: [
-      { name: 'C# / .NET', icon: 'csharp', primary: true },
-      { name: 'ASP.NET Core', icon: 'dotnetcore', primary: true },
-      { name: 'Entity Framework', icon: 'dotnetcore' },
-      { name: 'LINQ', icon: 'dotnetcore' },
       { name: 'REST APIs', icon: null },
       { name: 'PostgreSQL', icon: 'postgresql' },
       { name: 'MySQL', icon: 'mysql' },
       { name: 'MongoDB', icon: 'mongodb' },
+      { name: 'Redis', icon: 'redis' },
       { name: 'Elasticsearch', icon: 'elasticsearch' },
       { name: 'Oracle DB', icon: 'oracle' },
-      { name: 'Redis', icon: 'redis' },
-      { name: 'MVC', icon: 'dotnetcore' },
     ],
   },
   {
     name: 'Cloud & DevOps',
     accent: 'var(--accent3)',
     skills: [
-      { name: 'Azure', icon: 'azure', primary: true },
-      { name: 'Azure Functions', icon: 'azure' },
-      { name: 'Azure Logic Apps', icon: 'azure' },
-      { name: 'AWS EKS', icon: 'amazonwebservices', primary: true },
-      { name: 'AWS SQS', icon: 'amazonwebservices' },
-      { name: 'Docker', icon: 'docker', primary: true },
-      { name: 'Kubernetes', icon: 'kubernetes' },
-      { name: 'Microservices', icon: null },
       { name: 'GitHub Actions', icon: 'github' },
       { name: 'Vercel', icon: 'vercel' },
+      { name: 'Docker', icon: 'docker' },
     ],
   },
   {
     name: 'Tooling & AI',
     accent: '#7b8fd4',
     skills: [
-      { name: 'OpenAI API', icon: 'openai', primary: true, simple: true },
-      { name: 'Claude Code', icon: 'claude', primary: true, inline: true },
-      { name: 'RAG', icon: null, primary: true },
-      { name: 'Ollama', icon: null },
-      { name: 'Playwright', icon: 'playwright' },
       { name: 'Git / GitHub', icon: 'git' },
       { name: 'GitLab', icon: 'gitlab' },
       { name: 'GitHub Copilot', icon: 'github' },
       { name: 'JWT & Auth', icon: null },
-      { name: 'ETL Pipelines', icon: null },
     ],
   },
 ]
@@ -109,5 +89,5 @@ export const languages = [
   { name: 'English', level: 'Proficient', flag: 'https://flagcdn.com/gb.svg' },
   { name: 'Romanian', level: 'Native', flag: 'https://flagcdn.com/ro.svg' },
   { name: 'Arabic', level: 'Native', flag: 'https://flagcdn.com/sa.svg' },
-  { name: 'German', level: 'Beginner', flag: 'https://flagcdn.com/de.svg' },
+  { name: 'German', level: 'Elementary', flag: 'https://flagcdn.com/de.svg' },
 ]

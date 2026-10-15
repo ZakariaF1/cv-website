@@ -6,8 +6,8 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 
 | File | Group | Test | What it does |
 | ---- | ----- | ---- | ------------ |
-| `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires tags plus status live on each. |
-| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role and period on each job. |
+| `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires named tags (with at least one core) plus status live on each. |
+| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role, period, and core stack tags on each job. |
 | `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect (with Skillab cert id/link) is listed, and the four languages. |
 | `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
 | `src/data/content.test.js` | portfolio content | ships the resume PDF linked from the profile at the public path | Asserts public/ZakariaAhmadResume.pdf exists and is a PDF for the Nav download link. |
@@ -21,11 +21,11 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
 | `src/components/Nav.test.jsx` | Nav | toggles the mobile menu from the burger button | Burger opens the menu; clicking a section link closes it. |
-| `src/components/About.test.jsx` | About | renders the experience timeline companies and roles | Experience heading plus every company and job title from the data. |
+| `src/components/About.test.jsx` | About | renders the experience timeline companies and roles | Experience heading plus every company, job title, and stack tags from the data. |
 | `src/components/Projects.test.jsx` | Projects | renders the portfolio section and every current project | Portfolio heading plus a card heading for each project in the data. |
 | `src/components/Projects.test.jsx` | Projects | marks private repos and the live portfolio without fake external links | Shows Private Repo and You're here, and includes the Firehouse live-site URL. |
 | `src/components/Projects.test.jsx` | Projects | opens the Firehouse lightbox from the preview image | Clicking the Firehouse preview opens the lightbox with that project title. |
-| `src/components/Skills.test.jsx` | Skills | renders stack categories, certifications, and languages | Category names, sample skills, every certification title, and every language. |
+| `src/components/Skills.test.jsx` | Skills | renders stack categories, certifications, and languages | Foundation heading, category names, shared sample skills, every certification title, and every language. |
 | `src/components/Contact.test.jsx` | Contact | renders contact channels | Mail, LinkedIn, and phone links use the profile values. |
 | `src/components/Lightbox.test.jsx` | Lightbox | shows the project title and starts on the requested media item | Opens on screenshot 1 when startIndex is 1. |
 | `src/components/Lightbox.test.jsx` | Lightbox | moves to the next and previous items | Next/Previous buttons change the visible image. |
