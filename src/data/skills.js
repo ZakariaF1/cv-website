@@ -7,6 +7,7 @@ export const skillCategories = [
       { name: 'JavaScript', icon: 'javascript' },
       { name: 'HTML5', icon: 'html5' },
       { name: 'SCSS', icon: 'sass' },
+      { name: 'RxJS', icon: 'rxjs' },
       { name: 'Figma', icon: 'figma' },
       { name: 'Miro', icon: 'miro', simple: true },
     ],
@@ -16,6 +17,7 @@ export const skillCategories = [
     accent: 'var(--accent2)',
     skills: [
       { name: 'REST APIs', icon: null },
+      { name: 'ASP.NET Core', icon: 'dotnetcore' },
       { name: 'LINQ', icon: null },
       { name: 'Redis', icon: 'redis' },
     ],

@@ -13,6 +13,7 @@ const ICONS = {
   'Azure Functions': 'azure',
   'Azure Logic Apps': 'azure',
   Elasticsearch: 'elasticsearch',
+  'Microsoft SQL': 'microsoftsqlserver',
   'Entity Framework': 'dotnetcore',
   MySQL: 'mysql',
   MongoDB: 'mongodb',
