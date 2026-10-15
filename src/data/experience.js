@@ -47,6 +47,7 @@ export const experience = [
     desc: 'Built APIs and web apps using MySQL and MongoDB, increasing application speed by 30%. Applied best practices across plugins, widgets, and HTML page development.',
     stack: [
       { name: 'C# / .NET', core: true },
+      { name: 'MVC' },
       { name: 'Entity Framework' },
       { name: 'MySQL' },
       { name: 'MongoDB' },
