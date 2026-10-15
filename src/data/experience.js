@@ -22,6 +22,7 @@ export const experience = [
       { name: 'Angular', core: true },
       { name: 'TypeScript', core: true },
       { name: 'Oracle DB' },
+      { name: 'SonarQube' },
     ],
   },
   {

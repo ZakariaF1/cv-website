@@ -9,6 +9,7 @@ const ICONS = {
   Angular: 'angular',
   TypeScript: 'typescript',
   'Oracle DB': 'oracle',
+  SonarQube: 'sonarqube',
   Azure: 'azure',
   'Azure Functions': 'azure',
   'Azure Logic Apps': 'azure',
