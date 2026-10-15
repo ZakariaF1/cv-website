@@ -14,7 +14,7 @@ const ICONS = {
   'Azure Logic Apps': 'azure',
   Elasticsearch: 'elasticsearch',
   'SQL Server': 'microsoftsqlserver',
-  MVC: 'csharp',
+  MVC: 'dotnetcore',
   'Entity Framework': 'dotnetcore',
   MySQL: 'mysql',
   MongoDB: 'mongodb',
