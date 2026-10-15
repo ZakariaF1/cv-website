@@ -4,6 +4,7 @@ import './StackTags.css'
 const ICONS = {
   'C# / .NET': 'csharp',
   'ASP.NET Core': 'dotnetcore',
+  'AWS SQS': 'amazonwebservices',
   PostgreSQL: 'postgresql',
   Angular: 'angular',
   TypeScript: 'typescript',
@@ -34,8 +35,10 @@ const ICONS = {
 /** simple-icons slug when no (or broken) Devicon exists. */
 const SIMPLE_ICONS = {
   'Telerik Kendo': 'progress',
-  'AWS SQS': 'amazonsqs',
 }
+
+/** Prefer wordmark asset (e.g. AWS original.svg is 403 on jsDelivr). */
+const WORDMARK = new Set(['amazonwebservices'])
 
 /** Material Design Icons for concepts without a brand mark (e.g. ETL). */
 const MDI_ICONS = {
@@ -72,16 +75,19 @@ function TagIcon({ name }) {
   const icon = ICONS[name]
   if (!icon) return null
   const invert = INVERT.has(icon)
+  const file = WORDMARK.has(icon) ? `${icon}-original-wordmark.svg` : `${icon}-original.svg`
   return (
     <img
-      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original.svg`}
+      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${file}`}
       alt=""
       className={`stack-tag-icon${invert ? ' stack-tag-icon-invert' : ''}`}
       aria-hidden="true"
       onError={(e) => {
-        if (e.target.src.includes('-original')) {
+        if (e.target.src.includes('-original-wordmark')) {
+          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain-wordmark.svg`
+        } else if (e.target.src.includes('-original.svg')) {
           e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original-wordmark.svg`
-        } else if (e.target.src.includes('-original-wordmark')) {
+        } else if (e.target.src.includes('-plain-wordmark')) {
           e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg`
         } else {
           e.target.style.display = 'none'
