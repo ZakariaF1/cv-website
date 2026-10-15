@@ -43,7 +43,6 @@ export const projects = [
     desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
     tags: [
       { name: 'Angular', core: true },
-      { name: 'TypeScript', core: true },
       { name: 'SSR' },
       { name: 'OpenAI API' },
     ],
@@ -79,7 +78,7 @@ export const projects = [
     tags: [
       { name: 'TypeScript', core: true },
       { name: 'Playwright', core: true },
-      { name: 'OpenAI' },
+      { name: 'OpenAI API' },
       { name: 'YNAB API' },
       { name: 'Resend' },
     ],
