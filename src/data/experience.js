@@ -20,7 +20,6 @@ export const experience = [
     desc: 'Led end-to-end migration of two core apps from legacy HTML/JS to TypeScript Angular v13, improving responsiveness by 45%. Mentored 4 junior developers and reduced codebase size by ~50%.',
     stack: [
       { name: 'Angular', core: true },
-      { name: 'TypeScript', core: true },
       { name: 'Oracle DB' },
       { name: 'SonarQube' },
     ],
