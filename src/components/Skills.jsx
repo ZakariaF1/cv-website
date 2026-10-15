@@ -4,7 +4,7 @@ import { certifications, languages, skillCategories } from '../data/skills'
 // Icons that are dark/black and need inversion on dark backgrounds
 const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
 
-function SkillIcon({ icon, simple, inline }) {
+function SkillIcon({ icon, simple, inline, mdi }) {
   if (!icon) return null
 
   if (inline) {
@@ -13,6 +13,17 @@ function SkillIcon({ icon, simple, inline }) {
       <svg className="skill-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ color: '#d4956a' }}>
         <path d="M17.304 3h-3.318l-5.99 18h3.318l5.99-18zM6.696 3H3.378L9.37 21h3.317L6.696 3z" />
       </svg>
+    )
+  }
+
+  if (mdi) {
+    return (
+      <img
+        src={`https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${icon}.svg`}
+        alt=""
+        className="skill-icon skill-icon-invert"
+        aria-hidden="true"
+      />
     )
   }
 
@@ -61,7 +72,7 @@ export default function Skills() {
             <div className="skills-chips">
               {cat.skills.map(s => (
                 <span key={s.name} className="skill-chip">
-                  <SkillIcon icon={s.icon} simple={s.simple} inline={s.inline} />
+                  <SkillIcon icon={s.icon} simple={s.simple} inline={s.inline} mdi={s.mdi} />
                   {s.name}
                 </span>
               ))}

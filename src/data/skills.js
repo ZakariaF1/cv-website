@@ -16,7 +16,7 @@ export const skillCategories = [
     name: 'Backend',
     accent: 'var(--accent2)',
     skills: [
-      { name: 'REST APIs', icon: null },
+      { name: 'REST APIs', icon: 'api', mdi: true },
       { name: 'ASP.NET Core', icon: 'dotnetcore' },
       { name: 'LINQ', icon: 'dotnetcore' },
       { name: 'Redis', icon: 'redis' },
