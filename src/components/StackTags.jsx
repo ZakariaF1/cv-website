@@ -31,9 +31,26 @@ const ICONS = {
   Playwright: 'playwright',
 }
 
+/** simple-icons slug when no Devicon exists (e.g. Progress / Telerik). */
+const SIMPLE_ICONS = {
+  'Telerik Kendo': 'progress',
+}
+
 const INVERT = new Set(['amazonwebservices', 'vercel'])
 
 function TagIcon({ name }) {
+  const simple = SIMPLE_ICONS[name]
+  if (simple) {
+    return (
+      <img
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${simple}.svg`}
+        alt=""
+        className="stack-tag-icon stack-tag-icon-invert"
+        aria-hidden="true"
+      />
+    )
+  }
+
   const icon = ICONS[name]
   if (!icon) return null
   const invert = INVERT.has(icon)
