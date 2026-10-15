@@ -61,7 +61,7 @@ export default function Skills() {
             <div className="skills-chips">
               {cat.skills.map(s => (
                 <span key={s.name} className="skill-chip">
-                  <SkillIcon icon={s.icon} simple={s.simple} />
+                  <SkillIcon icon={s.icon} simple={s.simple} inline={s.inline} />
                   {s.name}
                 </span>
               ))}
