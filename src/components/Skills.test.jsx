@@ -14,8 +14,9 @@ describe('Skills', () => {
 
     expect(screen.getByRole('heading', { name: /shared skills i use everywhere/i })).toBeInTheDocument()
     expect(screen.getByText('JavaScript')).toBeInTheDocument()
-    expect(screen.getByText('React')).toBeInTheDocument()
-    expect(screen.getByText('PostgreSQL')).toBeInTheDocument()
+    expect(screen.getByText('LINQ')).toBeInTheDocument()
+    expect(screen.getByText('Claude Code')).toBeInTheDocument()
+    expect(screen.getByText('Cursor')).toBeInTheDocument()
     expect(screen.getByText('Docker')).toBeInTheDocument()
 
     for (const cert of certifications) {

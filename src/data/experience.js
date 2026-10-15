@@ -22,8 +22,7 @@ export const experience = [
     stack: [
       { name: 'Angular', core: true },
       { name: 'TypeScript', core: true },
-      { name: 'RxJS' },
-      { name: 'SCSS' },
+      { name: 'Oracle DB' },
     ],
   },
   {
@@ -35,8 +34,9 @@ export const experience = [
     stack: [
       { name: 'Azure', core: true },
       { name: 'Azure Functions', core: true },
+      { name: 'C# / .NET', core: true },
       { name: 'Azure Logic Apps' },
-      { name: 'C# / .NET' },
+      { name: 'Elasticsearch' },
     ],
   },
   {
@@ -47,6 +47,7 @@ export const experience = [
     desc: 'Built APIs and web apps using MySQL and MongoDB, increasing application speed by 30%. Applied best practices across plugins, widgets, and HTML page development.',
     stack: [
       { name: 'C# / .NET', core: true },
+      { name: 'Entity Framework' },
       { name: 'MySQL' },
       { name: 'MongoDB' },
       { name: 'REST APIs' },
