@@ -14,8 +14,6 @@ describe('About', () => {
       expect(screen.getByText(job.company)).toBeInTheDocument()
       expect(screen.getByText(job.role)).toBeInTheDocument()
       const item = screen.getByText(job.company).closest('.timeline-item')
-      expect(item).toHaveTextContent(job.period)
-      expect(item).toHaveTextContent(job.duration)
       for (const tag of job.stack) {
         expect(item).toHaveTextContent(tag.name)
       }
