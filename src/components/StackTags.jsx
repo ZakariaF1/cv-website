@@ -25,6 +25,7 @@ const ICONS = {
   FastAPI: 'fastapi',
   JavaScript: 'javascript',
   Chrome: 'chrome',
+  'Chrome Extension': 'chrome',
   'HTML/CSS': 'html5',
   React: 'react',
   Vite: 'vitejs',
