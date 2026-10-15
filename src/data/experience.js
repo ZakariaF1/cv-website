@@ -36,7 +36,7 @@ export const experience = [
       { name: 'C# / .NET', core: true },
       { name: 'Azure Logic Apps' },
       { name: 'Elasticsearch' },
-      { name: 'Microsoft SQL' },
+      { name: 'SQL Server' },
     ],
   },
   {
