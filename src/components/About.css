@@ -72,11 +72,6 @@
   flex-shrink: 0;
 }
 
-.timeline-duration {
-  color: var(--muted);
-  letter-spacing: 0.03em;
-}
-
 .timeline-company {
   display: block;
   font-size: var(--text-sm);

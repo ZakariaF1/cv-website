@@ -25,10 +25,7 @@ export default function About() {
             <div className="timeline-body">
               <div className="timeline-header">
                 <span className="timeline-role">{e.role}</span>
-                <span className="timeline-period">
-                  {e.period}
-                  {e.duration && <span className="timeline-duration"> · {e.duration}</span>}
-                </span>
+                <span className="timeline-period">{e.period}</span>
               </div>
               <span className="timeline-company">{e.company}</span>
               <p className="timeline-desc">{e.desc}</p>
