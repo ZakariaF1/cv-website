@@ -49,9 +49,9 @@ export const experience = [
       { name: 'C# / .NET', core: true },
       { name: 'MVC' },
       { name: 'Entity Framework' },
+      { name: 'Telerik Kendo' },
       { name: 'MySQL' },
       { name: 'MongoDB' },
-      { name: 'REST APIs' },
     ],
   },
 ]
