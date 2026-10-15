@@ -3,13 +3,13 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists every project with a title, tags, and status',
-    does: 'Locks the five project titles in order and requires tags plus status live on each.',
+    does: 'Locks the five project titles in order and requires named tags (with at least one core) plus status live on each.',
   },
   {
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists every experience role with a company and period',
-    does: 'Locks the four companies in order and requires a role and period on each job.',
+    does: 'Locks the four companies in order and requires a role, period, and core stack tags on each job.',
   },
   {
     file: 'src/data/content.test.js',
@@ -93,7 +93,7 @@ export const testCatalog = [
     file: 'src/components/About.test.jsx',
     group: 'About',
     name: 'renders the experience timeline companies and roles',
-    does: 'Experience heading plus every company and job title from the data.',
+    does: 'Experience heading plus every company, job title, and stack tags from the data.',
   },
   {
     file: 'src/components/Projects.test.jsx',
@@ -117,7 +117,7 @@ export const testCatalog = [
     file: 'src/components/Skills.test.jsx',
     group: 'Skills',
     name: 'renders stack categories, certifications, and languages',
-    does: 'Category names, sample skills, every certification title, and every language.',
+    does: 'Foundation heading, category names, shared sample skills, every certification title, and every language.',
   },
   {
     file: 'src/components/Contact.test.jsx',

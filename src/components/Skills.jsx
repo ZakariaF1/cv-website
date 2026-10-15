@@ -48,8 +48,8 @@ function SkillIcon({ icon, simple, inline }) {
 export default function Skills() {
   return (
     <section id="skills">
-      <p className="section-label">Stack</p>
-      <h2 className="section-title">What I work <span>with</span></h2>
+      <p className="section-label">Foundation</p>
+      <h2 className="section-title">Shared skills I use <span>everywhere</span></h2>
 
       <div className="skills-bento">
         {skillCategories.map(cat => (

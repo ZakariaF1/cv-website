@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Lightbox from './Lightbox'
 import { buildMediaItems } from './projectMedia'
 import { projects } from '../data/projects'
+import StackTags from './StackTags'
 import './Projects.css'
 
 function ProjectLogo({ logo, title }) {
@@ -164,9 +165,7 @@ function ProjectCard({ project: p }) {
       <h3 className="card-title">{p.title}</h3>
       <p className="card-desc">{p.desc}</p>
 
-      <div className="card-tags">
-        {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
-      </div>
+      <StackTags tags={p.tags} />
 
       <CardLinks p={p} />
     </div>

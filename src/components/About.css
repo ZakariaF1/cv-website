@@ -84,5 +84,10 @@
   font-size: var(--text-base);
   color: var(--muted);
   line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.timeline-body .stack-row {
+  margin-top: 0;
 }
 
