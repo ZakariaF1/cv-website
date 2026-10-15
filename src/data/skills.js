@@ -38,9 +38,9 @@ export const skillCategories = [
       { name: 'Git / GitHub', icon: 'git' },
       { name: 'GitLab', icon: 'gitlab' },
       { name: 'GitHub Copilot', icon: 'github' },
-      { name: 'Claude Code', icon: null, inline: true },
-      { name: 'Cursor', icon: null },
-      { name: 'JWT & Auth', icon: null },
+      { name: 'Claude Code', icon: 'claude', simple: true },
+      { name: 'Cursor', icon: 'cursor', simple: true },
+      { name: 'JWT & Auth', icon: 'jsonwebtokens', simple: true },
     ],
   },
 ]

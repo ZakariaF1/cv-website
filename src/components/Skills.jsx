@@ -30,7 +30,7 @@ function SkillIcon({ icon, simple, inline, mdi }) {
   if (simple) {
     return (
       <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${icon}.svg`}
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/${icon}.svg`}
         alt=""
         className="skill-icon skill-icon-invert"
         aria-hidden="true"

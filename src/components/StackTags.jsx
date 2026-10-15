@@ -52,7 +52,7 @@ function TagIcon({ name }) {
   if (simple) {
     return (
       <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${simple}.svg`}
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/${simple}.svg`}
         alt=""
         className="stack-tag-icon stack-tag-icon-invert"
         aria-hidden="true"
