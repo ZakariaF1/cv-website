@@ -1,10 +1,9 @@
 import './StackTags.css'
 
-/** Devicon slug (or null) for stack tag labels. */
+/** Devicon slug for stack tag labels. */
 const ICONS = {
   'C# / .NET': 'csharp',
   'ASP.NET Core': 'dotnetcore',
-  'AWS SQS': 'amazonwebservices',
   PostgreSQL: 'postgresql',
   Angular: 'angular',
   TypeScript: 'typescript',
@@ -14,6 +13,7 @@ const ICONS = {
   'Azure Logic Apps': 'azure',
   Elasticsearch: 'elasticsearch',
   'SQL Server': 'microsoftsqlserver',
+  SSIS: 'microsoftsqlserver',
   MVC: 'dotnetcore',
   'Entity Framework': 'dotnetcore',
   MySQL: 'mysql',
@@ -31,12 +31,18 @@ const ICONS = {
   Playwright: 'playwright',
 }
 
-/** simple-icons slug when no Devicon exists (e.g. Progress / Telerik). */
+/** simple-icons slug when no (or broken) Devicon exists. */
 const SIMPLE_ICONS = {
   'Telerik Kendo': 'progress',
+  'AWS SQS': 'amazonsqs',
 }
 
-const INVERT = new Set(['amazonwebservices', 'vercel'])
+/** Material Design Icons for concepts without a brand mark (e.g. ETL). */
+const MDI_ICONS = {
+  ETL: 'transit-connection-variant',
+}
+
+const INVERT = new Set(['vercel'])
 
 function TagIcon({ name }) {
   const simple = SIMPLE_ICONS[name]
@@ -44,6 +50,18 @@ function TagIcon({ name }) {
     return (
       <img
         src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${simple}.svg`}
+        alt=""
+        className="stack-tag-icon stack-tag-icon-invert"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  const mdi = MDI_ICONS[name]
+  if (mdi) {
+    return (
+      <img
+        src={`https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${mdi}.svg`}
         alt=""
         className="stack-tag-icon stack-tag-icon-invert"
         aria-hidden="true"
@@ -62,6 +80,8 @@ function TagIcon({ name }) {
       aria-hidden="true"
       onError={(e) => {
         if (e.target.src.includes('-original')) {
+          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original-wordmark.svg`
+        } else if (e.target.src.includes('-original-wordmark')) {
           e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg`
         } else {
           e.target.style.display = 'none'
