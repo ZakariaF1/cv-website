@@ -120,7 +120,7 @@ export default function StackTags({ tags, label }) {
       {tags.map((tag) => (
         <span
           key={tag.name}
-          className={`stack-tag${tag.core ? ' core' : ''}`}
+          className="stack-tag"
         >
           <TagIcon name={tag.name} />
           {tag.name}
