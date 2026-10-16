@@ -64,7 +64,7 @@ export const certifications = [
     logo: '/it-school-logo.avif',
     desc: 'User-centered design, design thinking, wireframing, prototyping, and accessibility using Figma & Miro.',
     id: 'ITSGO0625UI2701',
-    link: 'https://itschool.ro/',
+    link: '/Diploma_ZakariaAhmad-IT-School-UX.pdf',
   },
   {
     title: 'Microsoft Azure Fundamentals AZ-900',
