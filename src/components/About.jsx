@@ -1,5 +1,6 @@
 import './About.css'
 import { experience } from '../data/experience'
+import StackTags from './StackTags'
 
 function CompanyLogo({ logo, company }) {
   if (logo) {
@@ -28,6 +29,7 @@ export default function About() {
               </div>
               <span className="timeline-company">{e.company}</span>
               <p className="timeline-desc">{e.desc}</p>
+              <StackTags tags={e.stack} label="Stack" />
             </div>
           </div>
         ))}

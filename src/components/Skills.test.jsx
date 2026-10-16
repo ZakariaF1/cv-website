@@ -12,10 +12,12 @@ describe('Skills', () => {
       expect(screen.getByText(category.name)).toBeInTheDocument()
     }
 
-    expect(screen.getByText('Angular')).toBeInTheDocument()
-    expect(screen.getByText('C# / .NET')).toBeInTheDocument()
-    expect(screen.getByText('Azure')).toBeInTheDocument()
-    expect(screen.getByText('RAG')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /shared skills i use everywhere/i })).toBeInTheDocument()
+    expect(screen.getByText('JavaScript')).toBeInTheDocument()
+    expect(screen.getByText('LINQ')).toBeInTheDocument()
+    expect(screen.getByText('Claude Code')).toBeInTheDocument()
+    expect(screen.getByText('Cursor')).toBeInTheDocument()
+    expect(screen.getByText('Docker')).toBeInTheDocument()
 
     for (const cert of certifications) {
       expect(screen.getByText(cert.title)).toBeInTheDocument()

@@ -4,7 +4,7 @@ import { certifications, languages, skillCategories } from '../data/skills'
 // Icons that are dark/black and need inversion on dark backgrounds
 const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
 
-function SkillIcon({ icon, simple, inline }) {
+function SkillIcon({ icon, simple, inline, mdi }) {
   if (!icon) return null
 
   if (inline) {
@@ -16,10 +16,21 @@ function SkillIcon({ icon, simple, inline }) {
     )
   }
 
+  if (mdi) {
+    return (
+      <img
+        src={`https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${icon}.svg`}
+        alt=""
+        className="skill-icon skill-icon-invert"
+        aria-hidden="true"
+      />
+    )
+  }
+
   if (simple) {
     return (
       <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${icon}.svg`}
+        src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${icon}.svg`}
         alt=""
         className="skill-icon skill-icon-invert"
         aria-hidden="true"
@@ -48,8 +59,8 @@ function SkillIcon({ icon, simple, inline }) {
 export default function Skills() {
   return (
     <section id="skills">
-      <p className="section-label">Stack</p>
-      <h2 className="section-title">What I work <span>with</span></h2>
+      <p className="section-label">Foundation</p>
+      <h2 className="section-title">Shared skills I use <span>everywhere</span></h2>
 
       <div className="skills-bento">
         {skillCategories.map(cat => (
@@ -61,7 +72,7 @@ export default function Skills() {
             <div className="skills-chips">
               {cat.skills.map(s => (
                 <span key={s.name} className="skill-chip">
-                  <SkillIcon icon={s.icon} simple={s.simple} />
+                  <SkillIcon icon={s.icon} simple={s.simple} inline={s.inline} mdi={s.mdi} />
                   {s.name}
                 </span>
               ))}

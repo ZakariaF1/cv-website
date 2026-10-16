@@ -13,6 +13,11 @@ describe('About', () => {
     for (const job of experience) {
       expect(screen.getByText(job.company)).toBeInTheDocument()
       expect(screen.getByText(job.role)).toBeInTheDocument()
+      const item = screen.getByText(job.company).closest('.timeline-item')
+      for (const tag of job.stack) {
+        expect(item).toHaveTextContent(tag.name)
+      }
     }
+    expect(screen.getAllByText('Stack').length).toBe(experience.length)
   })
 })
