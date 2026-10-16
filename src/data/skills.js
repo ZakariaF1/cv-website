@@ -29,6 +29,8 @@ export const skillCategories = [
       { name: 'GitHub Actions', icon: 'github' },
       { name: 'Vercel', icon: 'vercel' },
       { name: 'Docker', icon: 'docker' },
+      { name: 'Kubernetes', icon: 'kubernetes' },
+      { name: 'Microservices', icon: 'sitemap', mdi: true },
     ],
   },
   {
