@@ -19,6 +19,8 @@ export const skillCategories = [
       { name: 'REST APIs', icon: 'api', mdi: true },
       { name: 'ASP.NET Core', icon: 'dotnetcore' },
       { name: 'LINQ', icon: 'dotnetcore' },
+      { name: 'NUnit', icon: 'test-tube', mdi: true },
+      { name: 'xUnit', icon: 'flask-outline', mdi: true },
       { name: 'Redis', icon: 'redis' },
     ],
   },
