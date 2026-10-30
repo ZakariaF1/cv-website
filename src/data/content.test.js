@@ -75,7 +75,7 @@ describe('portfolio content', () => {
   })
 
   it('ships the resume PDF linked from the profile at the public path', () => {
-    expect(profile.resume).toBe('/ZakariaAhmadResume.pdf')
+    expect(profile.resume).toBe('/ZakariaAhmadResume-2026-10.pdf')
     const path = `public${profile.resume}`
     expect(existsSync(path)).toBe(true)
     expect(readFileSync(path).subarray(0, 4).toString('utf8')).toBe('%PDF')
