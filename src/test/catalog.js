@@ -27,7 +27,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'ships the resume PDF linked from the profile at the public path',
-    does: 'Asserts public/ZakariaAhmadResume.pdf exists and is a PDF for the Nav download link.',
+    does: 'Asserts public/ZakariaAhmadResume-2026-10.pdf exists and is a PDF for the Nav download link.',
   },
   {
     file: 'src/data/content.test.js',
