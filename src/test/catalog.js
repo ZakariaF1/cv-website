@@ -3,13 +3,13 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists every project with a title, tags, and status',
-    does: 'Locks the five project titles in order and requires named tags (with at least one core) plus status live on each.',
+    does: 'Locks the five project titles in order and requires named tags plus status live on each.',
   },
   {
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists every experience role with a company and period',
-    does: 'Locks the four companies in order and requires a role, period, and core stack tags on each job.',
+    does: 'Locks the four companies in order and requires a role, period, and named stack tags on each job.',
   },
   {
     file: 'src/data/content.test.js',
@@ -226,6 +226,24 @@ export const testCatalog = [
     group: 'LCP font and JS critical path',
     name: 'does not modulepreload deferred chunks on first paint',
     does: 'vite build.modulePreload is false so async chunks are not preloaded during first paint.',
+  },
+  {
+    file: 'src/lib/icons.test.js',
+    group: 'resolveIcon',
+    name: 'pins CDN versions (no @latest)',
+    does: 'Devicon, simple-icons, and MDI versions are explicit semver pins.',
+  },
+  {
+    file: 'src/lib/icons.test.js',
+    group: 'resolveIcon',
+    name: 'resolves skills-style specs and stack tag names',
+    does: 'Skills data specs and Experience/Projects tag names resolve to pinned CDN URLs with invert/fallback policy.',
+  },
+  {
+    file: 'src/lib/icons.test.js',
+    group: 'resolveIcon',
+    name: 'maps every STACK_BY_NAME entry to a resolver result',
+    does: 'Every stack label in STACK_BY_NAME returns a non-null icon descriptor.',
   },
   {
     file: 'src/test/report.test.js',

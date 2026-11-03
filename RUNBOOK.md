@@ -18,12 +18,12 @@ Cloudflare **Health Checks** need Pro. Use **UptimeRobot** instead.
 2. **Add New Monitor**
    - Monitor type: **HTTPS**
    - Friendly name: `zakariaahmad.site homepage`
-   - URL: `https://www.zakariaahmad.site/` (use **www**; apex redirects to www)
+   - URL: `https://zakariaahmad.site/` (use **apex**; `www` should redirect to apex)
    - Monitoring interval: **Every 5 minutes**
 3. **Alert Contacts:** your email (optional: Telegram / Slack).
 4. Save. Status should become **Up** (green).
 
-Optional second monitor (same interval): `https://www.zakariaahmad.site/personal-photo.avif` — only if you want asset reachability separate from HTML.
+Optional second monitor (same interval): `https://zakariaahmad.site/personal-photo.avif` — only if you want asset reachability separate from HTML.
 
 ### When you get an alert
 
@@ -52,10 +52,11 @@ Quick checks:
 nslookup -type=NS zakariaahmad.site
 
 # Should resolve to Cloudflare anycast (e.g. 104.21.x / 172.67.x), not only Vercel
-nslookup www.zakariaahmad.site
+nslookup zakariaahmad.site
 
-# Expect server: cloudflare on a healthy proxied response
-curl -sI https://www.zakariaahmad.site/ | findstr /i "HTTP server cf-ray location"
+# Apex should be 200; www should 308/301 to apex
+curl -sI https://zakariaahmad.site/ | findstr /i "HTTP server cf-ray location"
+curl -sI https://www.zakariaahmad.site/ | findstr /i "HTTP location"
 ```
 
 (On Mac/Linux use `rg` or `grep` instead of `findstr`.)
@@ -82,7 +83,7 @@ curl -sI https://www.zakariaahmad.site/ | findstr /i "HTTP server cf-ray locatio
 1. [Vercel Dashboard](https://vercel.com) → project **cv-website** → **Deployments**
 2. Open the last **Ready** production deployment that worked
 3. **⋯** → **Promote to Production** / rollback to that deployment
-4. Re-check `https://www.zakariaahmad.site/` and UptimeRobot
+4. Re-check `https://zakariaahmad.site/` and UptimeRobot
 
 ### E. Edge cache (stale or broken asset after a good deploy)
 
@@ -122,7 +123,7 @@ Free Cloudflare + Vercel is enough at current volume (thousands of requests / mo
 
 | System | Where |
 | ------ | ----- |
-| Live site | https://www.zakariaahmad.site |
+| Live site | https://zakariaahmad.site |
 | UptimeRobot | https://uptimerobot.com/dashboard |
 | Cloudflare | DNS, SSL/TLS, Caching, Analytics |
 | Vercel | Deployments / Domains |

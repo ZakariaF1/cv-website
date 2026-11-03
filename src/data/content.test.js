@@ -17,7 +17,6 @@ describe('portfolio content', () => {
     for (const project of projects) {
       expect(project.tags.length).toBeGreaterThan(0)
       expect(project.tags.every((t) => typeof t.name === 'string' && t.name.length > 0)).toBe(true)
-      expect(project.tags.some((t) => t.core)).toBe(true)
       expect(project.status).toBe('live')
     }
   })
@@ -34,7 +33,6 @@ describe('portfolio content', () => {
       expect(job.period).toBeTruthy()
       expect(job.stack.length).toBeGreaterThan(0)
       expect(job.stack.every((t) => typeof t.name === 'string' && t.name.length > 0)).toBe(true)
-      expect(job.stack.some((t) => t.core)).toBe(true)
     }
   })
 

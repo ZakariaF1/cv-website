@@ -36,7 +36,7 @@ CI (GitHub Actions) runs `npm ci`, `npm run lint`, `npm test`, and `npm run buil
 
 ## Availability
 
-Detect outages with a free **UptimeRobot** HTTPS monitor on `https://www.zakariaahmad.site/` (every 5 minutes). Cloudflare Health Checks need Pro — do not rely on them on the Free plan.
+Detect outages with a free **UptimeRobot** HTTPS monitor on `https://zakariaahmad.site/` (every 5 minutes). Cloudflare Health Checks need Pro — do not rely on them on the Free plan.
 
 Incident steps (DNS, SSL Full strict, Vercel rollback, cache purge): see [RUNBOOK.md](RUNBOOK.md).
 
@@ -54,11 +54,12 @@ Registrar stays **Namecheap**. Hosting stays **Vercel**. **Cloudflare** is DNS +
    | A | `@` | `76.76.21.21` (or the IP on the Vercel domain card) | DNS only (grey cloud) |
    | CNAME | `www` | `cname.vercel-dns.com` (or the CNAME on the Vercel domain card) | DNS only (grey cloud) |
 
-   Confirm in **Vercel → Project → Settings → Domains** that `zakariaahmad.site` and `www` are added.
+   Confirm in **Vercel → Project → Settings → Domains** that `zakariaahmad.site` and `www` are added, with **apex as primary** (`www` redirects to apex).
 3. Cloudflare overview copies two nameservers (e.g. `josephine.ns.cloudflare.com`). Namecheap → **Domain List → Manage → Nameservers → Custom DNS** → paste those two. Save. Wait until [dnschecker.org](https://dnschecker.org) shows Cloudflare NS for `zakariaahmad.site`.
 4. When the site loads over HTTPS on Vercel’s cert, Cloudflare → **SSL/TLS** → **Full (strict)** (never Flexible — that causes a redirect loop). Then turn the A and CNAME records to **Proxied** (orange cloud).
-5. Optional: **Caching → Cache Rules** — match `*.avif`, `*.png`, `*.webp`, `*.svg`, `*.webm`, `*.pdf` and cache at the edge. Origin already sends Cache-Control via `vercel.json`.
-6. Confirm CDN: open `/personal-photo.avif`, reload, Network tab → `server: cloudflare` and `cf-cache-status: HIT`.
+5. Confirm redirect direction: `curl -sI https://zakariaahmad.site/` → **200**; `curl -sI https://www.zakariaahmad.site/` → **308/301** to apex. If apex still redirects to www, flip the primary domain in Vercel (and any Cloudflare redirect rule).
+6. Optional: **Caching → Cache Rules** — match `*.avif`, `*.png`, `*.webp`, `*.svg`, `*.webm`, `*.pdf` and cache at the edge. Origin already sends Cache-Control via `vercel.json`.
+7. Confirm CDN: open `/personal-photo.avif`, reload, Network tab → `server: cloudflare` and `cf-cache-status: HIT`.
 
 RUM: with the domain proxied, use Cloudflare Web Analytics **Automatic** setup only. Do not add a manual JS snippet in HTML (that creates a second property and splits visits). In **Web Analytics**, disable or remove any leftover **JS Snippet** site for `zakariaahmad.site`.
 

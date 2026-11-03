@@ -6,8 +6,8 @@ export const projects = [
     latest: true,
     desc: 'A local, privacy-first job-search agent: Outlook mail via Microsoft Graph, local Ollama extraction into SQLite, and reconciliation of LinkedIn CSVs, notes, and duplicates. Includes naive RAG over interview notes (embeddings + cosine retrieval), with v2 adding synced emails on the same ask path. Built with DDD / hexagonal architecture, Typer CLI, Streamlit dashboard, and FastAPI.',
     tags: [
-      { name: 'Python', core: true },
-      { name: 'Ollama', core: true },
+      { name: 'Python' },
+      { name: 'Ollama' },
       { name: 'RAG' },
       { name: 'Microsoft Graph' },
     ],
@@ -21,8 +21,8 @@ export const projects = [
     title: 'BestJobs Filter Extension',
     desc: 'Browser extension for bestjobs.eu that lets you hide unwanted job listings by keyword, company name, or manually. All filtering runs locally — no data leaves your device.',
     tags: [
-      { name: 'JavaScript', core: true },
-      { name: 'Chrome Extension', core: true },
+      { name: 'JavaScript' },
+      { name: 'Chrome Extension' },
     ],
     link: 'https://chromewebstore.google.com/detail/bestjobs-filter/mddnacgggjghjjocidnedhbcnbdhkojk',
     repo: `${profile.githubUrl}/bestjobs-filter`,
@@ -40,7 +40,7 @@ export const projects = [
     title: 'Firehouse Restaurant',
     desc: 'Full Angular SSR website for a real burger restaurant in Bucharest. Features a menu browser, table reservations, photo gallery, and customer reviews. Includes AI-powered menu search — users describe what they feel like eating in natural language and OpenAI suggests matching dishes.',
     tags: [
-      { name: 'Angular', core: true },
+      { name: 'Angular' },
       { name: 'SSR' },
       { name: 'OpenAI API' },
     ],
@@ -59,8 +59,8 @@ export const projects = [
     title: 'Portfolio Website',
     desc: 'This site — a React + Vite portfolio built with a custom CSS design system. Features an adaptive two-panel layout, dark theme with design tokens, SEO (Open Graph, JSON-LD structured data), responsive breakpoints across mobile, tablet, and ultrawide, and performance-optimised assets.',
     tags: [
-      { name: 'React', core: true },
-      { name: 'Vite', core: true },
+      { name: 'React' },
+      { name: 'Vite' },
       { name: 'SEO' },
     ],
     link: profile.siteUrl,
@@ -74,8 +74,8 @@ export const projects = [
     title: 'YNAB Automation Agent',
     desc: 'End-to-end TypeScript automation for personal and business YNAB budgeting — fully hands-off from bank statement to categorized budget. Dual-lane Playwright pipelines fetch and sync transactions from personal and business accounts in parallel, apply 200+ payee rules plus learned merchant mappings, deduplicate entries, and import into separate YNAB budgets with smart auto-flagging. An AI payee-resolution agent handles unknown merchants via company registry lookup and LLM reasoning, with human-in-the-loop approve/reject over email on Vercel. Wallet-cash reminders and Windows Task Scheduler keep the whole system running without manual intervention.',
     tags: [
-      { name: 'TypeScript', core: true },
-      { name: 'Playwright', core: true },
+      { name: 'TypeScript' },
+      { name: 'Playwright' },
       { name: 'OpenAI API' },
     ],
     link: '#',

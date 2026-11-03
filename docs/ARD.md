@@ -54,7 +54,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 
 ![Deployment diagram: Visitor to Cloudflare to Vercel; Namecheap registrar; UptimeRobot monitor](deployment.svg)
 
-- Production URL: `https://www.zakariaahmad.site/` (apex redirects to www).
+- Production URL: `https://zakariaahmad.site/` (**apex** is primary; `www` must redirect to apex — Cloudflare/Vercel domain setting).
 - SSL: Cloudflare **Full (strict)** toward Vercel.
 - Deploy path: merge to `main` → Vercel production deploy (Git integration).
 - Cache: `/assets/*` immutable long-cache; `*.(avif|png|webp|svg|webm|pdf)` 30-day cache with SWR (see `vercel.json`).
@@ -74,7 +74,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 | Namecheap | Registrar |
 | UptimeRobot | Uptime alerts |
 | Google Fonts | Typography (loaded from `index.html`) |
-| jsDelivr (Devicon / Simple Icons) | Skill icon SVGs at runtime |
+| jsDelivr (Devicon / Simple Icons / MDI) | Skill & stack icon SVGs at runtime (versions pinned in `src/lib/icons.js`) |
 | GitHub | Source + Actions CI |
 
 No application database. No secrets required for the static site itself (hosting dashboards hold account credentials outside the repo).
@@ -109,7 +109,7 @@ Quality-attribute **evaluation scenarios** (stimulus → response → measure) l
 
 ### Threat model — visitor loads site / resume
 
-**Scope:** public visitor opens `https://www.zakariaahmad.site/` and may download `/ZakariaAhmadResume.pdf`.
+**Scope:** public visitor opens `https://zakariaahmad.site/` and may download `/ZakariaAhmadResume-2026-10.pdf`.
 
 ![Threat model: visitor to Cloudflare to Vercel; third-party CDNs; GitHub CI deploy](threat-model-visitor-load.svg)
 

@@ -6,8 +6,8 @@ export const experience = [
     logo: '/morningstar_logo.avif',
     desc: 'Contributed to Canvas, a centralized ESG orchestration platform. Developed .NET/C# backend flows, async event-driven processing (SQS, batch jobs, ETL pipelines), and contributed to a Pentaho → C# migration that reduced bugs by ~50%.',
     stack: [
-      { name: 'C# / .NET', core: true },
-      { name: 'AWS SQS', core: true },
+      { name: 'C# / .NET' },
+      { name: 'AWS SQS' },
       { name: 'ETL' },
       { name: 'PostgreSQL' },
     ],
@@ -19,7 +19,7 @@ export const experience = [
     logo: '/deutshche-bank-logo.avif',
     desc: 'Led end-to-end migration of two core apps from legacy HTML/JS to TypeScript Angular v13, improving responsiveness by 45%. Mentored 4 junior developers and reduced codebase size by ~50%.',
     stack: [
-      { name: 'Angular', core: true },
+      { name: 'Angular' },
       { name: 'Oracle DB' },
       { name: 'SonarQube' },
     ],
@@ -31,9 +31,9 @@ export const experience = [
     logo: '/mindgeek-logo.avif',
     desc: 'Worked across the full development lifecycle on Fraud and Reporting applications. Integrated Azure Logic Apps and Functions, automating workflows that reduced chargebacks and fraud cases by ~15%.',
     stack: [
-      { name: 'Azure', core: true },
-      { name: 'C# / .NET', core: true },
-      { name: 'Angular', core: true },
+      { name: 'Azure' },
+      { name: 'C# / .NET' },
+      { name: 'Angular' },
       { name: 'SSIS' },
       { name: 'Elasticsearch' },
       { name: 'SQL Server' },
@@ -46,7 +46,7 @@ export const experience = [
     logo: '/Simpology-Australia-logo.avif',
     desc: 'Built APIs and web apps using MySQL and MongoDB, increasing application speed by 30%. Applied best practices across plugins, widgets, and HTML page development.',
     stack: [
-      { name: 'C# / .NET', core: true },
+      { name: 'C# / .NET' },
       { name: 'MVC' },
       { name: 'Entity Framework' },
       { name: 'Telerik Kendo' },

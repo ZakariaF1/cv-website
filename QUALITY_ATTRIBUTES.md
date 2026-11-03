@@ -89,7 +89,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | Field | Value |
 | ----- | ----- |
 | **Source** | External — Vercel / Cloudflare / DNS |
-| **Stimulus** | `https://www.zakariaahmad.site` errors or fails to resolve |
+| **Stimulus** | `https://zakariaahmad.site` errors or fails to resolve |
 | **Environment** | Normal production |
 | **Artifact** | Cloudflare proxy → Vercel |
 | **Response** | UptimeRobot alerts → [`RUNBOOK.md`](RUNBOOK.md) (DNS/SSL Full strict, Vercel rollback, purge) |

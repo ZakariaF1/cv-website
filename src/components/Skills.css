@@ -78,23 +78,6 @@
   border: 1px solid var(--border);
   padding: 5px 11px;
   border-radius: 6px;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.skill-chip:hover {
-  border-color: var(--cat-accent, var(--accent));
-  color: var(--text);
-}
-
-/* Primary skills — more prominent */
-.skill-chip-primary {
-  color: var(--text);
-  background: color-mix(in srgb, var(--cat-accent, var(--accent)) 8%, var(--surface));
-  border-color: color-mix(in srgb, var(--cat-accent, var(--accent)) 30%, transparent);
-}
-
-.skill-chip-primary:hover {
-  background: color-mix(in srgb, var(--cat-accent, var(--accent)) 14%, var(--surface));
 }
 
 /* Tech logo icons — original colors */

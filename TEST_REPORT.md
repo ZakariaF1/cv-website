@@ -6,8 +6,8 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 
 | File | Group | Test | What it does |
 | ---- | ----- | ---- | ------------ |
-| `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires named tags (with at least one core) plus status live on each. |
-| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role, period, and core stack tags on each job. |
+| `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires named tags plus status live on each. |
+| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role, period, and named stack tags on each job. |
 | `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect (with Skillab cert id/link) is listed, and the four languages. |
 | `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
 | `src/data/content.test.js` | portfolio content | ships the resume PDF linked from the profile at the public path | Asserts public/ZakariaAhmadResume-2026-10.pdf exists and is a PDF for the Nav download link. |
@@ -44,5 +44,8 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/test/lcp.test.js` | LCP font and JS critical path | preconnects to Google Fonts before the stylesheet | fonts.googleapis.com and fonts.gstatic.com preconnect before the css2 stylesheet. |
 | `src/test/lcp.test.js` | LCP font and JS critical path | defers Projects, Skills, and Contact behind React.lazy | Below-fold sections are lazy() imports wrapped in Suspense so they leave the first JS download. |
 | `src/test/lcp.test.js` | LCP font and JS critical path | does not modulepreload deferred chunks on first paint | vite build.modulePreload is false so async chunks are not preloaded during first paint. |
+| `src/lib/icons.test.js` | resolveIcon | pins CDN versions (no @latest) | Devicon, simple-icons, and MDI versions are explicit semver pins. |
+| `src/lib/icons.test.js` | resolveIcon | resolves skills-style specs and stack tag names | Skills data specs and Experience/Projects tag names resolve to pinned CDN URLs with invert/fallback policy. |
+| `src/lib/icons.test.js` | resolveIcon | maps every STACK_BY_NAME entry to a resolver result | Every stack label in STACK_BY_NAME returns a non-null icon descriptor. |
 | `src/test/report.test.js` | test catalog | documents every characterizing test in the catalog | Fails if a new it(...) test is added without a catalog entry (or the reverse). |
 | `src/test/report.test.js` | test catalog | lists every catalog test in TEST_REPORT.md | Fails if TEST_REPORT.md is missing a catalog test name or its summary. |
