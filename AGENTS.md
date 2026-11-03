@@ -16,6 +16,8 @@ Do **not** change CSS, px values, breakpoints, colors, spacing, or layout unless
 
 ## Structure (right-size)
 
+**Architecture level:** `simple` (presentational SPA — no DDD layers).
+
 This is a small presentational SPA. Content lives in `src/data/`; components stay thin. Do **not** scaffold empty `domain/` / `application/` / `infrastructure/` trees.
 
 ## Doc ownership
