@@ -2,14 +2,16 @@
 
 Copy this file into any repo as `docs/engineering-charter.md`. It is **not** always-on agent context — each repo keeps a short root [`AGENTS.md`](../AGENTS.md) that links here.
 
-Deliver production-quality software from the **first commit**. Do not prototype first and refactor to DDD later. Every feature must respect domain-driven design, strict separation of concerns, and user-centered responsive design across all breakpoints (when the project has a UI).
+Deliver production-quality software from the **first commit**: tested, CI-green, with business rules kept out of I/O and UI. Grow the architecture with the project — start with the smallest structure that fits and adopt DDD layers and patterns when complexity earns them (see [Right-size the structure](#right-size-the-structure-important)). Every feature must respect separation of concerns and user-centered responsive design across all breakpoints (when the project has a UI).
 
 These rules apply regardless of language or framework. Examples below are shown in Python and C#; apply the same principles to any other stack.
+
+**When rules conflict, right-sizing wins:** apply the rules inside the smallest structure that fits.
 
 ## Contents
 
 - [Architecture (strict dependency rule)](#architecture-strict-dependency-rule)
-- [DDD rules (from commit 1)](#ddd-rules-from-commit-1)
+- [DDD rules](#ddd-rules)
 - [Backend standards (any language)](#backend-standards-any-language)
 - [Architecture and project docs](#architecture-and-project-docs)
 - [DevOps best practices](#devops-best-practices)
@@ -64,6 +66,8 @@ Use layered boundaries **in code**, not as empty folder theater.
 | Small app (1 integration, few rules) | `domain.py`, `services.py`, `adapters.py`, `cli.py`              |
 | Multi-integration app                | Full `domain/`, `application/`, `infrastructure/`, `interfaces/` |
 
+Each repo's `AGENTS.md` states its current architecture level — `simple`, `layered`, or `full DDD`. Change it deliberately when a grow-into trigger appears; agents follow the stated level instead of guessing.
+
 Per-repo agent briefs (`AGENTS.md`) stay short and project-specific; keep this charter as the shared deep standards doc.
 
 ### Stack equivalents
@@ -80,23 +84,31 @@ Per-repo agent briefs (`AGENTS.md`) stay short and project-specific; keep this c
 
 ---
 
-## DDD rules (from commit 1)
+## DDD rules
+
+### Always (from commit 1)
 
 1. **Ubiquitous language** — name things after the domain (e.g. `Application`, `SyncInbox`), not `DataManager` or `Helper`.
-2. **Bounded contexts** — separate modules per context; no god-packages.
-3. **Entities** — identity and lifecycle.
-4. **Value objects** — immutable, equality by value (e.g. `Money`, `EmailAddress`, `Status`).
-5. **Aggregates** — one root; invariants enforced in domain, not SQL/UI.
-6. **Domain services** — cross-entity logic that doesn't belong to one entity.
-7. **Application services** — one operation per method; orchestrate only.
-8. **Repositories (ports)** — persistence only; no business decisions in SQL/ORM.
-9. **Anti-corruption layers** — wrap every external API/SDK dependency.
-10. **DTOs at boundaries** — map external/DB shapes to domain at the edge.
-11. **Domain events** — prefer events for side effects when use cases grow.
+2. **Business rules in plain domain code** — no I/O, no framework types — even when the "domain" is one file.
+3. **Wrap each external API/SDK you use** in your own adapter, so it can be faked in tests.
+4. **Repositories** — persistence only; no business decisions in SQL/ORM.
+5. **DTOs at boundaries** — map external/DB shapes to domain at the edge.
+
+### When the domain earns it
+
+Adopt these when a grow-into trigger appears (see Right-size the structure), not before:
+
+6. **Bounded contexts** — separate modules per context; no god-packages.
+7. **Entities and value objects** — introduce a value object as soon as a value carries rules (e.g. `Money`, `EmailAddress`).
+8. **Aggregates** — one root; invariants enforced in domain, not SQL/UI.
+9. **Domain services** — cross-entity logic that doesn't belong to one entity.
+10. **Application services / handlers** — one operation per method; orchestrate only.
+11. **Domain events** — for side effects once use cases grow.
 
 ### Forbidden
 
 - Business logic in controllers, CLI commands, UI pages, repositories, or ORM entities
+- Business logic or direct HTTP calls in UI components — components render and delegate to services/state
 - `Utils` / `Helpers` / `Misc` dumping grounds
 - Presentation importing Infrastructure directly
 - Leaking DB rows or raw JSON into UI
@@ -136,8 +148,8 @@ Keep `README.md` in sync with the actual CLI/entry-point code — treat a stale 
 
 ### C# guidance
 
-- Projects: `*.Domain`, `*.Application`, `*.Infrastructure`, `*.Api`
-- MediatR or explicit command/query handlers
+- Projects (layered / full DDD): `*.Domain`, `*.Application`, `*.Infrastructure`, `*.Api`
+- MediatR or explicit command/query handlers (full DDD); plain services are fine below that
 - EF Core only in Infrastructure; map entities ↔ domain explicitly
 - Thin controllers; no EF entities in API responses
 
@@ -194,7 +206,7 @@ Tests are written **before** the code that satisfies them, not after. No new pro
 
 Rules:
 
-- Tests are exhaustive — write a test for every scenario you can reasonably think of, including edge cases and failure paths, not just the happy path.
+- Tests are exhaustive **at the unit level** — write a test for every scenario you can reasonably think of, including edge cases and failure paths, not just the happy path. Integration and E2E tests stay few and cover wiring and key journeys (see the test pyramid below).
 - No cheating: a build/PR is only "done" when every test passes. Don't skip, comment out, or weaken a failing test to make it pass.
 - Map test types to the architecture layers already defined above:
   - **Domain** — pure unit tests, no mocks needed (no I/O to fake).
@@ -203,6 +215,44 @@ Rules:
 - Regressions should almost always come with a new test reproducing the bug, added before the fix.
 
 Why: higher code and design quality (TDD naturally pushes toward loose coupling and small units, since tightly coupled code is hard to test in isolation), earlier and cheaper defect detection, and fewer regressions over time.
+
+#### Test pyramid (speed vs confidence)
+
+| Layer | Default | What it proves | When to run |
+| ----- | ------- | -------------- | ----------- |
+| **Unit** (many) | Domain + application with fakes; frontend components | Rules and orchestration | Every local run and every PR |
+| **Integration** (few) | Real adapter: DB, HTTP host, message bus | Wiring, schema, provider behavior | When that adapter changes; separate CI job |
+| **E2E** (rare) | Real UI + deployed (or near-prod) stack | User journey | Pre-release / nightly — not every unit-test run |
+
+Frontend (e.g. Angular): component and service tests (Jasmine/Karma or Jest) are the unit layer; browser journeys (Playwright or Cypress) are E2E.
+
+Do not run the whole solution's tests when you only changed domain logic — run the affected unit tests. Keep unit test projects separate from integration test projects so they can be filtered.
+
+In-memory fakes (e.g. EF Core InMemory) are **fast wiring tests**, not proof of production SQL. Containerized real engines (e.g. Testcontainers) cover dialect, constraints, transactions, and migrations. Prefer applying real migrations (e.g. `Migrate()`) over creating the schema from the model when schema fidelity matters.
+
+#### Doubles and time
+
+- **Fake** a port when you own the contract. **Mock** to verify a collaboration. Setting up a mock is not verifying it.
+- Prefer **loose** mocks unless you need **strict** ones to catch unexpected calls. Don't over-mock: never mock the thing under test, types you don't own, or EF `DbSet` when an in-memory or real-database test would do.
+- **The clock is a port.** Inject it (`TimeProvider` in .NET, a clock function or protocol elsewhere). Tests use a fake clock. Never read the system clock (e.g. `DateTime.Now`) in domain rules or in values that must be deterministic, such as "date must be in the future" validation or scheduling dates.
+- Arrange–Act–Assert. One behavior per test. Don't assert implementation details a user of the type wouldn't care about.
+
+#### HTTP / UI host tests
+
+Controller unit tests are not the same as hosting the app. To test the real pipeline (routing, model binding, filters, DI), use the framework's test host (e.g. `WebApplicationFactory` in ASP.NET Core).
+
+- Register test replacements for infrastructure **after** the app's own registrations (e.g. `ConfigureTestServices`) so the production provider does not win.
+- Seed the data each use case needs.
+- When asserting redirect status codes, disable automatic redirect following in the test client.
+- Handle antiforgery tokens only on actions that actually require them.
+
+Fixture lifetimes: expensive shared resources (e.g. starting a container) go in a once-per-fixture hook — NUnit `[OneTimeSetUp]`, xUnit `IClassFixture` / `IAsyncLifetime`. Cheap per-test setup (client, scope) goes in a per-test hook — NUnit `[SetUp]`, xUnit the test class constructor. Tear down both.
+
+#### Coverage
+
+Coverage is produced by the **test run**, not by the static-analysis dashboard. CI must: run tests with a coverage collector → write a report → point the analysis tool at that report (convert the format if needed). Analysis tools **display and gate**; they do not execute tests.
+
+Gate **new/changed lines** harder than overall %. Don't test plain data classes (DTOs, property-only records) just for coverage; always test classes with behavior. Exclude generated code and migrations. Coverage is a signal, not proof of quality.
 
 ### Continuous Integration
 
@@ -224,8 +274,9 @@ Rules:
 - Pipeline runs automatically on every push/PR.
 - Build must stay green. If it breaks, fixing it is priority 0 — don't build on top of a red build.
 - Keep the pipeline fast (rule of thumb: under 5 minutes). Slow pipelines get skipped or ignored.
+- Default PR job: unit tests + coverage + static analysis. Integration (Docker/Testcontainers) and E2E tests are **separate jobs** (or later environments), not bolted onto every unit run.
+- Static code analysis (e.g. SonarQube) is a required pipeline stage, not optional tooling someone runs manually sometimes. It reads the coverage report from the test job (see Coverage above); issues and duplications are computed from source automatically.
 - No cheating: don't merge with skipped, commented-out, or weakened failing tests just to force a green build.
-- Static code analysis is a required pipeline stage, not optional tooling someone runs manually sometimes.
 - Trunk/main stays production-ready at all times — code merged there should always be deployable, whether or not it's actually deployed yet.
 - Tag releases (git tags / semantic versioning) so any deployed version traces back to an exact commit.
 
@@ -280,15 +331,15 @@ Design for **jobs to be done** — identify the 2-5 core tasks the user actually
 - No accidental horizontal scroll on mobile
 - Respect `prefers-reduced-motion` and `prefers-color-scheme`
 
-Streamlit (and similarly limited frameworks) is weak for responsive UX; prefer a real frontend (React, Blazor, Razor + modern CSS) when mobile/tablet experience matters.
+Streamlit (and similarly limited frameworks) is weak for responsive UX; prefer a real frontend (React, Angular, Blazor, Razor + modern CSS) when mobile/tablet experience matters.
 
 ---
 
 ## Task workflow
 
-1. Assess scope — use the smallest structure that fits; don't scaffold unused layers
+1. Assess scope — use the smallest structure that fits; don't scaffold unused layers. Follow the architecture level in `AGENTS.md`
 2. Identify bounded context and ubiquitous language
-3. Model domain (entities, value objects, rules)
+3. Model domain rules (entities/value objects when the architecture level calls for them)
 4. Define ports and application use case only when a boundary is needed
 5. Implement infrastructure adapter
 6. Wire in composition root
@@ -312,7 +363,8 @@ This charter applies to **greenfield and existing repos alike**. Applying it to 
 
 - [ ] CI pipeline exists and is green (build + lint + tests)
 - [ ] Domain rules tested
-- [ ] Use case behind a port; adapter if needed
+- [ ] Test type matches the layer (unit vs integration); slow host/container tests not required on every local/PR unit run
+- [ ] Use case behind a port where a boundary exists (external I/O); adapter if needed
 - [ ] Presentation layer is thin
 - [ ] UI works at all four breakpoints (if UI exists)
 - [ ] Empty/loading/error states present
