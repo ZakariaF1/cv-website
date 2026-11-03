@@ -1,57 +1,18 @@
 import './Skills.css'
 import { certifications, languages, skillCategories } from '../data/skills'
+import { resolveIcon } from '../lib/icons'
 
-// Icons that are dark/black and need inversion on dark backgrounds
-const darkIcons = new Set(['github', 'vercel', 'amazonwebservices'])
+function SkillIcon({ icon, simple, mdi }) {
+  const resolved = resolveIcon({ icon, simple, mdi })
+  if (!resolved) return null
 
-function SkillIcon({ icon, simple, inline, mdi }) {
-  if (!icon) return null
-
-  if (inline) {
-    // Anthropic / Claude logo
-    return (
-      <svg className="skill-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ color: '#d4956a' }}>
-        <path d="M17.304 3h-3.318l-5.99 18h3.318l5.99-18zM6.696 3H3.378L9.37 21h3.317L6.696 3z" />
-      </svg>
-    )
-  }
-
-  if (mdi) {
-    return (
-      <img
-        src={`https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${icon}.svg`}
-        alt=""
-        className="skill-icon skill-icon-invert"
-        aria-hidden="true"
-      />
-    )
-  }
-
-  if (simple) {
-    return (
-      <img
-        src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${icon}.svg`}
-        alt=""
-        className="skill-icon skill-icon-invert"
-        aria-hidden="true"
-      />
-    )
-  }
-
-  const needsInvert = darkIcons.has(icon)
   return (
     <img
-      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-original.svg`}
+      src={resolved.src}
       alt=""
-      className={`skill-icon${needsInvert ? ' skill-icon-invert' : ''}`}
+      className={`skill-icon${resolved.invert ? ' skill-icon-invert' : ''}`}
       aria-hidden="true"
-      onError={e => {
-        if (e.target.src.includes('-original')) {
-          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon}/${icon}-plain.svg`
-        } else {
-          e.target.style.display = 'none'
-        }
-      }}
+      onError={resolved.onError}
     />
   )
 }
@@ -72,7 +33,7 @@ export default function Skills() {
             <div className="skills-chips">
               {cat.skills.map(s => (
                 <span key={s.name} className="skill-chip">
-                  <SkillIcon icon={s.icon} simple={s.simple} inline={s.inline} mdi={s.mdi} />
+                  <SkillIcon icon={s.icon} simple={s.simple} mdi={s.mdi} />
                   {s.name}
                 </span>
               ))}

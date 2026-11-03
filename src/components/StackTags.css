@@ -27,12 +27,6 @@
   border-radius: 6px;
 }
 
-.stack-tag.core {
-  border-color: var(--accent-border);
-  background: var(--accent-bg);
-  color: var(--accent);
-}
-
 .stack-tag-icon {
   width: 12px;
   height: 12px;
