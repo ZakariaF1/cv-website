@@ -17,8 +17,8 @@ export const profile = {
   tagline:
     '.NET · Angular · Azure — building scalable web applications across frontend, backend, and data layers for 7+ years.',
   bios: [
-    'Senior Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows.',
-    'Currently expanding into applied AI — LLM fine-tuning, RAG, and multi-agent systems. I care about maintainability, performance, and clean cross-team collaboration.',
+    'Senior Full Stack Developer (.NET / Angular) with 7+ years shipping web apps across frontend, backend, and data. Strong in Azure and cloud-native systems, with AWS experience. I focus on maintainable architecture, performance, and clear cross-team delivery.',
+    'Building into applied AI with RAG, agent workflows, and Azure AI Foundry, and preparing for Microsoft AI-103 (Azure AI Apps and Agents Developer Associate).',
   ],
   contactIntro:
     'Open to full-time roles, contracts, and technical consulting. Drop me a line — I reply to everything.',
