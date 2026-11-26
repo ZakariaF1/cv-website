@@ -77,7 +77,7 @@ export const certifications = [
   },
   {
     title: 'Microsoft Azure Fundamentals AZ-900',
-    org: 'Pearson VUE',
+    org: 'Microsoft',
     year: '2022',
     logo: '/azure-fundamentals-logo.avif',
     desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
