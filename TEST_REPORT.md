@@ -7,11 +7,11 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | File | Group | Test | What it does |
 | ---- | ----- | ---- | ------------ |
 | `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires named tags plus status live on each. |
-| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role, period, and named stack tags on each job. |
+| `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order, Senior Morningstar role, and requires a role, period, and named stack tags on each job. |
 | `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect (with Skillab cert id/link) and AI-901 are listed, and the four languages. |
-| `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
+| `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks Senior title, Azure tagline, email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
 | `src/data/content.test.js` | portfolio content | ships the resume PDF linked from the profile at the public path | Asserts public/ZakariaAhmadResume-2026-10.pdf exists and is a PDF for the Nav download link. |
-| `src/data/content.test.js` | portfolio content | keeps SEO markup aligned with profile site and GitHub URLs | Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email. |
+| `src/data/content.test.js` | portfolio content | keeps SEO markup aligned with profile site and GitHub URLs | Asserts index.html canonical/OG/JSON-LD URLs, jobTitle, and identity match profile.siteUrl, githubUrl, name, email, and title. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns an empty list when the project has no video or screenshots | Gallery helper returns [] when media is missing or screenshots is empty. |
 | `src/components/projectMedia.test.js` | buildMediaItems | puts the demo video first, then screenshots in order | Video is item 0; screenshots follow in the given order. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |

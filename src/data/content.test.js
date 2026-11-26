@@ -28,6 +28,7 @@ describe('portfolio content', () => {
       'Mindgeek',
       'Simpology Australia',
     ])
+    expect(experience[0].role).toBe('Senior Backend-Focused Full Stack Developer (Contractor)')
     for (const job of experience) {
       expect(job.role).toBeTruthy()
       expect(job.period).toBeTruthy()
@@ -63,6 +64,9 @@ describe('portfolio content', () => {
   })
 
   it('keeps identity, contact, and nav links in one profile module', () => {
+    expect(profile.title).toBe('Senior Full Stack Developer')
+    expect(profile.tagline).toMatch(/\.NET · Angular · Azure/)
+    expect(profile.bios[0]).toMatch(/^Senior Full Stack/)
     expect(profile.email).toMatch(/@/)
     expect(profile.linkedinUrl).toMatch(/^https:\/\//)
     expect(profile.phoneHref).toMatch(/^tel:/)
@@ -91,5 +95,7 @@ describe('portfolio content', () => {
     expect(html).toContain(profile.githubUrl)
     expect(html).toContain(profile.fullName)
     expect(html).toContain(profile.email)
+    expect(html).toContain(profile.title)
+    expect(html).toContain(`"jobTitle": "${profile.title}"`)
   })
 })

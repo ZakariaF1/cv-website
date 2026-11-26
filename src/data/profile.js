@@ -2,7 +2,7 @@ export const profile = {
   firstName: 'Zakaria',
   fullName: 'Zakaria Ahmad',
   authorName: 'Ahmad Zakaria',
-  title: 'Full Stack Developer',
+  title: 'Senior Full Stack Developer',
   photo: '/personal-photo.avif',
   resume: '/ZakariaAhmadResume-2026-10.pdf',
   location: 'Bucharest, Romania',
@@ -15,9 +15,9 @@ export const profile = {
   availabilityDetail: 'Open to opportunities',
   yearsLabel: '7+',
   tagline:
-    '.NET · Angular · Cloud Systems — building scalable web applications across frontend, backend, and data layers for 7+ years.',
+    '.NET · Angular · Azure — building scalable web applications across frontend, backend, and data layers for 7+ years.',
   bios: [
-    'Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows.',
+    'Senior Full Stack Software Developer with 7+ years of experience building scalable web applications across frontend, backend, and data layers. Experienced in Angular, .NET (C#), and SQL/NoSQL systems, with exposure to Azure, AWS, and AI-assisted developer workflows.',
     'Currently expanding into applied AI — LLM fine-tuning, RAG, and multi-agent systems. I care about maintainability, performance, and clean cross-team collaboration.',
   ],
   contactIntro:
