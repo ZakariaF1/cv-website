@@ -22,6 +22,14 @@ describe('Skills', () => {
     for (const cert of certifications) {
       expect(screen.getByText(cert.title)).toBeInTheDocument()
     }
+
+    const credentialLinks = screen.getAllByRole('link', { name: 'View credential' })
+    const linkedCerts = certifications.filter((c) => c.link)
+    expect(credentialLinks).toHaveLength(linkedCerts.length)
+    for (const cert of linkedCerts) {
+      expect(credentialLinks.some((a) => a.getAttribute('href') === cert.link)).toBe(true)
+    }
+
     for (const language of languages) {
       expect(screen.getByText(language.name)).toBeInTheDocument()
     }

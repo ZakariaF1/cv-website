@@ -15,7 +15,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists skill categories, certifications, and languages',
-    does: 'Checks stack category names, that Software Architect (with Skillab cert id/link) is listed, and the four languages.',
+    does: 'Checks stack category names, that Software Architect (with Skillab cert id/link) and AI-900 are listed, and the four languages.',
   },
   {
     file: 'src/data/content.test.js',
@@ -117,7 +117,7 @@ export const testCatalog = [
     file: 'src/components/Skills.test.jsx',
     group: 'Skills',
     name: 'renders stack categories, certifications, and languages',
-    does: 'Foundation heading, category names, shared sample skills, every certification title, and every language.',
+    does: 'Foundation heading, category names, shared sample skills, every certification title, View credential links, and every language.',
   },
   {
     file: 'src/components/Contact.test.jsx',

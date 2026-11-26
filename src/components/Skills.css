@@ -111,16 +111,12 @@
   border-bottom: none;
 }
 
-.cert-logo-link { flex-shrink: 0; display: flex; }
-.cert-logo-link:hover .cert-logo { opacity: 0.8; }
-
 .cert-logo {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
   object-fit: contain;
   border-radius: 6px;
-  transition: opacity 0.2s;
 }
 
 .cert-text {
@@ -149,6 +145,19 @@
   color: var(--muted);
   line-height: 1.5;
   margin-top: 4px;
+}
+
+.cert-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cert-link:hover {
+  text-decoration: underline;
 }
 
 /* ── Languages ── */

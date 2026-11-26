@@ -59,6 +59,14 @@ export const certifications = [
     link: 'https://lms.skillab.ro/certificate/ef943bc322a48a2a41e29a6911b532da',
   },
   {
+    title: 'Microsoft Azure AI Fundamentals AI-900',
+    org: 'Microsoft',
+    year: '2026',
+    logo: '/azure-fundamentals-logo.avif',
+    desc: 'AI workloads on Azure, machine learning, computer vision, NLP, generative AI, and responsible AI principles.',
+    link: 'https://learn.microsoft.com/en-us/users/syrianzack-1633/credentials/certification/azure-ai-fundamentals?tab=credentials-tab',
+  },
+  {
     title: 'UX/UI Design',
     org: 'IT School',
     year: '2025',
