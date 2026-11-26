@@ -64,7 +64,7 @@ export const certifications = [
     year: '2026',
     logo: '/azure-fundamentals-logo.avif',
     desc: 'AI workloads on Azure, machine learning, computer vision, NLP, generative AI, and responsible AI principles.',
-    link: 'https://learn.microsoft.com/en-us/users/syrianzack-1633/credentials/certification/azure-ai-fundamentals?tab=credentials-tab',
+    link: 'https://learn.microsoft.com/api/credentials/share/en-us/SyrianZack-1633/2C7977378CFBD201?sharingId=E9292053D203678D',
   },
   {
     title: 'UX/UI Design',
