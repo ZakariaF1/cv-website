@@ -59,11 +59,11 @@ export const certifications = [
     link: 'https://lms.skillab.ro/certificate/ef943bc322a48a2a41e29a6911b532da',
   },
   {
-    title: 'Microsoft Azure AI Fundamentals AI-900',
+    title: 'Microsoft Azure AI Fundamentals AI-901',
     org: 'Microsoft',
     year: '2026',
     logo: '/azure-fundamentals-logo.avif',
-    desc: 'AI workloads on Azure, machine learning, computer vision, NLP, generative AI, and responsible AI principles.',
+    desc: 'AI concepts and responsible AI, plus implementing generative apps and agents with Microsoft Foundry (text, speech, vision, information extraction).',
     link: 'https://learn.microsoft.com/api/credentials/share/en-us/SyrianZack-1633/2C7977378CFBD201?sharingId=E9292053D203678D',
   },
   {

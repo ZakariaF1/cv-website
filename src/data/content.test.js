@@ -44,7 +44,7 @@ describe('portfolio content', () => {
       'Tooling & AI',
     ])
     expect(certifications.map((c) => c.title)).toContain('Software Architect')
-    expect(certifications.map((c) => c.title)).toContain('Microsoft Azure AI Fundamentals AI-900')
+    expect(certifications.map((c) => c.title)).toContain('Microsoft Azure AI Fundamentals AI-901')
     expect(certifications.find((c) => c.org === 'Skillab').desc).toContain('Adrian Popescu')
     expect(certifications.find((c) => c.org === 'Skillab').desc).toContain('ATAM')
     expect(certifications.find((c) => c.org === 'Skillab').id).toBe('ef943bc322a48a2a41e29a6911b532da')
@@ -52,7 +52,7 @@ describe('portfolio content', () => {
       'https://lms.skillab.ro/certificate/ef943bc322a48a2a41e29a6911b532da',
     )
     expect(
-      certifications.find((c) => c.title === 'Microsoft Azure AI Fundamentals AI-900').link,
+      certifications.find((c) => c.title === 'Microsoft Azure AI Fundamentals AI-901').link,
     ).toMatch(/learn\.microsoft\.com\/api\/credentials\/share/)
     expect(languages.map((l) => l.name)).toEqual([
       'English',
