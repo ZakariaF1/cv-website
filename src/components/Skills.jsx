@@ -46,15 +46,16 @@ export default function Skills() {
           <div className="cert-list">
             {certifications.map((c, i) => (
               <div className="cert-item" key={i}>
-                {c.logo && (
-                  c.link
-                    ? <a href={c.link} target="_blank" rel="noopener" className="cert-logo-link"><img src={c.logo} alt={c.org} className="cert-logo" /></a>
-                    : <img src={c.logo} alt={c.org} className="cert-logo" />
-                )}
+                {c.logo && <img src={c.logo} alt="" className="cert-logo" aria-hidden="true" />}
                 <div className="cert-text">
                   <span className="cert-title">{c.title}</span>
                   <span className="cert-meta">{c.org} · {c.year}{c.id && <> · <span className="cert-id">#{c.id}</span></>}</span>
                   {c.desc && <span className="cert-desc">{c.desc}</span>}
+                  {c.link && (
+                    <a href={c.link} target="_blank" rel="noopener noreferrer" className="cert-link">
+                      View credential
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
