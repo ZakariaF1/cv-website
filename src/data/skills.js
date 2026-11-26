@@ -38,12 +38,12 @@ export const skillCategories = [
     name: 'Tooling & AI',
     accent: '#7b8fd4',
     skills: [
+      { name: 'Azure AI / Foundry', icon: 'azure' },
       { name: 'Git / GitHub', icon: 'git' },
       { name: 'GitLab', icon: 'gitlab' },
       { name: 'GitHub Copilot', icon: 'github' },
       { name: 'Claude Code', icon: 'claude', simple: true },
       { name: 'Cursor', icon: 'cursor', simple: true },
-      { name: 'Azure AI / Foundry', icon: 'azure' },
       { name: 'JWT & Auth', icon: 'jsonwebtokens', simple: true },
     ],
   },
