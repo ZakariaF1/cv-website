@@ -39,11 +39,11 @@ describe('LCP font and JS critical path', () => {
     expect(preconnectEnd).toBeLessThan(stylesheet)
   })
 
-  it('defers Projects, Skills, and Contact behind React.lazy', () => {
-    expect(app).toMatch(/lazy\(\s*\(\)\s*=>\s*import\(['"].*\/Projects['"]\)/)
-    expect(app).toMatch(/lazy\(\s*\(\)\s*=>\s*import\(['"].*\/Skills['"]\)/)
-    expect(app).toMatch(/lazy\(\s*\(\)\s*=>\s*import\(['"].*\/Contact['"]\)/)
-    expect(app).toMatch(/<Suspense[\s\S]*<Projects/)
+  it('eagerly mounts Projects, Skills, and Contact for isomorphic prerender', () => {
+    expect(app).toMatch(/import Projects from ['"].*\/Projects['"]/)
+    expect(app).toMatch(/import Skills from ['"].*\/Skills['"]/)
+    expect(app).toMatch(/import Contact from ['"].*\/Contact['"]/)
+    expect(app).not.toMatch(/\blazy\s*\(/)
   })
 
   it('does not modulepreload deferred chunks on first paint', () => {

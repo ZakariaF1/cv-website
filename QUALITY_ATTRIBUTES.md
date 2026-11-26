@@ -108,7 +108,7 @@ Sources: Cloudflare **Overview** (24h), **HTTP Traffic** (30d), **Web Analytics*
 | **Response** | Paint hero; serve LCP image; prefer edge HIT for media; keep below-fold JS off the first download |
 | **Measure (real)** | **Field RUM (before this slice):** LCP P50 **6.1 s**, P75 **6.2 s**, P90/P99 **12.8 s** (fail). **Lab (earlier):** LCP **3.1 s**, FCP **2.7 s**, CLS **0**, score **90**. **Edge:** photo **HIT** + **30-day** `Cache-Control`. **Target:** field LCP P75 ≤ **2.5 s**. |
 
-**Tactics in use:** CDN copies of media, AVIF, long cache headers, **prioritize events** (`fetchPriority=high` on hero), **reduce overhead** (preload LCP photo in `index.html`), **remove render-blocking font `@import`** (HTML `preconnect` + stylesheet, weights 400–700 only), **defer** Projects/Skills/Contact via `React.lazy` + `modulePreload: false`.  
+**Tactics in use:** CDN copies of media, AVIF, long cache headers, **prioritize events** (`fetchPriority=high` on hero), **reduce overhead** (preload LCP photo in `index.html`), **remove render-blocking font `@import`** (HTML `preconnect` + stylesheet, weights 400–700 only), **build-time prerender** of `/` for crawler findability (eager section imports + `modulePreload: false`).  
 **Still open:** re-measure field LCP after deploy; self-host fonts if Google Fonts RTT still dominates.
 
 ---

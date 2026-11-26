@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/vite-build.mjs",
     "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run"
@@ -29,6 +29,7 @@
     "globals": "^17.6.0",
     "jsdom": "^29.1.1",
     "vite": "^8.0.12",
+    "vite-prerender-plugin": "^0.5.14",
     "vitest": "^4.1.10"
   }
 }

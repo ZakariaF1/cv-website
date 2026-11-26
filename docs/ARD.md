@@ -2,7 +2,7 @@
 
 **System:** zakariaahmad.site (`cv-website`)  
 **Status:** current production  
-**Last updated:** 2026-09-23 (threat model + fitness checks in §7)
+**Last updated:** 2026-11-26 (CSR + build-time prerender for findability)
 
 Standards: [`engineering-charter.md`](engineering-charter.md). Ops: [`../RUNBOOK.md`](../RUNBOOK.md). Commands: [`../README.md`](../README.md).
 
@@ -28,7 +28,7 @@ Standards: [`engineering-charter.md`](engineering-charter.md). Ops: [`../RUNBOOK
 
 ## 2. Proposed Approach
 
-Single deployable static frontend. Content is data modules under `src/data/`; UI components stay presentational. Edge caching for hashed assets and public media via origin `Cache-Control` (`vercel.json`). Observability: Cloudflare Web Analytics (Automatic RUM) + UptimeRobot HTTPS monitor.
+Single deployable static frontend. Content is data modules under `src/data/`; UI components stay presentational. Delivery is **CSR with build-time prerender of `/`** (`vite-prerender-plugin` + `src/prerender.jsx`): production `index.html` embeds CV text in `#root` for non-JS crawlers, then the client hydrates. Not runtime SSR. Edge caching for hashed assets and public media via origin `Cache-Control` (`vercel.json`). Observability: Cloudflare Web Analytics (Automatic RUM) + UptimeRobot HTTPS monitor.
 
 Right-size: no empty DDD layer folders; grow layers only if a real backend appears.
 
@@ -39,7 +39,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 | Component | Role |
 | --------- | ---- |
 | Browser | Renders the SPA; loads HTML/JS/CSS/media |
-| Vite build | Produces `dist/` static assets |
+| Vite build | Produces `dist/` static assets and prerenders `/` into `index.html` |
 | Vercel | Origin host; serves `dist/`; applies `vercel.json` headers |
 | Cloudflare | DNS, TLS termination (proxy), CDN cache for eligible assets, Automatic Web Analytics |
 | Namecheap | Domain registrar only (nameservers → Cloudflare) |
@@ -68,7 +68,7 @@ Right-size: no empty DDD layer folders; grow layers only if a real backend appea
 | Dependency | Use |
 | ---------- | --- |
 | Node 20.19+ / 22.12+ | Local/CI tooling (Vite 8) |
-| React + Vite | UI framework / bundler |
+| React + Vite | UI framework / bundler + build-time prerender |
 | Vercel | Hosting |
 | Cloudflare | DNS, CDN, RUM |
 | Namecheap | Registrar |

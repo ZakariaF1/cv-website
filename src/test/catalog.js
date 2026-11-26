@@ -63,7 +63,7 @@ export const testCatalog = [
     file: 'src/App.test.jsx',
     group: 'App',
     name: 'assembles the main landmark sections',
-    does: 'Renders About immediately; waits for lazy Projects, Skills, Contact, plus Back to top.',
+    does: 'Renders About, Projects, Skills, Contact, plus Back to top.',
   },
   {
     file: 'src/components/Hero.test.jsx',
@@ -218,14 +218,32 @@ export const testCatalog = [
   {
     file: 'src/test/lcp.test.js',
     group: 'LCP font and JS critical path',
-    name: 'defers Projects, Skills, and Contact behind React.lazy',
-    does: 'Below-fold sections are lazy() imports wrapped in Suspense so they leave the first JS download.',
+    name: 'eagerly mounts Projects, Skills, and Contact for isomorphic prerender',
+    does: 'Projects/Skills/Contact are static imports so prerendered HTML matches the client tree.',
   },
   {
     file: 'src/test/lcp.test.js',
     group: 'LCP font and JS critical path',
     name: 'does not modulepreload deferred chunks on first paint',
     does: 'vite build.modulePreload is false so async chunks are not preloaded during first paint.',
+  },
+  {
+    file: 'src/test/prerender.test.js',
+    group: 'prerender findability',
+    name: 'wires vite-prerender-plugin to inject into #root',
+    does: 'vite.config registers vitePrerenderPlugin with #root and src/prerender.jsx.',
+  },
+  {
+    file: 'src/test/prerender.test.js',
+    group: 'prerender findability',
+    name: 'prerenders CV title, employers, and project titles into HTML',
+    does: 'prerender() HTML includes profile title, bios snippet, Morningstar, Job Tracker, and Azure AI / Foundry.',
+  },
+  {
+    file: 'src/test/prerender.test.js',
+    group: 'prerender findability',
+    name: 'keeps JSON-LD description aligned with About positioning',
+    does: 'index.html JSON-LD description mentions applied AI / Foundry and knowsAbout includes RAG.',
   },
   {
     file: 'src/lib/icons.test.js',

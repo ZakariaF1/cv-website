@@ -16,7 +16,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/components/projectMedia.test.js` | buildMediaItems | puts the demo video first, then screenshots in order | Video is item 0; screenshots follow in the given order. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only screenshots when there is no video | Screenshot-only projects become image items with no video entry. |
 | `src/components/projectMedia.test.js` | buildMediaItems | returns only the video when screenshots are missing | Video-only projects become a single video item. |
-| `src/App.test.jsx` | App | assembles the main landmark sections | Renders About immediately; waits for lazy Projects, Skills, Contact, plus Back to top. |
+| `src/App.test.jsx` | App | assembles the main landmark sections | Renders About, Projects, Skills, Contact, plus Back to top. |
 | `src/components/Hero.test.jsx` | Hero | renders identity, availability, and primary actions | Shows name, available-for-work badge, photo, View My Work, and the years/companies/projects stats. |
 | `src/components/Hero.test.jsx` | Hero | prioritizes the hero photo as the LCP image | Sets fetchPriority=high on the hero photo so the browser loads the LCP image first. |
 | `src/components/Nav.test.jsx` | Nav | renders section links and a resume download | Logo, About/Projects/Skills/Contact, and resume PDF download all point at the profile data. |
@@ -42,8 +42,11 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | `src/test/lcp.test.js` | LCP image preload | preloads the hero photo before the React module runs | index.html preloads /personal-photo.avif with fetchpriority=high before the app bundle. |
 | `src/test/lcp.test.js` | LCP font and JS critical path | loads Inter and Space Mono from HTML without a CSS @import | Fonts load via an HTML stylesheet link with only used weights; CSS must not @import Google Fonts. |
 | `src/test/lcp.test.js` | LCP font and JS critical path | preconnects to Google Fonts before the stylesheet | fonts.googleapis.com and fonts.gstatic.com preconnect before the css2 stylesheet. |
-| `src/test/lcp.test.js` | LCP font and JS critical path | defers Projects, Skills, and Contact behind React.lazy | Below-fold sections are lazy() imports wrapped in Suspense so they leave the first JS download. |
+| `src/test/lcp.test.js` | LCP font and JS critical path | eagerly mounts Projects, Skills, and Contact for isomorphic prerender | Projects/Skills/Contact are static imports so prerendered HTML matches the client tree. |
 | `src/test/lcp.test.js` | LCP font and JS critical path | does not modulepreload deferred chunks on first paint | vite build.modulePreload is false so async chunks are not preloaded during first paint. |
+| `src/test/prerender.test.js` | prerender findability | wires vite-prerender-plugin to inject into #root | vite.config registers vitePrerenderPlugin with #root and src/prerender.jsx. |
+| `src/test/prerender.test.js` | prerender findability | prerenders CV title, employers, and project titles into HTML | prerender() HTML includes profile title, bios snippet, Morningstar, Job Tracker, and Azure AI / Foundry. |
+| `src/test/prerender.test.js` | prerender findability | keeps JSON-LD description aligned with About positioning | index.html JSON-LD description mentions applied AI / Foundry and knowsAbout includes RAG. |
 | `src/lib/icons.test.js` | resolveIcon | pins CDN versions (no @latest) | Devicon, simple-icons, and MDI versions are explicit semver pins. |
 | `src/lib/icons.test.js` | resolveIcon | resolves skills-style specs and stack tag names | Skills data specs and Experience/Projects tag names resolve to pinned CDN URLs with invert/fallback policy. |
 | `src/lib/icons.test.js` | resolveIcon | maps every STACK_BY_NAME entry to a resolver result | Every stack label in STACK_BY_NAME returns a non-null icon descriptor. |
