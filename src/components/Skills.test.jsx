@@ -17,6 +17,7 @@ describe('Skills', () => {
     expect(screen.getByText('LINQ')).toBeInTheDocument()
     expect(screen.getByText('Claude Code')).toBeInTheDocument()
     expect(screen.getByText('Cursor')).toBeInTheDocument()
+    expect(screen.getByText('Azure AI / Foundry')).toBeInTheDocument()
     expect(screen.getByText('Docker')).toBeInTheDocument()
 
     for (const cert of certifications) {

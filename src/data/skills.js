@@ -43,6 +43,7 @@ export const skillCategories = [
       { name: 'GitHub Copilot', icon: 'github' },
       { name: 'Claude Code', icon: 'claude', simple: true },
       { name: 'Cursor', icon: 'cursor', simple: true },
+      { name: 'Azure AI / Foundry', icon: 'azure' },
       { name: 'JWT & Auth', icon: 'jsonwebtokens', simple: true },
     ],
   },
