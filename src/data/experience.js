@@ -1,6 +1,6 @@
 export const experience = [
   {
-    role: 'Backend-Focused Full Stack Developer (Contractor)',
+    role: 'Senior Backend-Focused Full Stack Developer (Contractor)',
     company: 'Morningstar Sustainalytics',
     period: 'Nov 2025 — Jun 2026',
     logo: '/morningstar_logo.avif',

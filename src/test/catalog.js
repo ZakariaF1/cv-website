@@ -9,7 +9,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'lists every experience role with a company and period',
-    does: 'Locks the four companies in order and requires a role, period, and named stack tags on each job.',
+    does: 'Locks the four companies in order, Senior Morningstar role, and requires a role, period, and named stack tags on each job.',
   },
   {
     file: 'src/data/content.test.js',
@@ -21,7 +21,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'keeps identity, contact, and nav links in one profile module',
-    does: 'Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data.',
+    does: 'Checks Senior title, Azure tagline, email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data.',
   },
   {
     file: 'src/data/content.test.js',
@@ -33,7 +33,7 @@ export const testCatalog = [
     file: 'src/data/content.test.js',
     group: 'portfolio content',
     name: 'keeps SEO markup aligned with profile site and GitHub URLs',
-    does: 'Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email.',
+    does: 'Asserts index.html canonical/OG/JSON-LD URLs, jobTitle, and identity match profile.siteUrl, githubUrl, name, email, and title.',
   },
   {
     file: 'src/components/projectMedia.test.js',
