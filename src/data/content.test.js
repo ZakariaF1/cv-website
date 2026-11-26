@@ -53,7 +53,7 @@ describe('portfolio content', () => {
     )
     expect(
       certifications.find((c) => c.title === 'Microsoft Azure AI Fundamentals AI-900').link,
-    ).toMatch(/learn\.microsoft\.com.*azure-ai-fundamentals/)
+    ).toMatch(/learn\.microsoft\.com\/api\/credentials\/share/)
     expect(languages.map((l) => l.name)).toEqual([
       'English',
       'Romanian',
