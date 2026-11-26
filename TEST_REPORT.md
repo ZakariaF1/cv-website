@@ -8,7 +8,7 @@ If a test fails, use the **name** column to find it in the Vitest log, then read
 | ---- | ----- | ---- | ------------ |
 | `src/data/content.test.js` | portfolio content | lists every project with a title, tags, and status | Locks the five project titles in order and requires named tags plus status live on each. |
 | `src/data/content.test.js` | portfolio content | lists every experience role with a company and period | Locks the four companies in order and requires a role, period, and named stack tags on each job. |
-| `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect (with Skillab cert id/link) and AI-900 are listed, and the four languages. |
+| `src/data/content.test.js` | portfolio content | lists skill categories, certifications, and languages | Checks stack category names, that Software Architect (with Skillab cert id/link) and AI-901 are listed, and the four languages. |
 | `src/data/content.test.js` | portfolio content | keeps identity, contact, and nav links in one profile module | Checks email, LinkedIn URL, phone tel: link, site/GitHub URLs, and nav hashes stay in profile data. |
 | `src/data/content.test.js` | portfolio content | ships the resume PDF linked from the profile at the public path | Asserts public/ZakariaAhmadResume-2026-10.pdf exists and is a PDF for the Nav download link. |
 | `src/data/content.test.js` | portfolio content | keeps SEO markup aligned with profile site and GitHub URLs | Asserts index.html canonical/OG/JSON-LD URLs and identity match profile.siteUrl, githubUrl, name, and email. |
