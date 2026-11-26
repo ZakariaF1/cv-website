@@ -82,7 +82,7 @@ export const certifications = [
     logo: '/azure-fundamentals-logo.avif',
     desc: 'Cloud concepts, Azure services, security, compliance, and pricing fundamentals.',
     id: '1210-9259',
-    link: 'https://www.credly.com/badges/e94c150f-e73f-4b52-9842-d4f31a09c81e?source=linked_in_profile',
+    link: 'https://learn.microsoft.com/api/credentials/share/en-us/SyrianZack-1633/DE7DFEFB2F118242?sharingId=E9292053D203678D',
   },
   {
     title: 'Oracle Java SE Programmer Certificate',
