@@ -4,7 +4,7 @@ export const experience = [
     company: 'Morningstar Sustainalytics',
     period: 'Nov 2025 — Jun 2026',
     logo: '/morningstar_logo.avif',
-    desc: 'Contributed to Canvas, a centralized ESG orchestration platform. Developed .NET/C# backend flows, async event-driven processing (SQS, batch jobs, ETL pipelines), and contributed to a Pentaho → C# migration that reduced bugs by ~50%.',
+    desc: 'Contributed to Canvas, a centralized ESG orchestration platform. Developed .NET/C# backend flows, async event-driven processing (SQS, batch jobs, ETL pipelines), and led the Pentaho → C# migration that reduced bugs by ~50%.',
     stack: [
       { name: 'C# / .NET' },
       { name: 'AWS SQS' },
