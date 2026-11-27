@@ -4,7 +4,7 @@ export const profile = {
   authorName: 'Ahmad Zakaria',
   title: 'Senior Full Stack Developer',
   photo: '/personal-photo.avif',
-  resume: '/ZakariaAhmadResume-2026-10.pdf',
+  resume: '/ZakariaAhmadResume-2026-11.pdf',
   location: 'Bucharest, Romania',
   email: 'zackm.ahmad@outlook.com',
   linkedinUrl: 'https://linkedin.com/in/syzack',
