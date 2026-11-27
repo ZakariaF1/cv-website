@@ -109,7 +109,7 @@ Quality-attribute **evaluation scenarios** (stimulus → response → measure) l
 
 ### Threat model — visitor loads site / resume
 
-**Scope:** public visitor opens `https://zakariaahmad.site/` and may download `/ZakariaAhmadResume-2026-10.pdf`.
+**Scope:** public visitor opens `https://zakariaahmad.site/` and may download `/ZakariaAhmadResume-2026-11.pdf`.
 
 ![Threat model: visitor to Cloudflare to Vercel; third-party CDNs; GitHub CI deploy](threat-model-visitor-load.svg)
 
